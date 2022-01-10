@@ -1,0 +1,204 @@
+# This file lists the mapping from event types to event patterns.
+# Each line has the form "code: filename", where "code" is a CAMEO
+# event code, and "filename" is the full path to a file containing the
+# pattern set for that code.  Any parameter variables (such as
+# "%icews_event_pattern_dir%") will be replaced by their value from 
+# the main parameter file.
+#
+# It is fine to define more than one pattern set for the same code.
+
+010:   %icews_event_pattern_dir%/01/event010.patterns
+011:   %icews_event_pattern_dir%/01/event011.patterns
+012:   %icews_event_pattern_dir%/01/event012.patterns
+013:   %icews_event_pattern_dir%/01/event013.patterns
+014:   %icews_event_pattern_dir%/01/event014.patterns
+015:   %icews_event_pattern_dir%/01/event015.patterns
+016:   %icews_event_pattern_dir%/01/event016.patterns
+017:   %icews_event_pattern_dir%/01/event017.patterns
+018:   %icews_event_pattern_dir%/01/event018.patterns
+019:   %icews_event_pattern_dir%/01/event019.patterns
+020:   %icews_event_pattern_dir%/02/event020.patterns
+021:   %icews_event_pattern_dir%/02/event021.patterns
+022:   %icews_event_pattern_dir%/02/event022.patterns
+023:   %icews_event_pattern_dir%/02/event023.patterns
+024:   %icews_event_pattern_dir%/02/event024.patterns
+0241:  %icews_event_pattern_dir%/02/event0241.patterns
+0242:  %icews_event_pattern_dir%/02/event0242.patterns
+0243:  %icews_event_pattern_dir%/02/event0243.patterns
+0244:  %icews_event_pattern_dir%/02/event0244.patterns
+025:   %icews_event_pattern_dir%/02/event025.patterns
+026:   %icews_event_pattern_dir%/02/event026.patterns
+027:   %icews_event_pattern_dir%/02/event027.patterns
+028:   %icews_event_pattern_dir%/02/event028.patterns
+030:   %icews_event_pattern_dir%/03/event030.patterns
+031:   %icews_event_pattern_dir%/03/event031.patterns
+032:   %icews_event_pattern_dir%/03/event032.patterns
+033:   %icews_event_pattern_dir%/03/event033.patterns
+034:   %icews_event_pattern_dir%/03/event034.patterns
+0341:  %icews_event_pattern_dir%/03/event0341.patterns
+0342:  %icews_event_pattern_dir%/03/event0342.patterns
+0343:  %icews_event_pattern_dir%/03/event0343.patterns
+0344:  %icews_event_pattern_dir%/03/event0344.patterns
+035:   %icews_event_pattern_dir%/03/event035.patterns
+0351:  %icews_event_pattern_dir%/03/event0351.patterns
+#0352: %icews_event_pattern_dir%/03/event0352.patterns  # DOES NOT EXIST
+0353:  %icews_event_pattern_dir%/03/event0353.patterns
+#0354: %icews_event_pattern_dir%/03/event0354.patterns  # DOES NOT EXIST
+0355:  %icews_event_pattern_dir%/03/event0355.patterns
+0356:  %icews_event_pattern_dir%/03/event0356.patterns
+036:   %icews_event_pattern_dir%/03/event036.patterns
+037:   %icews_event_pattern_dir%/03/event037.patterns
+038:   %icews_event_pattern_dir%/03/event038.patterns
+039:   %icews_event_pattern_dir%/03/event039.patterns
+040:   %icews_event_pattern_dir%/04/event040.patterns
+041:   %icews_event_pattern_dir%/04/event041.patterns
+042:   %icews_event_pattern_dir%/04/event042.patterns
+043:   %icews_event_pattern_dir%/04/event043.patterns
+044:   %icews_event_pattern_dir%/04/event044.patterns
+045:   %icews_event_pattern_dir%/04/event045.patterns
+046:   %icews_event_pattern_dir%/04/event046.patterns
+050:   %icews_event_pattern_dir%/05/event050.patterns
+051:   %icews_event_pattern_dir%/05/event051.patterns
+052:   %icews_event_pattern_dir%/05/event052.patterns
+053:   %icews_event_pattern_dir%/05/event053.patterns
+054:   %icews_event_pattern_dir%/05/event054.patterns
+055:   %icews_event_pattern_dir%/05/event055.patterns
+056:   %icews_event_pattern_dir%/05/event056.patterns
+057:   %icews_event_pattern_dir%/05/event057.patterns
+060:   %icews_event_pattern_dir%/06/event060.patterns
+070:   %icews_event_pattern_dir%/07/event070.patterns
+071:   %icews_event_pattern_dir%/07/event071.patterns
+072:   %icews_event_pattern_dir%/07/event072.patterns
+073:   %icews_event_pattern_dir%/07/event073.patterns
+074:   %icews_event_pattern_dir%/07/event074.patterns
+075:   %icews_event_pattern_dir%/07/event075.patterns
+07x:   %icews_event_pattern_dir%/07/event07x.patterns
+080:   %icews_event_pattern_dir%/08/event080.patterns
+081:   %icews_event_pattern_dir%/08/event081.patterns
+0811:  %icews_event_pattern_dir%/08/event0811.patterns
+0812:  %icews_event_pattern_dir%/08/event0812.patterns
+0813:  %icews_event_pattern_dir%/08/event0813.patterns
+0814:  %icews_event_pattern_dir%/08/event0814.patterns
+082:   %icews_event_pattern_dir%/08/event082.patterns
+083:   %icews_event_pattern_dir%/08/event083.patterns
+0831:  %icews_event_pattern_dir%/08/event0831.patterns
+0832:  %icews_event_pattern_dir%/08/event0832.patterns
+0833:  %icews_event_pattern_dir%/08/event0833.patterns
+0834:  %icews_event_pattern_dir%/08/event0834.patterns
+084:   %icews_event_pattern_dir%/08/event084.patterns
+0841:  %icews_event_pattern_dir%/08/event0841.patterns
+0842:  %icews_event_pattern_dir%/08/event0842.patterns
+085:   %icews_event_pattern_dir%/08/event085.patterns
+086:   %icews_event_pattern_dir%/08/event086.patterns
+0861:  %icews_event_pattern_dir%/08/event0861.patterns
+0862:  %icews_event_pattern_dir%/08/event0862.patterns
+0863:  %icews_event_pattern_dir%/08/event0863.patterns
+087:   %icews_event_pattern_dir%/08/event087.patterns
+0871:  %icews_event_pattern_dir%/08/event0871.patterns
+0872:  %icews_event_pattern_dir%/08/event0872.patterns
+0873:  %icews_event_pattern_dir%/08/event0873.patterns
+0874:  %icews_event_pattern_dir%/08/event0874.patterns
+090:   %icews_event_pattern_dir%/09/event090.patterns
+090:   %icews_event_pattern_dir%/03/event090.intent.patterns
+100:   %icews_event_pattern_dir%/10/event100.patterns
+101:   %icews_event_pattern_dir%/10/event101.patterns
+102:   %icews_event_pattern_dir%/10/event102.patterns
+103:   %icews_event_pattern_dir%/10/event103.patterns
+104:   %icews_event_pattern_dir%/10/event104.patterns
+105:   %icews_event_pattern_dir%/10/event105.patterns
+106:   %icews_event_pattern_dir%/10/event106.patterns
+107:   %icews_event_pattern_dir%/10/event107.patterns
+108:   %icews_event_pattern_dir%/10/event108.patterns
+111:   %icews_event_pattern_dir%/11/event111.patterns
+112:   %icews_event_pattern_dir%/11/event112.patterns
+113:   %icews_event_pattern_dir%/11/event113.patterns
+114:   %icews_event_pattern_dir%/11/event114.patterns
+115:   %icews_event_pattern_dir%/11/event115.patterns
+116:   %icews_event_pattern_dir%/11/event116.patterns
+11x:   %icews_event_pattern_dir%/11/event11x.patterns
+12:    %icews_event_pattern_dir%/12/event122-123.patterns # Covers more than one code, so we put it under 12
+120:   %icews_event_pattern_dir%/12/event120.patterns
+121:   %icews_event_pattern_dir%/12/event121.patterns
+124:   %icews_event_pattern_dir%/12/event124.patterns
+125:   %icews_event_pattern_dir%/12/event125.patterns
+126:   %icews_event_pattern_dir%/12/event126.patterns
+127:   %icews_event_pattern_dir%/12/event127.patterns
+128:   %icews_event_pattern_dir%/12/event128.patterns
+129:   %icews_event_pattern_dir%/12/event129.patterns
+130:   %icews_event_pattern_dir%/13/event130.patterns
+131:   %icews_event_pattern_dir%/13/event131.patterns
+#1311:  %icews_event_pattern_dir%/13/event1311.patterns
+#1312:  %icews_event_pattern_dir%/13/event1312.patterns
+#1313:  %icews_event_pattern_dir%/13/event1313.patterns
+132:   %icews_event_pattern_dir%/13/event132.patterns
+#134 is taken care of in 125
+133:   %icews_event_pattern_dir%/13/event133.patterns
+#135:   %icews_event_pattern_dir%/13/event135.patterns
+136:   %icews_event_pattern_dir%/13/event136.patterns
+137:   %icews_event_pattern_dir%/13/event137.patterns
+#138 is taken care of in 18/19 toplevel
+139:   %icews_event_pattern_dir%/13/event139.patterns
+140:   %icews_event_pattern_dir%/14/event140.patterns
+141:   %icews_event_pattern_dir%/14/event141.patterns
+142:   %icews_event_pattern_dir%/14/event142.patterns
+143:   %icews_event_pattern_dir%/14/event143.patterns
+144:   %icews_event_pattern_dir%/14/event144.patterns
+145:   %icews_event_pattern_dir%/14/event145.patterns
+150:   %icews_event_pattern_dir%/15/event150.patterns
+151:   %icews_event_pattern_dir%/15/event151.patterns
+152:   %icews_event_pattern_dir%/15/event152.patterns
+153:   %icews_event_pattern_dir%/15/event153.patterns
+154:   %icews_event_pattern_dir%/15/event154.patterns
+160:   %icews_event_pattern_dir%/16/event160.patterns
+161:   %icews_event_pattern_dir%/16/event161.patterns
+162:   %icews_event_pattern_dir%/16/event162.patterns
+163:   %icews_event_pattern_dir%/16/event163.patterns
+#164 is taken care of in 125
+165:   %icews_event_pattern_dir%/16/event165.patterns
+166:   %icews_event_pattern_dir%/16/event166.patterns
+16x:   %icews_event_pattern_dir%/16/event16x.patterns
+170:   %icews_event_pattern_dir%/17/event170.patterns
+171:   %icews_event_pattern_dir%/17/event171.patterns
+1711:  %icews_event_pattern_dir%/17/event1711.patterns
+1712:  %icews_event_pattern_dir%/17/event1712.patterns
+172:   %icews_event_pattern_dir%/17/event172.patterns
+1721:  %icews_event_pattern_dir%/17/event1721.patterns
+1722:  %icews_event_pattern_dir%/17/event1722.patterns
+1723:  %icews_event_pattern_dir%/17/event1723.patterns
+1724:  %icews_event_pattern_dir%/17/event1724.patterns
+173:   %icews_event_pattern_dir%/17/event173.patterns
+174:   %icews_event_pattern_dir%/17/event174.patterns
+175:   %icews_event_pattern_dir%/17/event175.patterns
+180:   %icews_event_pattern_dir%/18_19/event180.patterns
+181:   %icews_event_pattern_dir%/18_19/event181.patterns
+182:   %icews_event_pattern_dir%/18_19/event182.patterns
+1821:  %icews_event_pattern_dir%/18_19/event1821.patterns
+1822:  %icews_event_pattern_dir%/18_19/event1822.patterns
+1823:  %icews_event_pattern_dir%/18_19/event1823.patterns
+183:   %icews_event_pattern_dir%/18_19/event183.patterns
+1831:  %icews_event_pattern_dir%/18_19/event1831.patterns
+1832:  %icews_event_pattern_dir%/18_19/event1832.patterns
+1833:  %icews_event_pattern_dir%/18_19/event1833.patterns
+184:   %icews_event_pattern_dir%/18_19/event184.patterns
+185:   %icews_event_pattern_dir%/18_19/event185.patterns
+186:   %icews_event_pattern_dir%/18_19/event186.patterns
+190:   %icews_event_pattern_dir%/18_19/event190.patterns
+191:   %icews_event_pattern_dir%/18_19/event191.patterns
+192:   %icews_event_pattern_dir%/18_19/event192.patterns
+193:   %icews_event_pattern_dir%/18_19/event193.patterns
+194:   %icews_event_pattern_dir%/18_19/event194.patterns
+195:   %icews_event_pattern_dir%/18_19/event195.patterns
+196:   %icews_event_pattern_dir%/18_19/event196.patterns
+1819x: %icews_event_pattern_dir%/18_19/event1819x.patterns
+20:    %icews_event_pattern_dir%/18_19/event20.patterns
+
+# To turn on protest events without requiring source or target, uncomment this line
+14: %icews_event_pattern_dir%/14/no_argument_protest.patterns
+
+# CWMD Event Patterns
+CWMD.Manufacture.ARTIFACT:           %cwmd_event_pattern_dir%/Manufacture.ARTIFACT.patterns
+CWMD.Movement.TRANSPORT-ARTIFACT:    %cwmd_event_pattern_dir%/Movement.TRANSPORT-ARTIFACT.patterns
+CWMD.Transaction.TRANSFER-OWNERSHIP: %cwmd_event_pattern_dir%/Transaction.TRANSFER-OWNERSHIP.patterns
+CWMD.Learn:                          %cwmd_event_pattern_dir%/Learn.patterns
+CWMD.Test:                           %cwmd_event_pattern_dir%/Test.patterns
+

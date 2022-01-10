@@ -1,0 +1,22 @@
+<!-- Unique name for task disambiguation -->
+<!ENTITY callisto_task_name "com.bbn.BBN_Name_Annotation">
+
+<!-- Human readable title for display in GUI -->
+<!ENTITY callisto_task_title "BBN Name Annotation">
+
+<!-- Version string -->
+<!ENTITY callisto_task_version "1.0">
+
+<!-- Optional human readable description for display in GUI -->
+<!ENTITY callisto_task_description
+         "Annotate names for BBN SERIF">
+
+<!-- An annotation type -->
+<!-- An annotation type -->
+<!ELEMENT Person (#PCDATA)>
+<!ELEMENT Organization (#PCDATA)>
+<!ELEMENT GPE (#PCDATA)>
+<!ELEMENT Location (#PCDATA)>
+<!ELEMENT Facility (#PCDATA)>
+<!ELEMENT Weapon (#PCDATA)>
+<!ELEMENT Vehicle (#PCDATA)>

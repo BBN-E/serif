@@ -1,0 +1,56 @@
+:key_file		   +key_file+
+:response_file	  	   +decoded_file+
+:score_report_file	   +report_prefix+.scores
+:report_summary_file	   +report_prefix+.summary
+
+:scoring_task		named_entity
+:scoring_method		key2response
+
+:sgml_DOCNUM_gid        docid
+:doc_sections           doc
+#:doc_section_groups     "Header hl dd dateline"
+#			"Body txt"
+
+:stringfill_correct_comparison      clean
+:stringfill_partial_comparison      none
+:sgml_ALT_gid                       alt
+#:use_IE_report_summary  yes
+:dump_map_history       no
+
+:premodifiers		A AN THE
+:postmodifiers		; ' , .
+:corporate_designators	CO COS COMPANY CORP CORPORATION GP 'G P'
+			"GENERAL PARTNERSHIP" INC INCORPORATED LTD
+			LIMITED LP "LIMITED PARTNERSHIP" NL
+			'NO LIABILITY'	NPL "NO PERSONAL LIABILITY"
+			PLC 'PUBLIC LIMITED COMPANY' "PTE LTD"
+			'PRIVATE LIMITED COMPANY' 'PTY LTD'
+			'PROPRIETARY LIMITED' WLL
+			'WITH LIMITED RESPONSIBILITY'
+			'ANONIM SIRKETI' 'A O' A/S BERHAD BHD 'B M' BSC
+			'C A' 'C V' GMBH 'H F' I/S KG KK KY 'N V' OHG 'O E'
+			OY 'S A' 'S A DE C V' 'S N C' 'S L' 'S P A' SV
+			'T A S' VN
+
+
+:class_defs "enamex	enamex	scored	0"
+            "numex	numex	scored	0"
+            "timex	timex	scored	0"
+
+:slot_defs
+            "enamex	text	text	scored		4	string"
+	    "enamex	type	type	scored		4	set"
+	    "enamex	status	status	unscored	4	set"
+	    "enamex	alt	alt	unscored	4	string"
+
+            "timex	text	text	scored		4	string"
+	    "timex	type	type	scored		4	set"
+	    "timex	status	status	unscored	4	set"
+	    "timex	alt	alt	unscored	4	string"
+
+            "numex	text	text	scored		4	string"
+	    "numex	type	type	scored		4	set "
+	    "numex	status	status	unscored	4	set"
+	    "numex	alt	alt	unscored	4	string"
+
+

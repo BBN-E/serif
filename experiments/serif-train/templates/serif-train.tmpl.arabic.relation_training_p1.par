@@ -1,0 +1,34 @@
+######
+###### P1 Relation Training
+######
+######
+
+parallel: 000
+serif_data: +SERIF_DATA_DIR+
+
+p1_training_file_list: +STATE_FILE_LIST+
+
+p1_relation_model_file: +relation_p1_out_dir+/+relation_p1_model_name+.model
+p1_trainer_log_file: +relation_p1_out_dir+/+relation_p1_model_name+.log
+
+p1_relation_features_file: +SERIF_DATA_DIR+/arabic/relations/p1/ACE2005-features.txt
+p1_relation_tag_set_file: +relation_types_file+
+
+p1_trainer_epochs: 5
+p1_trainer_seed_features: true
+p1_trainer_add_hyp_features: true
+p1_trainer_weightsum_granularity: 1 
+
+entity_type_set: +entity_types_file+
+value_type_set: +value_types_file+
+entity_subtype_set: +entity_subtypes_file+
+word_cluster_bits_file: +SERIF_DATA_DIR+/arabic/clusters/cl2_tdt4_wl.hBits
+
+BWMorphDict: +SERIF_DATA_DIR+/arabic/morphology/serif-dict-all.txt
+BWRuleDict:  +SERIF_DATA_DIR+/arabic/morphology/ruledict.txt
+
+relation_finder_use_alt_models: true
+alternative_relation_model_file: +RELATION_ALT_MODEL_FILE+
+p1_relation_validation_str: NONE
+
+p1_real_averaged_mode: true

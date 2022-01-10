@@ -1,0 +1,21 @@
+######
+###### Vector Relation Training
+######
+######
+
+parallel: 000
+
+relation_training_file: +STATE_FILE_LIST+
+
+relation_model_file:    +relation_vector_tree_out_dir+/+relation_vector_tree_model_name+.weights
+
+relation_trainer_log_file: +relation_vector_tree_out_dir+/+relation_vector_tree_model_name+.log
+
+relation_type_list:     +relation_types_file+
+
+entity_type_set:        +entity_types_file+
+value_type_set:         +value_types_file+
+entity_subtype_set:     +entity_subtypes_file+
+
+relation_finder_use_alt_models: false
+p1_relation_validation_str: NONE

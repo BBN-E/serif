@@ -1,0 +1,31 @@
+######
+###### Name Training
+######
+
+parallel: 000
+serif_data: +SERIF_DATA_DIR+
+
+pidf_trainer_output_mode: taciturn
+pidf_standalone_mode: train
+pidf_print_model_every_epoch: false
+
+pidf_trainer_seed_features: true
+pidf_trainer_add_hyp_features: true
+pidf_trainer_weightsum_granularity: 16
+pidf_trainer_min_tot: 0.9
+pidf_trainer_min_change: -10
+
+pidf_model_file: +lower_case_name_out_dir+/+lower_case_name_model_name+.weights
+
+pidf_trainer_epochs: 20
+
+pidf_trainingfile_is_list: true
+pidf_training_file: +PIDF_TRAINING_FILE_LIST+
+
+pidf_features_file: +SERIF_DATA_DIR+/chinese/names/pidf/bi_and_tri_wc.features
+pidf_tag_set_file: +entity_tags_file+
+
+word_cluster_bits_file: +SERIF_DATA_DIR+/chinese/clusters/giga9804-tdt4bn.hBits
+
+pidf_interleave_tags: true
+pidf_learn_transitions: false

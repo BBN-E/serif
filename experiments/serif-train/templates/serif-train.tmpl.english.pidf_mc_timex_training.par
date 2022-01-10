@@ -1,0 +1,30 @@
+######
+###### Timex Training
+######
+######
+
+parallel: 000
+
+pidf_word_features_mode: TIMEX
+pidf_trainer_output_mode: taciturn
+pidf_standalone_mode: train
+pidf_print_model_every_epoch: false
+
+pidf_trainer_seed_features: true
+pidf_trainer_add_hyp_features: true
+pidf_trainer_weightsum_granularity: 16
+
+pidf_model_file: +mixed_case_timex_out_dir+/+mixed_case_timex_model_name+.weights
+
+pidf_vocab_file: +mixed_case_timex_out_dir+/+mixed_case_timex_model_name+.vocab
+
+pidf_trainingfile_is_list: true
+pidf_training_file: +PIDF_TRAINING_FILE_LIST+
+
+pidf_features_file: +SERIF_DATA_DIR+/english/values/pidf/ace2004-trigrams.features
+pidf_tag_set_file:  +SERIF_DATA_DIR+/english/values/pidf/just-timex.tags
+pidf_trainer_epochs: 5
+
+word_cluster_bits_file: +SERIF_DATA_DIR+/english/clusters/ace2005.hBits
+pidf_interleave_tags: false
+pidf_learn_transitions: false

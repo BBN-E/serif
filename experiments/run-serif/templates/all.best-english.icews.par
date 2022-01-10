@@ -1,0 +1,50 @@
+########################################################################
+# 08/29/11, Liz Boschee                                                #
+#                                                                      #
+# all.best-english.par:                                                #
+#   This is a Serif parameter file designed to run our current         #
+#   BEST system in English.                                            #
+#                                                                      #
+########################################################################
+
+# External variables (must be defined first)
+parallel:           +parallel+
+serif_data:         +serif_data+
+serif_score:        +serif_score+
+start_stage:        +start_stage+
+end_stage:          +end_stage+
+expt_dir:           +expt_dir+
+batch_file:         +batch_file+
+state_saver_stages: +state_saver_stages+
+
+INCLUDE +par_dir+/master.english.par
+
+OVERRIDE output_format: +output_format+
+OVERRIDE experiment_dir: +expt_dir+
+
+# ICEWS specific params below here
+icews_lib_dir: +par_dir+/../../../Projects/W-ICEWS/lib
+cwmd_lib_dir: +par_dir+/../../../Projects/CWMD/lib
+cwmd_event_pattern_dir: +par_dir+/../../../Projects/CWMD/lib/patterns.no_artifact_restrictions
+INCLUDE +par_dir+/master.icews.english.par
+
+OVERRIDE xor_always_decrypt: false
+OVERRIDE icews_read_stories_from_database: false
+
+# Find both standard CAMEO events and the new CWMD events
+OVERRIDE icews_event_codes:  01*,02*,03*,04*,05*,06*,07*,08*,09*,10*,11*,12*,13*,14*,15*,16*,17*,18*,19*,20*,CWMD*
+OVERRIDE icews_event_types: +par_dir+/../../../Projects/CWMD/lib/event_types.txt
+
+# Patterns and block patterns from CAMEO and CWMD
+OVERRIDE icews_event_pattern_dir: +par_dir+/../../../Projects/W-ICEWS/lib/patterns
+OVERRIDE icews_event_patterns: +par_dir+/../../../Projects/SERIF/experiments/run-serif/templates/combined_cwmd_and_icews_event_patterns.txt
+OVERRIDE icews_block_event_patterns: +par_dir+/../../../Projects/CWMD/lib/block_event_patterns_list.txt
+
+# Allow actors that aren't in the "official" ICEWS database
+types_to_force_as_actor_mentions: PER,ORG
+
+# Specify local ICEWS db (from cwmd.par)
+UNSET icews_db
+OVERRIDE icews_db_list: +par_dir+/../../../Projects/CWMD/lib/database/cwmd.all.db_list
+OVERRIDE icews_database_type: sqlite_norm
+OVERRIDE gazetteer_database_type: sqlite_norm

@@ -1,0 +1,25 @@
+The file "serif.doxygen" was automatically generated, and then edited.
+This will need to be repeated if/when we upgrade to new versions of
+doxygen.  In particular:
+
+  1. Run "doxygen -g serif.doxygen" to generate a template
+     configuration file.
+
+  2. Change the following variables in the generated file to have the
+     values specified below:
+
+       INPUT                  = +src_dir+
+       OUTPUT_DIRECTORY       = +dst_dir+
+       PROJECT_NAME           = "Serif"
+       PROJECT_NUMBER         = +revision+
+       RECURSIVE              = YES
+       EXTRACT_ALL            = YES
+       GENERATE_LATEX         = NO
+       HAVE_DOT               = YES
+       DOT_MULTI_TARGETS      = YES
+       SEARCHENGINE           = YES
+       JAVADOC_AUTOBRIEF      = YES
+
+     If you find any other variables you want to customize, please add
+     them to this list.
+

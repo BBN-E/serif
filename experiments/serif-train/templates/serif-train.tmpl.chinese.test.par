@@ -1,0 +1,299 @@
+#######################################################################
+#                                                                     #
+# Chinese Serif test parameter file                                   #
+#                                                                     #
+#######################################################################
+
+parallel: 000
+serif_data: +SERIF_DATA_DIR+
+
+######### Experiment Information ############################
+
+batch_file: +current_dir+/source_files.txt
+
+# Location of all output:
+experiment_dir: +test_dir+
+
+######### Session Information ################################
+
+# Valid stages are:
+#     START, sent-break, tokens, part-of-speech, names, values, parse, 
+#     npchunk, mentions, props, metonymy, entities, events, relations, 
+#     sent-level-end, doc-entities, doc-relations-events, doc-values, 
+#     generics, xdoc, output, score, END
+
+start_stage: START
+end_stage: output
+
+ignore_errors: true
+state_saver_stages: sent-level-end,doc-relations-events
+dump_theories: true
+
+use_sentence_level_relation_finding: false
+use_sentence_level_event_finding: false
+downcase_all_uppercase_docs: false
+
+######### Branching Factors for each stage ##################
+
+token_branch: 20
+pos_branch: 1
+name_branch: 1
+value_branch: 1
+parse_branch: 1
+desc_branch: 1
+# all linking branches as one
+link_branch: 1
+
+# global beam width - to catch all branches, it should be 
+# the product of the branching factors. To prune,
+# make it something less
+beam_width: 20
+
+# specific stage beam width -
+# override the global beam width for pruning after
+# a specific stage
+# tokens_beam_width: 
+# pos_beam_width:
+names_beam_width: 1 
+# values_beam_width: 1
+# parse_beam_width: 
+# mentions_beam_width:
+# props_beam_width:
+# entities_beam_width:
+# relations_beam_width:
+
+entity_type_set:    +entity_types_file+
+entity_subtype_set: +entity_subtypes_file+
+value_type_set:     +value_types_file+
+
+word_cluster_bits_file: +SERIF_DATA_DIR+/chinese/clusters/giga9804-tdt4bn.hBits
+
+# Output memory usage data in the session log:
+check_memory: false
+
+######### Module-specific params #############################
+
+# ----- Document Reader -----
+doc_reader_regions_to_process:  +regions_to_process+
+doc_reader_region_breaks:       TURN,P
+doc_reader_datetime_tags:       DATETIME
+doc_reader_speaker_tags:        +speaker_tags+
+doc_reader_receiver_tags:       +receiver_tags+
+
+
+# ----- Sentence Breaker -----
+
+# ----- Tokenizer -----
+
+tokenizer_params: +SERIF_DATA_DIR+/chinese/tokenization/chtb_5th_release.0817.tok
+tokenizer_subst:  +SERIF_DATA_DIR+/chinese/tokenization/token-subst.data
+tokenizer_tags:   +SERIF_DATA_DIR+/chinese/tokenization/one-tag
+
+# ----- Names/IdentiFinder -----
+name_finder: pidf
+
+pidf_model_file:        +lower_case_name_out_dir+/+lower_case_name_model_name+.weights
+pidf_tag_set_file:      +entity_tags_file+
+pidf_features_file:     +SERIF_DATA_DIR+/chinese/names/pidf/bi_and_tri_wc.features
+
+pidf_interleave_tags:   true
+pidf_learn_transitions: false
+
+# ----- Values -----
+values_mode: chars
+values_use_dual_model: false
+
+values_features_file: +SERIF_DATA_DIR+/chinese/values/pidf/bi_and_tri_wc.features
+values_tag_set_file:  +value_tags_file+
+values_model_file:    +lower_case_value_out_dir+/+lower_case_value_model_name+.weights
+
+
+# ----- Parser -----
+
+primary_parse: full_parse
+
+parser_model: +SERIF_DATA_DIR+/chinese/parser/chtb_5th_release.20
+inventory:    +SERIF_DATA_DIR+/chinese/parser/ace2004_desc_head_words.0805.txt
+
+# this value can range between 0 and 1. A larger probability implies more fragments
+# will be produced in a sentence, but the fragments should be of a more guaranteed 
+# quality. For normal, well-trained operation, leave this value at 0.
+parser_frag_prob: 0
+
+# ------ NPChunking ----
+#if do-np-chunk is true, be sure other pnpchunk and word-class params are in file
+do_np_chunk: false
+
+# ----- Mention Recognizer / Descriptor Classifier -----
+
+do_desc_recognition: true
+desc_classify_model_type: P1
+
+desc_types:            +SERIF_DATA_DIR+/chinese/nominals/ace2004_desc_head_words.0805.txt
+
+p1_desc_tag_set_file:  +entity_tags_file+
+p1_desc_features_file: +SERIF_DATA_DIR+/chinese/nominals/p1/ace2005.features
+p1_desc_model_file:    +desc_out_dir+/+desc_model_name+.descriptors.weights.p1
+
+p1_desc_use_wordnet: false
+
+# ----- Pronoun Classifier -----
+classify_pronoun_type: false
+
+p1_pronoun_type_tag_set_file:  +SERIF_DATA_DIR+/chinese/pronouns/p1/pron.tags
+p1_pronoun_type_features_file: +SERIF_DATA_DIR+/chinese/pronouns/p1/ace2005.features
+p1_pronoun_type_model_file:    +SERIF_DATA_DIR+/chinese/pronouns/p1/p1-pron-ace2004-and-2005.giga9804-tdt4bn.p1
+
+
+# ----- Pronoun Linker -----
+##pronoun_link_mode: PM
+##pronlink_model:    +SERIF_DATA_DIR+/chinese/coref/pronouns/pm/ace2004-2005.1104
+
+pronoun_link_mode:     DT
+
+dt_pron_model_type:    maxent
+dt_pron_tag_set_file:  +SERIF_DATA_DIR+/chinese/coref/link.tags
+dt_pron_features_file: +SERIF_DATA_DIR+/chinese/coref/pronouns/pronlink.ace2005.features
+dt_pron_model_file:    +dt_pron_coref_out_dir+/+dt_pron_coref_model_name+.model
+
+dt_pron_maxent_link_threshold: 0.2
+dt_pron_overgen_percentage: 0
+
+# ----- Name Linker -----
+
+name_link_mode: stat
+use_simple_rule_namelink: false
+
+### Statistical Name Linker:
+
+generic_model_file:         +SERIF_DATA_DIR+/chinese/coref/names/stat/ace2004-2005.1105.uni
+namelink_newold_model_file: +SERIF_DATA_DIR+/chinese/coref/names/stat/newoldmodel
+abbrev_maker_file:          +SERIF_DATA_DIR+/chinese/coref/names/empty_abbrevs
+alias_table:                +SERIF_DATA_DIR+/chinese/coref/names/serif_aliases
+
+stopword_file:              +SERIF_DATA_DIR+/chinese/coref/names/stopwords.0926
+
+specific_unseen_weights:    +SERIF_DATA_DIR+/chinese/coref/names/stat/7specificUnseenWeights
+generic_unseen_weights:     +SERIF_DATA_DIR+/chinese/coref/names/stat/ace2004-2005.1105.lambdas
+
+# ----- Descriptor Linker -----
+desc_link_mode: DT
+
+dt_coref_model_type: maxent
+
+dt_coref_tag_set_file:  +SERIF_DATA_DIR+/chinese/coref/link.tags
+dt_coref_features_file: +SERIF_DATA_DIR+/chinese/coref/nominals/desclink.ace2005.features
+dt_coref_model_file:    +dt_desc_coref_out_dir+/+dt_desc_coref_model_name+.model
+dt_coref_maxent_link_threshold: 0.4
+dt_coref_overgen_percentage: 0.5
+
+# ----- Entities (Reference Resolution) -----
+
+create_partitive_entities: false
+unify_appositives: false
+
+desc_head_subtypes: +SERIF_DATA_DIR+/chinese/subtypes/subtypes-2004-2005.nom
+full_name_subtypes: +SERIF_DATA_DIR+/chinese/subtypes/subtypes-2004-2005.name
+
+# ----- Metonymy / Roles -----
+
+use_metonymy: true
+use_gpe_roles: true
+
+# ----- Event Finder -----
+event_model_type: STAT
+
+## trigger finding
+event_trigger_tag_set_file:     +event_triggers_file+
+event_trigger_features_file:    +SERIF_DATA_DIR+/chinese/events/triggers/trigger.ace2005.features
+event_trigger_model_file:       +event_trigger_out_dir+/+event_trigger_model_name+.model
+
+event_trigger_recall_threshold: 0
+et_p1_recall_threshold:         0.2
+
+use_word_model:                 false
+use_wordnet_model:              false
+use_cluster16_model:            false
+use_cluster1216_model:          false
+use_cluster81216_model:         false
+use_obj_model:                  false
+use_sub_model:                  false
+use_word_prior_model:           false
+et_use_p1_model:                true
+et_use_maxent_model:            false
+
+## argument attachment
+event_aa_tag_set_file:   +event_args_file+
+event_aa_features_file:  +SERIF_DATA_DIR+/chinese/events/arguments/aa.ace2005-cond-vdr.features
+event_aa_model_file:     +event_aa_out_dir+/+event_aa_model_name+.model.maxent
+event_aa_recall_threshold: 0.5
+event_aa_second_arg_recall_threshold: 0.9
+
+event_linking_style: DOCUMENT
+
+event_link_tag_set_file:  +SERIF_DATA_DIR+/chinese/events/link/ace2005-event-link.types
+event_link_features_file: +SERIF_DATA_DIR+/chinese/events/link/link.ace2005.features
+event_link_model_file:    +event_link_out_dir+/+event_link_model_name+.model
+event_link_threshold: 0.5
+
+allow_events_to_subsume_relations: false
+
+# ----- Event Value Finder -----
+add_event_values_as_event_args: true
+
+crime_list:           +SERIF_DATA_DIR+/chinese/events/ACE2005.Crime
+crime_sentence_list:  +SERIF_DATA_DIR+/chinese/events/ACE2005.Sentence
+
+# ----- Relation Finder -----
+merge_rel_mentions_across_type: false
+ignore_relations_with_matching_heads: true
+
+relation_tag_set_file:   +relation_types_file+
+relation_features_file:  +SERIF_DATA_DIR+/chinese/relations/relation.ace2005-cond-RDR.features
+
+relation_model_type: COMBO
+
+## Maxent Model
+##relation_model_type: MAXENT
+maxent_relation_model_file:  +relation_maxent_out_dir+/+relation_maxent_model_name+.model
+
+## P1 Model
+##relation_model_type: P1
+p1_relation_model_file: +relation_p1_out_dir+/+relation_p1_model_name+.model
+p1_relation_overgen_percentage: 0.1
+
+## Alternate Models
+relation_finder_use_alt_models:  true
+alternative_relation_model_file: +SERIF_DATA_DIR+/chinese/relations/alt-models/1201.giga9804-tdt4bn.2004-alt-models.txt
+
+relation_validation_str: NONE
+
+## Vector Model
+relation_type_list:          +relation_types_file+
+vector_relation_model_file:  +relation_vector_tree_out_dir+/+relation_vector_tree_model_name+.weights
+
+## Time Attachment
+do_relation_time_attachment: true
+relation_time_model_file:    +relation_timex_out_dir+/+relation_timex_model_name+.model
+relation_time_tag_set_file:  +SERIF_DATA_DIR+/chinese/relations/timex/relation.ta.ace2005.tags
+relation_time_features_file: +SERIF_DATA_DIR+/chinese/relations/timex/relation.ta.ace2005.features
+relation_time_recall_threshold: 0.3
+
+# ----- Doc Entities -----
+
+do_strategic_linking: false
+singleton_descriptor_percentage: 0
+singleton_merge_size: 2
+
+# ----- Output -----
+
+# Choose output format __ one of: APF, EEML, APF4, APF5
+output_format: APF7
+
+##filter_out_overlapping_apf_mentions: true
+
+# ----- Scoring -----
+
+# scoring script invoked
+score_script: +serif_score+/ace-all-do-quick-score-v01.pl
+

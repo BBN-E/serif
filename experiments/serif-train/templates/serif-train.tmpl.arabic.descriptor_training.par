@@ -1,0 +1,35 @@
+######
+###### Descriptor Training
+######
+######
+
+parallel: 000
+
+p1_desc_task:                   desc-classify
+desc_model_type:                P1
+p1_desc_use_wordnet:            false
+
+pdesc_rare_hw_list:             +SERIF_DATA_DIR+/arabic/nominals/p1/rare_hws.txt
+pdesc_window_gram_stopwords:    +SERIF_DATA_DIR+/arabic/nominals/p1/windowgram.stopwords.txt
+
+p1_trainer_epochs:                      10
+p1_trainer_seed_features:               true
+p1_trainer_add_hyp_features:            true
+p1_trainer_weightsum_granularity:       16
+
+p1_training_file_list:  +STATE_FILE_LIST+
+
+p1_desc_model_file:     +desc_out_dir+/+desc_model_name+.descriptors.weights
+trainer_log_file:       +desc_out_dir+/+desc_model_name+.descriptors.log
+
+p1_desc_features_file:  +SERIF_DATA_DIR+/arabic/nominals/p1/ACE2005-Features.txt
+p1_desc_tag_set_file:   +entity_tags_file+
+
+entity_type_set:        +entity_types_file+
+entity_subtype_set:     +entity_subtypes_file+
+value_type_set:         +value_types_file+
+
+word_cluster_bits_file: +SERIF_DATA_DIR+/arabic/clusters/cl2_tdt4_wl.hBits
+
+BWMorphDict:            +SERIF_DATA_DIR+/arabic/morphology/serif-dict-all.txt
+BWRuleDict:             +SERIF_DATA_DIR+/arabic/morphology/ruledict.txt

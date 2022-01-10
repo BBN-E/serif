@@ -1,0 +1,30 @@
+######
+###### Non-Timex Value Training
+######
+######
+
+parallel: 000
+
+pidf_word_features_mode: OTHER_VALUE
+pidf_trainer_output_mode: taciturn
+pidf_standalone_mode: train
+pidf_print_model_every_epoch: false
+
+pidf_trainer_seed_features: true
+pidf_trainer_add_hyp_features: true
+pidf_trainer_weightsum_granularity: 16
+
+pidf_model_file: +lower_case_other_value_out_dir+/+lower_case_other_value_model_name+.weights
+pidf_vocab_file: +lower_case_other_value_out_dir+/+lower_case_other_value_model_name+.vocab
+
+pidf_trainingfile_is_list: true
+pidf_training_file: +PIDF_TRAINING_FILE_LIST+
+
+pidf_features_file: +SERIF_DATA_DIR+/english/values/pidf/ace2004-bigrams.features
+pidf_tag_set_file: +value_tags_file+
+pidf_trainer_epochs: 5
+
+word_cluster_bits_file: +SERIF_DATA_DIR+/english/clusters/ace2005.lowercase.hBits
+
+pidf_interleave_tags: false
+pidf_learn_transitions: false

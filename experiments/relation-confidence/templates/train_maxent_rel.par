@@ -1,0 +1,51 @@
+######
+###### Maxent Relation Training
+######
+######
+
+parallel: 000
+serif_data: +serif_data+
+
+maxent_debug: +output_dir+\maxent_debug.log
+maxent_train_vector_file: +train_vector_file+
+maxent_test_vector_file: +test_vector_file+
+
+maxent_training_file_list: //traid01/speed/Serif/data/relations/ace2007/training-lists/all-ace2007-predicted-mentions.list
+
+maxent_relation_model_file: +output_dir+\ace2007-relation-maxent-all.model
+maxent_trainer_log_file: +output_dir+\ace2007-relation-maxent-all.log
+
+maxent_relation_features_file: +serif_data+/english/relations/relation.ace2007.features
+maxent_relation_tag_set_file: \\traid07\u13\vpunyaka\expts\serif-train-vsp\serif-train-vsp-4/params/relation_types.txt
+
+do_not_cache_sentences: true
+
+maxent_relation_filter_mode: true
+maxent_relation_filter_features_file: +serif_data+/english/relations/relation.ace2007.features
+maxent_relation_filter_tag_set_file: +serif_data+/english/relations/maxent/relation.filter.tags
+
+# This is our output file, basically:
+maxent_relation_filter_model_file:  +output_dir+\ace2007-relation-maxent-all.filter.model
+
+
+
+
+maxent_trainer_mode: SCGIS
+maxent_trainer_percent_held_out: +held_out_percent+
+maxent_trainer_max_iterations: 1000
+maxent_trainer_gaussian_variance: 0
+maxent_trainer_pruning_cutoff: 0
+
+entity_type_set: +serif_data+/ace/ace_2004_entity_types.txt
+value_type_set: +serif_data+/ace/ace_2005_value_types.txt
+entity_subtype_set: +serif_data+/ace/entity-subtypes-2005.txt
+word_net_dictionary_path: +serif_data+/english/Software/WN16/DICT
+word_cluster_bits_file: +serif_data+/english/clusters/ace2005.hBits
+lc_word_cluster_bits_file: +serif_data+/english/clusters/ace2005.lowercase.hBits
+
+wordnet_level_start: 1
+wordnet_level_interval: 3
+
+relation_finder_use_alt_models: true
+alternative_relation_model_file: \\traid07\u13\vpunyaka\expts\serif-train-vsp\serif-train-vsp-4/english/relations/alt-models/ace2007-alt-model-params
+

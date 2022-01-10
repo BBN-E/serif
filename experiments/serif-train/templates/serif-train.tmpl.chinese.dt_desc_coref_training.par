@@ -1,0 +1,42 @@
+######
+###### P1 Descriptor Coref
+######
+######
+
+parallel: 000
+
+dt_coref_model_type:            maxent
+dt_coref_search_strategy:       BEST
+dt_coref_target_mention_type:   DESC
+dt_coref_train_source:          state_files
+
+dt_coref_tag_set_file:          +SERIF_DATA_DIR+/chinese/coref/link.tags
+dt_coref_trainer_epochs:        5
+dt_coref_training_file:         +STATE_FILE_LIST+
+dt_coref_training_list_mode:    true
+
+dt_coref_features_file:         +SERIF_DATA_DIR+/chinese/coref/nominals/desclink.ace2005.features
+dt_coref_model_file:            +dt_desc_coref_out_dir+/+dt_desc_coref_model_name+.model
+trainer_log_file:               +dt_desc_coref_out_dir+/+dt_desc_coref_model_name+.log
+
+maxent_trainer_mode: SCGIS
+maxent_trainer_pruning_cutoff: 3
+maxent_trainer_percent_held_out: 10
+maxent_trainer_max_iterations: 1000
+maxent_trainer_gaussian_variance: 1
+maxent_min_likelihood_delta: .0001
+maxent_stop_check_frequency: 1
+
+entity_type_set:                +entity_types_file+
+value_type_set:                 +value_types_file+
+entity_subtype_set:             +entity_subtypes_file+
+
+word_cluster_bits_file:         +SERIF_DATA_DIR+/chinese/clusters/giga9804-tdt4bn.hBits
+
+desc_head_subtypes:             +SERIF_DATA_DIR+/chinese/subtypes/subtypes-2004-2005.nom
+full_name_subtypes:             +SERIF_DATA_DIR+/chinese/subtypes/subtypes-2004-2005.name
+
+desc_types:                     +SERIF_DATA_DIR+/chinese/nominals/ace2004_desc_head_words.0805.txt
+
+unify_appositives:              false
+

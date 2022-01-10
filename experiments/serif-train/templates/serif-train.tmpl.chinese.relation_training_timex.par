@@ -1,0 +1,28 @@
+######
+###### Relation Timex Training
+######
+######
+
+parallel: 000
+
+relation_time_training_file_list: +STATE_FILE_LIST+
+
+word_cluster_bits_file: +SERIF_DATA_DIR+/chinese/clusters/giga9804-tdt4bn.hBits
+
+
+relation_time_features_file: +SERIF_DATA_DIR+/chinese/relations/timex/relation.ta.ace2005.features
+relation_time_tag_set_file: +SERIF_DATA_DIR+/chinese/relations/timex/relation.ta.ace2005.tags
+
+relation_time_maxent_trainer_percent_held_out: 0
+relation_time_maxent_trainer_max_iterations: 1000
+relation_time_maxent_trainer_gaussian_variance: 100
+relation_time_maxent_trainer_pruning_cutoff: 0
+
+relation_time_model_file: +relation_timex_out_dir+/+relation_timex_model_name+.model
+relation_time_finder_log_file: +relation_timex_out_dir+/+relation_timex_model_name+.log
+
+entity_type_set:        +entity_types_file+
+value_type_set:         +value_types_file+
+entity_subtype_set:     +entity_subtypes_file+
+
+

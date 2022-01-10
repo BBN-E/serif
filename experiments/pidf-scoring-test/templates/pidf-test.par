@@ -1,0 +1,32 @@
+# Default PIdF/QuickLearn trainer parameter file
+
+serif_data: +serif_data+
+
+# output mode: 'verbose' for detailed progress; 'taciturn' for minimal
+# progress (for running in batch queue).
+pidf_trainer_output_mode: verbose
+
+pidf_trainer_add_hyp_features: true
+pidf_trainer_seed_features: true
+pidf_interleave_tags: false
+pidf_learn_transitions: false
+
+pidf_model_file: +model_name+.weights
+pidf_standalone_mode: decode
+
+# number of training cycles:
+pidf_trainer_epochs: 10
+
+# number of sentences between adding current weight table to running
+# average (1 is very slow; 25 is a good compromise).
+pidf_trainer_weightsum_granularity: 16
+
+# for standalone decoder only:
+pidf_input_file: +input_file+
+pidf_output_file: +output_file+
+
+# for both training and decoding:
+pidf_features_file: +features+
+pidf_tag_set_file: +tags+
+
+word_cluster_bits_file: +clusters+

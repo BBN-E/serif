@@ -1,0 +1,23 @@
+#!/bin/sh -e
+############################################################################
+# Copyright 1998 by Bolt Beranek and Newman Inc.  All rights reserved.     #
+#                                                                          #
+# Use, duplication, or disclosure by the Government is subject to          #
+# restrictions as set forth in subparagraph (c)(1)(ii) of the Rights in    #
+# Technical Data and Computer Software clause at DFARS 252.227-7013.       #
+#                                                                          #
+#      BBN Systems and Technologies                                        #
+#      70 Fawcett Street                                                   #
+#      Cambridge, MA 02138                                                 #
+#      617-873-3000                                                        #
+#                                                                          #
+# NOTICE:                                                                  #
+#   This software has been developed at BBN Systems and Technologies.      #
+#   No portion of this software or its associated documentation may        #
+#   be used, stored, or reproduced without the expressed written           #
+#   consent of BBN Systems and Technologies, a division of BBN, Inc.       #
+#   Information regarding licensing of this software may be obtained       #
+#   from the contracts department of BBN STD.                              #
+#                                                                          #
+############################################################################
+exec csh -xvef $@

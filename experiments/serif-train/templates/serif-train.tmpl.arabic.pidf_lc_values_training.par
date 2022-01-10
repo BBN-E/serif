@@ -1,0 +1,29 @@
+######
+###### Value Training
+######
+
+parallel: 000
+
+pidf_trainer_output_mode: taciturn
+pidf_standalone_mode: train
+pidf_print_model_every_epoch: false
+
+pidf_trainer_seed_features: true
+pidf_trainer_add_hyp_features: true
+pidf_trainer_weightsum_granularity: 16
+pidf_trainer_min_tot: 0.9
+pidf_trainer_min_change: -10
+
+pidf_model_file: +lower_case_value_out_dir+/+lower_case_value_model_name+.weights
+
+pidf_trainingfile_is_list: true
+pidf_training_file: +PIDF_TRAINING_FILE_LIST+
+
+pidf_features_file: +SERIF_DATA_DIR+/arabic/values/pidf/default.features
+pidf_tag_set_file: +value_tags_file+
+pidf_trainer_epochs: 20
+
+word_cluster_bits_file: +SERIF_DATA_DIR+/arabic/clusters/cl2_tdt4_wl.hBits
+
+pidf_interleave_tags: true
+pidf_learn_transitions: false

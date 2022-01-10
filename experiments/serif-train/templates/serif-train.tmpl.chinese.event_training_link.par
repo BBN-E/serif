@@ -1,0 +1,64 @@
+######
+###### Event Training
+######
+######
+
+train_event_trigger_model:      false
+train_event_aa_model:           false
+train_event_link_model:         true
+train_event_modality_model:     false
+
+parallel: 000
+
+event_finder_log_file:          +event_link_out_dir+/+event_link_model_name+.log
+event_training_file_list:       +STATE_FILE_LIST+
+
+word_cluster_bits_file:         +SERIF_DATA_DIR+/chinese/clusters/giga9804-tdt4bn.hBits
+
+entity_type_set:                +entity_types_file+
+value_type_set:                 +value_types_file+
+entity_subtype_set:             +entity_subtypes_file+
+
+## TRIGGERS
+event_trigger_model_file:       +event_trigger_out_dir+/+event_trigger_model_name+.model
+event_trigger_tag_set_file:     +event_triggers_file+
+event_trigger_features_file:    +SERIF_DATA_DIR+/chinese/events/triggers/trigger.ace2005.features
+
+et_p1_epochs: 4
+et_p1_print_every_epoch: false
+et_p1_trainer_seed_features: false
+use_word_model: false
+use_wordnet_model: false
+use_cluster16_model: false
+use_cluster1216_model: false
+use_cluster81216_model: false
+et_use_p1_model: true
+use_obj_model: true
+use_sub_model: true
+use_word_prior_model: false
+et_use_maxent_model: false
+
+## ARG ATTACHMENT
+event_aa_model_file:            +event_aa_out_dir+/+event_aa_model_name+.model
+event_aa_tag_set_file:          +event_args_file+
+event_aa_features_file:         +SERIF_DATA_DIR+/chinese/events/arguments/aa.ace2005-cond-vdr.features
+
+train_event_aa_maxent_model: true
+train_event_aa_p1_model: false
+use_preexisting_event_only_values: true
+train_second_pass_aa_model: false
+
+aa_maxent_trainer_percent_held_out: 0
+aa_maxent_trainer_max_iterations: 1000
+aa_maxent_trainer_gaussian_variance: 100
+aa_maxent_trainer_pruning_cutoff: 2
+
+## LINKING
+event_link_model_file:          +event_link_out_dir+/+event_link_model_name+.model
+event_link_tag_set_file:        +SERIF_DATA_DIR+/chinese/events/link/ace2005-event-link.types
+event_link_features_file:       +SERIF_DATA_DIR+/chinese/events/link/link.ace2005.features
+
+event_link_trainer_percent_held_out: 0
+event_link_trainer_max_iterations: 1000
+event_link_trainer_gaussian_variance: 100
+event_link_trainer_pruning_cutoff: 0

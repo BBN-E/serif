@@ -1,0 +1,42 @@
+######
+###### Maxent Relation Training
+######
+######
+
+parallel: 000
+serif_data: +SERIF_DATA_DIR+
+
+maxent_training_file_list: +STATE_FILE_LIST+
+
+maxent_relation_model_file: +relation_maxent_out_dir+/+relation_maxent_model_name+.model
+maxent_trainer_log_file: +relation_maxent_out_dir+/+relation_maxent_model_name+.log
+
+maxent_relation_features_file: +SERIF_DATA_DIR+/english/relations/relation.ace2007.features
+maxent_relation_tag_set_file: +relation_types_file+
+
+do_not_cache_sentences: true
+
+maxent_relation_filter_mode: true
+maxent_relation_filter_features_file: +SERIF_DATA_DIR+/english/relations/relation.ace2007.features
+maxent_relation_filter_tag_set_file: +SERIF_DATA_DIR+/english/relations/maxent/relation.filter.tags
+maxent_relation_filter_model_file:  +relation_maxent_out_dir+/+relation_maxent_model_name+.filter.model
+
+maxent_trainer_mode: SCGIS
+maxent_trainer_percent_held_out: 0
+maxent_trainer_max_iterations: 1000
+maxent_trainer_gaussian_variance: 0
+maxent_trainer_pruning_cutoff: 0
+
+entity_type_set: +entity_types_file+
+value_type_set: +value_types_file+
+entity_subtype_set: +entity_subtypes_file+
+word_net_dictionary_path: +SERIF_DATA_DIR+/english/Software/WN16/DICT
+word_cluster_bits_file: +SERIF_DATA_DIR+/english/clusters/ace2005.hBits
+lc_word_cluster_bits_file: +SERIF_DATA_DIR+/english/clusters/ace2005.lowercase.hBits
+
+wordnet_level_start: 1
+wordnet_level_interval: 3
+
+relation_finder_use_alt_models: true
+alternative_relation_model_file: +RELATION_ALT_MODEL_FILE+
+p1_relation_validation_str: NONE

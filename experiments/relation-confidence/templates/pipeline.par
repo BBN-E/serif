@@ -1,0 +1,139 @@
+###
+# Runs the preprocessing pipeline.
+#
+# Edward Loper
+# eloper@bbn.com
+# Nicolas Ward
+# nward@bbn.com
+# Alex Zamanian
+# azamania@bbn.com
+# 2009.03.03
+###
+
+######################################################################
+# Input parameters (passed via runjobs template expansion)
+######################################################################
+
+expt_name: +expt_name+
+num_jobs: +num_jobs+
+job_num: +job_num+
+document_lists: +document_lists+
+language: +language+
+input_dir: +input_dir+
+output_dir: +output_dir+
+serif_template: +serif_template+
+lockdir: +lockdir+
+start_stage: +start_stage+
+end_stage: +end_stage+
+serif_exec: +serif_bin+
+sevenzip_exec: +sevenzip_bin+
+serif_data: +serif_data+
+serif_score: +serif_score+
+split: +split+
+
+######################################################################
+# Python module imports
+######################################################################
+
+# Imports:
+os: eval __import__("os")
+sys: eval __import__("sys")
+tempfile: eval __import__("tempfile")
+
+######################################################################
+# Working Directories
+######################################################################
+
+rundir: eval tempfile.mkdtemp() # do we clean up after ourselves?
+debugprint: eval sys.stdout.write("rundir=%r\n" % rundir)
+
+######################################################################
+# Locks & Logs
+######################################################################
+
+locklimit: 12
+
+######################################################################
+# Pipeline parameters
+######################################################################
+#stages: eval "localize serif distill-doc seven-zip delocalize clean".split()
+stages: eval "localize serif delocalize clean".split()
+
+#=========================
+# Localize Stage
+#-------------------------
+
+localize_files: eval ["source"]
+parallel: eval "%03d" % job_num
+lockdir: eval lockdir
+
+#=========================
+# Serif Stage
+#-------------------------
+
+serif_rundir: eval rundir+"/serif"
+current_serif_exec: eval serif_exec
+
+# A function mapping from each document name to the full path of
+# the file that contains that document.
+source_l: !\
+    eval lambda(x): !\
+        os.path.join(input_dir, x)
+
+# Helper function that maps a filename to a docid:
+get_docid: !\
+    eval lambda(path): !\
+        os.path.splitext(os.path.split(path)[-1])[0]
+
+# Locations where SERIF files should be stored locally:
+state_suffix: -state-7-mentions
+local_source_l: !\
+    eval lambda(x): !\
+        os.path.join(rundir, "source", get_docid(x))
+local_state_l:  !\
+    eval lambda(x): !\
+        os.path.join(rundir, "serif", get_docid(x) + state_suffix)
+local_apf_l: !\
+    eval lambda(x): !\
+        os.path.join(rundir, "serif", "output", get_docid(x) + ".apf")
+
+# Parameter file used to define the parameters for SERIF.
+current_serif_template: eval serif_template.split()
+
+# Parameter file used when there are less than 200 documents.
+small_batch_serif_template: eval current_serif_template
+
+#=========================
+# Delocalize Stage
+#-------------------------
+
+delocalize_files: eval ["state", "apf", "serif_par"]
+delocalize_never_overwrites: true
+fail_on_failed_copy: true
+
+# Output locations:
+apf_l: !\
+    eval lambda(x): os.path.join(output_dir, "apf", get_docid(x)+".sgm.apf")
+state_l: !\
+    eval lambda(x): os.path.join(output_dir, "state", get_docid(x)+state_suffix)
+local_serif_par_l: !\
+    eval lambda(x): os.path.join(rundir, "serif", "split.best-english.par.params")
+serif_par_l: !\
+    eval lambda(x): os.path.join(output_dir, "par", get_docid(x)+".params")
+
+######################################################################
+# Document List
+######################################################################
+
+# Start by reading the documents list(s) to form a list of the doc
+# names for all the documents we need to process.
+all_documents: eval [docid.strip() !\
+                     for doclist in document_lists.split() !\
+	       	     for docid in open(doclist)]
+
+# Then select out those documents that this pipeline job should
+# process.  For example, if there are 10 pipeline jobs, and this is
+# job 3, then we would process every 10th document, starting with
+# document 3 (i.e., document 3, 13, 23, 33, ...).
+documents: eval all_documents[job_num:len(all_documents):num_jobs]
+

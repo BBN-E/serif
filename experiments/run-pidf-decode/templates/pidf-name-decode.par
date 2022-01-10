@@ -1,0 +1,32 @@
+######
+###### Name Training (pIdF)
+######
+
+parallel: 000
+
+serif_data: +serif_data+
+
+pidf_trainer_output_mode:  verbose
+pidf_standalone_mode: decode
+pidf_print_model_every_epoch: false
+
+pidf_trainer_seed_features: true
+pidf_trainer_add_hyp_features: true
+pidf_trainer_weightsum_granularity: 16
+
+pidf_model_file: +model_file+
+
+pidf_input_file:  +input_file+
+pidf_output_file: +output_file+
+
+pidf_trainer_epochs: 10
+
+pidf_tag_set_file:  +tags+
+pidf_features_file: +features+
+
+word_cluster_bits_file: +clusters+
+pidf_interleave_tags: false
+pidf_learn_transitions: false
+
+pidf_do_constrained_decode: +use_constraints+
+pidf_constraint_tags: +constraint_tags+
