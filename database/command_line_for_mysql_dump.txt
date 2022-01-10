@@ -1,1 +1,0 @@
-"C:\Program Files (x86)\MySQL\MySQL Workbench 5.2 CE\mysqldump.exe" --password=eloper --user=eloper --host=icews-mysql-01.bbn.com --no-data --databases AZ_Actors > //mercury-03/u19/users/azamania/Projects/Serif/database/actor_db_mysql.sql
