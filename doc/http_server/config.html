@@ -1,0 +1,67 @@
+<html>
+<head>
+  <title>Configuring the Serif Server</title>
+  <link rel="stylesheet" type="text/css" href="serif.css">
+</head>
+<body>
+<div class="body">
+<h1>Configuring the Serif Server</h1>
+
+<p> The server configuration is defined using a "parameter file".  If
+you wish to customize the server's behavior, you can do so using a
+custom parameter file.  The recommended way to create a custom
+parameter file is to create a new parameter file that begins by
+including the standard parameter file, and then overrides select
+parameters.  The following example demonstrates what this looks like:
+</p>
+
+<pre class="terminal">
+<div class="label">Custom SERIF Parameter File</div><span class="comment"># Custom parameter file.</span>
+<span class="comment"># Lines beginning with '#' are comments.</span>
+
+<span class="comment"># Include the standard parameter file.</span>
+<span class="comment"># (This line must come before any custom parameter overrides.)</span>
+INCLUDE /exports/serif/par/all.best-english.par
+
+<span class="comment"># Define custom parameter values.</span>
+OVERRIDE start_stage: START
+OVERRIDE end_stage: parse
+OVERRIDE experiment_dir: /var/serif/server_dir
+</pre>
+
+<p> Some of the parameters you might want to override include: </p>
+
+<table>
+<tr><th align="left" valign="top"><code>experiment_dir</code></th>
+<td> Specifies a directory where the Serif HTTP server keeps working
+files, including session logs and output files for persistant
+sessions.  </td></tr>
+<tr><th align="left" valign="top"><code>start_stage<br/>end_stage</code></th>
+<td> The the range of annotation stages that this SERIF server
+supports.  See the <a href="stages.html">list of stages</a> for more
+information. </td></tr>
+
+
+<tr><th align="left" valign="top"><code>max_parser_seconds</code></th>
+<td>A timeout parameter for the parser.  If the parser has not found a
+parse for a single sentence before this number of seconds has elapsed,
+then it will give up and use a flat parse instead.</td></tr>
+<tr><th align="left" valign="top"><code>parser_lambda<br/>parser_max_entries_per_cell</code></th>
+<td>
+  These parameters control how aggressively Serif prunes when parsing.  The two recommended settings are:
+  <ul>
+    <li> <code>parser_lambda=-5; parser_max_entries_per_cell=10:</code>
+      These settings (which are used by default) generate high-quality parses. </li>
+    <li> <code>parser_lambda=-1; parser_max_entries_per_cell=5:</code>
+      These settings can be used to increase Serif’s throughput by about 6x.  Parse quality will be slightly lower. </li>
+  </ul>
+</td></tr>
+</table>
+
+ 
+
+
+<p><a href="index.html">Back</a></p>
+</div>
+</body>
+</html>

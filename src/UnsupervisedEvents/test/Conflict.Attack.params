@@ -1,0 +1,4 @@
+@ ./unsupervised_events.defaults.par
+problem_definition: %events_root%/test/Conflict.Attack.problem
+file_list: %events_root%/test/Conflict.Attack.list
+event_style: ace

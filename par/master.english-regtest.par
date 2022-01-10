@@ -1,0 +1,82 @@
+########################################################################
+# 08/29/11, Liz Boschee                                                #
+#                                                                      #
+# master.english-regtest.par                                           #
+#   Include this parameter file to override the best English           #
+#   with the best regtest models.                                      #
+#                                                                      #
+########################################################################
+
+track_files_read: true
+open_file_retries: 4
+OVERRIDE ignore_errors: false
+
+input_type: sgm
+OVERRIDE doc_reader_calculate_edt_offsets: true
+OVERRIDE doc_reader_offsets_start_at_first_tag: false
+
+license_file: %serif_data%/unspec/misc/bbn_idx.lic
+
+batch_file.prefix: %serif_regression%/data-2005-v4.0%os_suffix%/English/
+batch_file.list: adj-1/source-files.txt adj-2/source-files.txt adj-3/source-files.txt adj-4/source-files.txt adj-5/source-files.txt adj-6/source-files.txt adj-7/source-files.txt adj-8/source-files.txt
+
+experiment_dir.prefix: %expt_dir%/
+experiment_dir.list: adj-1 adj-2 adj-3 adj-4 adj-5 adj-6 adj-7 adj-8
+
+key_dir.prefix: %serif_regression%/data-2005-v4.0%os_suffix%/English/
+key_dir.list: adj-1/ adj-2/ adj-3/ adj-4/ adj-5/ adj-6/ adj-7/ adj-8/
+
+## Names
+OVERRIDE pidf_model_file.prefix:           %serif_data%/english/names/pidf/january2011.mc.
+OVERRIDE pidf_model_file.list:             adj-1.weights adj-2.weights adj-3.weights adj-4.weights adj-5.weights adj-6.weights adj-7.weights adj-8.weights
+OVERRIDE lowercase_pidf_model_file.prefix: %serif_data%/english/names/pidf/january2011.lc.
+OVERRIDE lowercase_pidf_model_file.list:   adj-1.weights adj-2.weights adj-3.weights adj-4.weights adj-5.weights adj-6.weights adj-7.weights adj-8.weights
+
+## Values
+OVERRIDE timex_model_file:  	    %serif_data%/english/values/pidf/fair-timex-ace2007.weights
+OVERRIDE timex_vocab_file:	    %serif_data%/english/values/pidf/fair-timex-ace2007.vocab
+OVERRIDE lowercase_timex_model_file: %serif_data%/english/values/pidf/fair-timex-ace2007.lc.weights
+OVERRIDE lowercase_timex_vocab_file: %serif_data%/english/values/pidf/fair-timex-ace2007.lc.vocab
+OVERRIDE other_value_model_file:     %serif_data%/english/values/pidf/fair-other-values-ace2007.weights
+OVERRIDE other_value_vocab_file:     %serif_data%/english/values/pidf/fair-other-values-ace2007.vocab
+OVERRIDE lowercase_other_value_model_file: %serif_data%/english/values/pidf/fair-other-values-ace2007.lc.weights
+OVERRIDE lowercase_other_value_vocab_file: %serif_data%/english/values/pidf/fair-other-values-ace2007.lc.vocab
+
+## Descriptor Classification
+OVERRIDE p1_nom_premod_model_file: %serif_data%/english/nominals/p1/fair-ace2007.nominal-premods.weights.p1
+OVERRIDE p1_desc_model_file:       %serif_data%/english/nominals/p1/fair-ace2007.2009-04-17.descriptors.weights.p1
+
+## Subtypes
+OVERRIDE desc_head_subtypes:  %serif_data%/english/subtypes/desc-head-mappings-2007-tokenized.txt
+OVERRIDE name_word_subtypes:  %serif_data%/english/subtypes/name-word-mappings-2007.txt
+OVERRIDE full_name_subtypes:  %serif_data%/english/subtypes/full-name-mappings-2007-tokenized.supplemental.txt
+
+## Name Coref
+OVERRIDE dt_name_coref_model_file.prefix: %serif_data%/english/coref/names/p1/name19-wo-subtypes-epoch8-ByType_true-P1_RANKING-wo-wk-
+OVERRIDE dt_name_coref_model_file.list:   adj-1.model adj-2.model adj-3.model adj-4.model adj-5.model adj-6.model adj-7.model adj-8.model
+
+## Desc Coref
+OVERRIDE dt_coref_model_file.prefix: %serif_data%/english/coref/nominals/p1/p1-desc-coref-ace2008-
+OVERRIDE dt_coref_model_file.list:   adj-1.model adj-2.model adj-3.model adj-4.model adj-5.model adj-6.model adj-7.model adj-8.model
+
+## Pronoun Coref
+OVERRIDE dt_pron_model_file.prefix:  %serif_data%/english/coref/pronouns/p1/dt-pron-20100125.
+OVERRIDE dt_pron_model_file.list:    wo-adj-1.model wo-adj-2.model wo-adj-3.model wo-adj-4.model wo-adj-5.model wo-adj-6.model wo-adj-7.model wo-adj-8.model
+
+## Relations
+OVERRIDE p1_relation_model_file.prefix:     %serif_data%/english/relations/p1/ace2007-relation-p1
+OVERRIDE p1_relation_model_file.list:       -adj-1.model -adj-2.model -adj-3.model -adj-4.model -adj-5.model -adj-6.model -adj-7.model -adj-8.model
+OVERRIDE maxent_relation_model_file.prefix: %serif_data%/english/relations/maxent/ace2007-relation-maxent-filter
+OVERRIDE maxent_relation_model_file.list:   -adj-1.model -adj-2.model -adj-3.model -adj-4.model -adj-5.model -adj-6.model -adj-7.model -adj-8.model
+OVERRIDE vector_tree_relation_model_file.prefix: %serif_data%/english/relations/vector-tree/ace2007-vt
+OVERRIDE vector_tree_relation_model_file.list:   -adj-1.model -adj-2.model -adj-3.model -adj-4.model -adj-5.model -adj-6.model -adj-7.model -adj-8.model
+OVERRIDE relation_time_model_file.prefix: %serif_data%/english/relations/timex/ace2007-relation-timex
+OVERRIDE relation_time_model_file.list:   -adj-1.model -adj-2.model -adj-3.model -adj-4.model -adj-5.model -adj-6.model -adj-7.model -adj-8.model
+
+## Events
+OVERRIDE event_trigger_model_file.prefix: %serif_data%/english/events/triggers/ace2007-retrained2013-trigger
+OVERRIDE event_trigger_model_file.list:   -adj-1.model -adj-2.model -adj-3.model -adj-4.model -adj-5.model -adj-6.model -adj-7.model -adj-8.model
+OVERRIDE event_aa_model_file.prefix: %serif_data%/english/events/arguments/ace2007-retrained2013-aa
+OVERRIDE event_aa_model_file.list:   -adj-1.model.maxent -adj-2.model.maxent -adj-3.model.maxent -adj-4.model.maxent -adj-5.model.maxent -adj-6.model.maxent -adj-7.model.maxent -adj-8.model.maxent
+OVERRIDE event_link_model_file.prefix: %serif_data%/english/events/link/ace2007-retrained2013-link
+OVERRIDE event_link_model_file.list: -adj-1.model -adj-2.model -adj-3.model -adj-4.model -adj-5.model -adj-6.model -adj-7.model -adj-8.model

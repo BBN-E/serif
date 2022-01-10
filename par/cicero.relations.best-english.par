@@ -1,0 +1,53 @@
+########################################################################
+# 09/08/14, Nick Ward                                                  #
+#                                                                      #
+# cicero.relations.best-english.par:                                   #
+#   This is a Serif parameter file designed to run our current         #
+#   BEST system for Cicero in English through relations.               #
+#                                                                      #
+########################################################################
+
+# External variables (must be defined first)
+parallel:           000
+serif_data:         +serif_data+
+serif_score:        NONE
+start_stage:        START
+end_stage:          doc-relations-events
+state_saver_stages: NONE
+
+INCLUDE +par_dir+/master.english.par
+
+license_file: %serif_data%/unspec/misc/cicero.lic
+
+# Document zoning
+document_zoners: section-headers
+document_zoner_section_headers_patterns: %serif_data%/english/zoning/cicero-section-headers.txt
+document_zoner_last_section_max_length: 10000
+
+# Sentence breaking
+skip_table_sentences: true
+sentence_breaker_use_region_content_flags: true
+break_long_list_sentences: true
+sentence_breaker_list_separators: ;·
+sentence_breaker_min_list_separators: 4
+sentence_breaker_ignore_page_breaks: true
+
+# Name model
+OVERRIDE pidf_features_file:     %serif_data%/english/names/pidf/cicero.features
+OVERRIDE pidf_tag_set_file:      %serif_data%/english/names/pidf/cicero.tags
+OVERRIDE pidf_model_file: %serif_data%/english/names/pidf/cicero.weights
+UNSET lowercase_pidf_model_file
+OVERRIDE name_pattern_set_list:  %serif_data%/english/names/patterns/cicero-name-patterns.list
+
+# Mentions
+OVERRIDE desc_head_subtypes: %serif_data%/english/subtypes/unfair-desc-head-mappings-cicero-tokenized.txt
+OVERRIDE name_word_subtypes: %serif_data%/english/subtypes/unfair-name-word-mappings-cicero.txt
+
+# Relations
+OVERRIDE expand_relations_in_list_mentions: true
+UNSET relation_model_type
+OVERRIDE use_combo_relation_model: true
+OVERRIDE use_relation_patterns: true
+OVERRIDE relation_pattern_set_list: %serif_data%/english/relations/patterns/cicero-relation-patterns.list
+zoned_relation_finder_patterns: %serif_data%/english/relations/patterns/cicero-zoned-relation-patterns.txt
+zoned_relation_finder_max_mention_spacing: 500

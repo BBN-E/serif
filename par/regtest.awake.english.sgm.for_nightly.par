@@ -1,0 +1,32 @@
+########################################################################
+# 02/11/15, Alex Zamanian                                              #
+#                                                                      #
+# regtest-crossval.awake.english.sgm.par                               #
+#                                                                      #
+# Parameter file for processing ACE-style *.sgm files with AWAKE-style #
+# actor matching. Used for the nightly regression test.                #
+#                                                                      #
+########################################################################
+
+parallel:           +parallel+
+state_saver_stages: NONE
+serif_score:        NONE
+
+serif_data:         +serif_data+
+start_stage:        +start_stage+
+end_stage:          output
+
+# To use the cross-val English regression test
+serif_regression:   +serif_regression+
+os_suffix:          +os_suffix+
+expt_dir:           +expt_dir+
+
+bbn_actor_db:       sqlite://+awake_lib_dir+/database/actor_db.freebase.sqlite?readonly&copy&cache_size=30000&temp_store=MEMORY
+
+INCLUDE +par_dir+/master.english.par
+INCLUDE +par_dir+/master.english-regtest.par
+INCLUDE +par_dir+/master.awake.english.par
+
+source_format: sgm
+OVERRIDE output_format: SERIFXML
+

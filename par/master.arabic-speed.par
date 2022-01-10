@@ -1,0 +1,12 @@
+########################################################################
+# 08/29/11, Liz Boschee                                                #
+#                                                                      #
+# master.arabic-speed.par                                              #
+#   Include this parameter file to speed up your parsing at the cost   #
+#   of accuracy.                                                       #
+#                                                                      #
+########################################################################
+
+parser_lambda: -1
+parser_max_entries_per_cell: 5
+

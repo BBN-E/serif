@@ -1,0 +1,44 @@
+<html>
+<head>
+  <title>Serif Output Formats</title>
+  <link rel="stylesheet" type="text/css" href="serif.css">
+</head>
+<body>
+<div class="body">
+<h1>Serif Output Formats</h1>
+
+<p> The Serif HTTP server supports the following output formats: </p>
+
+<table>
+  <tr><th align="left"><code>SerifXML</code></th>
+    <td> This is the default output format.  It is an XML file that
+    includes all of SERIF's annotation information for the document.
+    The possible contents for this file are defined by
+    the <a href="serifxml_dtd.html">SerifXML Document Type Definition
+    (DTD)</a>. </td></tr>
+  <tr><th align="left"><code>APF</code>, <code>APF4</code>, 
+      <code>APF5</code>, 
+      <code>APF7</code>, 
+      <code>APF8</code></th>
+    <td> The "ACE Pilot Format".  This format was defined as part of
+      the <a href="http://www.itl.nist.gov/iad/mig/tests/ace/">Automatic
+      Content Extraction (ACE) Evaluation</a>, as a common format that
+      could be used to compare information extraction system
+      performance.  It is recommended that you use <code>APF8</code>
+      (the most recent version).  Document Type Definitions (DTDs):
+      <a href="ace2005_apf.v5.1.1.dtd.html"><code>APF5</code></a>, 
+      <a href="ace2007_apf.v5.1.2.dtd.html"><code>APF7</code></a>, 
+      <a href="ace2008_apf.v5.2.0.dtd.html"<code>APF8</code></a></th>
+
+</td></tr>
+  <tr><th align="left"><code>PARSE</code></th>
+    <td>A simple text output format that includes only the output of
+      the parser. </td></tr>
+<!--  <li>EEML: (internal) </li>-->
+<!--  <li>MT: (internal) </li>-->
+</table>
+
+<p><a href="index.html">Home</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+//#########################################################################
+//# Copyright (c) 2016 by BBNT Solutions LLC                              #
+//# All Rights Reserved.                                                  #
+//#                                                                       #
+//# Generic/common/ProductName.h.in                                       #
+//#                                                                       #
+//# This file is dynamically instantiated by CMake.                       #
+//# The resulting file is created in:                                     #
+//# $binary_dir/dynamic_includes/common/ProgramName.h                     #
+//#########################################################################
+
+#ifndef PRODUCT_NAME_H
+#define PRODUCT_NAME_H
+
+#define PRODUCT_NAME "${PRODUCT_NAME}"
+
+#endif

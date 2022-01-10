@@ -1,0 +1,43 @@
+//#########################################################################
+//# Copyright (c) 2007 by BBNT Solutions LLC                              #
+//# All Rights Reserved.                                                  #
+//#                                                                       #
+//# Generic/common/SymbolDefinitions.h.in                                 #
+//#                                                                       #
+//# This file is dynamically instantiated by CMake.                       #
+//# The resulting file is created in:                                     #
+//# $binary_dir/dynamic_includes/common/SymbolDefinitions.h               #
+//#########################################################################
+
+//#define SYMBOL_TABLE_BUCKETS 70001
+//#define SYMBOL_STRING_BLOCK_SIZE 32000
+//#define SYMBOL_ENTRY_BLOCK_SIZE 4000
+
+#ifndef SYMBOL_DEFINITIONS_H
+#define SYMBOL_DEFINITIONS_H
+
+#cmakedefine SYMBOL_REF_COUNT
+#cmakedefine SYMBOL_THREADSAFE
+
+// The initial number of buckets for the Symbol Table's dictionary.
+#define SYMBOL_TABLE_BUCKETS ${SYMBOL_TABLE_BUCKETS}
+
+// The block size that should be used when allocating memory for the
+// string pool.
+#define SYMBOL_STRING_BLOCK_SIZE ${SYMBOL_STRING_BLOCK_SIZE}
+
+// The block size that should be used when allocating memory for the
+// SymbolEntry (aka SymbolData) pool.
+#define SYMBOL_ENTRY_BLOCK_SIZE ${SYMBOL_ENTRY_BLOCK_SIZE}
+
+// Shift constants used when hashing strings.  
+#define LEFT_BIT_SHIFT ${SYMBOL_LEFT_BIT_SHIFT}
+#define RIGHT_BIT_SHIFT ${SYMBOL_RIGHT_BIT_SHIFT}
+
+// Strings shorter than this limit will be allocated using a string
+// pool; strings longer thatn this limit will be allocated using 
+// new and delete.  (A separate string pool is created for each 
+// string length from 0...MAX_STRING_POOL_STRINGLEN, inclusive.)
+#define SYMBOL_MAX_STRING_POOL_STRINGLEN ${SYMBOL_MAX_STRING_POOL_STRINGLEN}
+
+#endif

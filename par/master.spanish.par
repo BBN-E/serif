@@ -1,0 +1,250 @@
+########################################################################
+# 11/06/12, Edward Loper                                               #
+#                                                                      #
+# master.spanish.par:                                                  #
+#   This is a Serif parameter file designed to run our current         #
+#   best models in Spanish.                                            #
+#                                                                      #
+# last modified by Alex Zamanian 10/12/15                              #
+#                                                                      #
+########################################################################
+
+
+serif_score:        /nfs/mercury-03/u13/users/pmartin/svn2013/TextGroup/Active/Projects/SERIF/scoring
+
+modules: Spanish
+
+ignore_errors: false
+dump_theories: false
+
+use_sentence_level_relation_finding: false
+use_sentence_level_event_finding: false
+
+# Prefix used in the Training/ca-serif-train experiment.
+ca_model_prefix: ancora-allment
+
+#log_force: MentionGroups_history,MentionGroups_shouldMerge,MentionGroups_violatesConstraint,MentionGroups_p1ranking,LinkInfoCache_populate
+#log_force: MentionGroups_history,MentionGroups_shouldMerge,MentionGroups_violatesConstraint,MentionGroups_p1ranking
+
+######### Global Configuration Parameters ####################
+
+# We use a beam width of 1 through all stages.
+beam_width:   1
+token_branch: 1
+name_branch:  1
+nested_name_branch: 1
+value_branch: 1
+pos_branch:   1
+parse_branch: 1
+desc_branch:  1
+#link_branch:  1
+
+entity_type_set:    %serif_data%/spanish/spanish_entity_types.txt
+entity_subtype_set: %serif_data%/spanish/spanish-entity-subtypes-2005.txt
+value_type_set:     %serif_data%/ace/ace_2005_value_types.txt
+
+word_net_dictionary_path:        %serif_data%/english/Software/WN16/DICT
+#e:/text-group-local/WN16/DICT
+word_net_backup_dictionary_path: %serif_data%/english/Software/WN16/DICT
+wordnet_word_list:               %serif_data%/english/misc/wordnetWord.list
+
+check_memory: false
+
+######### Stage-specific params #############################
+
+# ----- Document Reader -----
+
+doc_reader_calculate_edt_offsets: false
+doc_reader_offsets_start_at_first_tag: true
+doc_reader_regions_to_process: TEXT,TURN,SPEAKER,POSTER,POSTDATE,SUBJECT,POST,DOC,QUOTE
+doc_reader_datetime_tags:      DATE_TIME,DATETIME
+doc_reader_region_breaks:      TURN,P,QUOTE,POST
+
+downcase_all_uppercase_docs:   true
+
+# ----- Sentence Breaker -----
+
+do_sentence_breaking: true
+
+# ----- Tokenizer -----
+
+tokenizer_split_chars:       %serif_data%/spanish/tokenization/split-chars.data
+tokenizer_subst:             %serif_data%/spanish/tokenization/token-subst.data
+tokenizer_no_split_regexs:   %serif_data%/spanish/tokenization/no-split-regexs.data
+tokenizer_non_final_abbrevs: %serif_data%/spanish/tokenization/non-final-abbrevs.data
+
+# ----- Names/IdentiFinder -----
+
+name_finder: pidf
+pidf_model_file:           %serif_data%/spanish/names/pidf/four_type.mc.all.weights
+lowercase_pidf_model_file: %serif_data%/spanish/names/pidf/four_type.lc.all.weights
+pidf_features_file:        %serif_data%/spanish/names/pidf/spanish_v9_gpe.features
+pidf_tag_set_file:         %serif_data%/spanish/names/pidf/name-pidf.tags
+word_cluster_bits_file:    %serif_data%/spanish/clusters/gigaword.hBits
+lc_word_cluster_bits_file: %serif_data%/spanish/clusters/gigaword.lowercase.hBits
+pidf_interleave_tags:      false
+pidf_learn_transitions:    false
+
+# ----- Values -----
+# (Spanish SERIF does not currently detect values)
+
+value_finder_type: rule
+
+do_values_stage: true
+use_value_finding_patterns: true
+value_pattern_set_list:  %serif_data%/spanish/values/value_patterns.list
+
+# ----- Parser -----
+
+primary_parse: full_parse
+spanish_head_table:        %serif_data%/spanish/parser/ancora_head_table.dat
+parser_model:              %serif_data%/spanish/parser/ancora-v28.all.10
+lowercase_parser_model:    %serif_data%/spanish/parser/ancora-v28.all.lc.10
+bigrams:                   %serif_data%/spanish/parser/parser-bigrams
+parser_frag_prob:          0
+use_hyphen_constraints_in_parser: true
+probs_cache_type:          simple
+probs_cache_max_k_entries: 1000
+
+# ----- Mention Recognizer / Descriptor Classifier -----
+
+do_desc_recognition:         true
+desc_classify_model_type:    P1
+use_pidf_desc:               false
+nominal_data:                %serif_data%/spanish/nominals
+p1_desc_features_file:	     %nominal_data%/p1/ACE2005-Features.txt
+p1_desc_model_file:          %nominal_data%/p1/desc-classify.%ca_model_prefix%.excl-nothing.weights.p1
+pdesc_rare_hw_list:          %nominal_data%/p1/rare_hws.txt
+pdesc_window_gram_stopwords: %nominal_data%/p1/windowgram.stopwords.txt
+p1_desc_tag_set_file:        %nominal_data%/p1/desc.tags.txt
+p1_desc_use_propositions:    false 
+p1_desc_use_wordnet:         false
+unify_appositives:           false
+
+# ----- Proposition Finder -----
+make_partitive_props: true
+treat_nominal_premods_like_names_in_props: false
+### ????fix line below when we have some spanish status patterns
+proposition_status_patterns: %serif_data%/english/misc/proposition-status-patterns.txt
+
+
+# ----- Metonymy / Roles -----
+# (Spanish SERIF does not currently detect metonymy)
+
+# ----- Entities (Co-reference Resolution) -----
+
+entity_linking_mode:   MENTION_GROUP
+coref_aggressiveness:  95
+coref_data:            %serif_data%/spanish/coref
+linker_alt_spellings:  %coref_data%/names/rules/alt-spellings.txt
+linker_nations:        %coref_data%/names/rules/nations.txt
+abbrev_maker_file:     %coref_data%/names/ace2007.all-abbreviations.txt
+
+# World-knowledge about person & organization name variants (used as
+# features).  
+# ??? (Note: these currently point to English data.)
+dtnamelink_per_wk_file:           %serif_data%/english/coref/names/p1/wk_per_sorted.txt
+dtnamelink_org_wk_file:           %serif_data%/english/coref/names/p1/wk_org_sorted.txt
+dt_coref_nationalities: 	  %serif_data%/english/coref/names/p1/nationalities_countries.txt
+dt_coref_name_gpe_affiliations:   %serif_data%/english/coref/names/p1/gpe_aff_likely.txt
+
+# Discriminatively trained models for coreference:
+
+##P1 models for coreference
+dt_coref_model_type:            P1_RANKING
+
+##common to both models
+dt_coref_tag_set_file:          %coref_data%/link.tags                
+##dt_coref_features_file:         %coref_data%/nominals/desclink.ace2005.features
+dt_coref_features_file:         %coref_data%/names/namelink.features
+dt_pron_features_file:          %coref_data%/pronouns/pronlink.ace2005.features
+dt_name_coref_features_file:    %coref_data%/names/namelink.features
+
+# [xxx] uncomment to switch to maxent model type: [xxx]
+#dt_coref_model_type:         maxent
+#dt_coref_tag_set_file:       %coref_data%/link.tags
+
+### at some of the the 3 below are  needed even if using the P1 model type
+dt_name_coref_model_file:    %coref_data%/names/p1/dt-name-coref.%ca_model_prefix%.excl-nothing.weights
+dt_coref_model_file:         %coref_data%/nominals/p1/dt-desc-coref.%ca_model_prefix%.excl-nothing.weights
+dt_pron_model_file:          %coref_data%/pronouns/p1/dt-pron-coref.%ca_model_prefix%.excl-nothing.weights
+
+# ----- Pronoun Linker -----
+
+guesser_country_names:      %serif_data%/spanish/names/lists/list-gpe
+guesser_female_names:       %coref_data%/pronouns/female.names
+guesser_male_names:         %coref_data%/pronouns/male.names
+######## following are in the English model, may be added to Spanish or just be rule-based
+#guesser_female_descriptors: %coref_data%/pronouns/female.descriptors
+#guesser_male_descriptors:   %coref_data%/pronouns/male.descriptors
+#guesser_plural_descriptors: %coerf_data%/pronouns/plural.descriptors
+
+# ----- Strategic Entity Linker -----
+
+#singleton_descriptor_percentage: 0
+#singleton_merge_size: 2
+
+# ----- Relation Finder -----
+relation_finder_type: ACE2005
+
+## main relation model
+relation_model_type:          COMBO
+p1_relation_model_file:       %serif_data%/spanish/relations/p1/default-adj-all.newest.weights
+#No Maxent model yet for Spanish
+#maxent_relation_model_file:   %serif_data%/english/relations/maxent/ace2007-relation-maxent-filter-all.model
+p1_relation_tag_set_file: %serif_data%/spanish/relations/relation.lightERE.2015.tags
+relation_tag_set_file: %serif_data%/spanish/relations/relation.lightERE.2015.tags
+
+relation_features_file:       %serif_data%/english/relations/relation.ace2007.features
+p1_relation_features_file:       %serif_data%/english/relations/relation.ace2007.features
+#maxent_relation_tag_set_file: %serif_data%/english/relations/maxent/relation.filter.tags
+p1_relation_undergen_percentage: 0.05
+p1_relation_overgen_percentage:  0
+
+relation_skip_special_case_answer: true
+
+relation_finder_use_alt_models:  false
+#alternative_relation_model_file: %serif_data%/english/relations/alt-models/ace2007-alt-model-params
+
+## vector/tree model used to correct main model and provide argument ordering
+#vector_tree_relation_model_file: %serif_data%/english/relations/vector-tree/ace2007-vt-all.model
+#relation_type_list:              %serif_data%/english/relations/vector-tree/relation.vt.ace2005.tags
+
+#wordnet_level_start: 1
+#wordnet_level_interval: 3
+
+relation_mention_dist_cutoff: 0
+
+## timex attachments
+#do_relation_time_attachment:    false
+#relation_time_model_file:       %serif_data%/english/relations/timex/ace2007-relation-timex-all.model
+#relation_time_tag_set_file:     %serif_data%/english/relations/timex/relation.ta.ace2005.tags
+#relation_time_features_file:    %serif_data%/english/relations/timex/relation.ta.verb-dist.features
+#relation_time_recall_threshold: 0.6
+
+#add_imaginary_relations:      false
+ignore_relations_with_matching_heads: true
+relation_validation_str:      2005
+
+enable_raw_relations:         false
+find_itea_document_relations: false
+
+# ----- Events -----
+# (Spanish SERIF does not currently detect events)
+
+event_model_type: NONE
+event_linking_style: NONE
+allow_events_to_subsume_relations: false
+
+# ----- Generics -----
+# (Spanish SERIF does not currently detect metonymy)
+
+# ----- Output -----
+
+OVERRIDE offset_type: all
+merge_rel_mentions_across_type: false
+OVERRIDE output_format: APF7,SERIFXML
+
+# ----- Scoring -----
+
+score_script: %serif_score%/ace-all-do-quick-score-v01.pl

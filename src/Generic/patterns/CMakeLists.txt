@@ -1,0 +1,77 @@
+####################################################################
+# Copyright (c) 2007 by BBNT Solutions LLC                         #
+# All Rights Reserved.                                             #
+#                                                                  #
+# Generic/patterns                                                 #
+#                                                                  #
+####################################################################
+
+ADD_SERIF_LIBRARY_SUBDIR(patterns
+  SOURCE_FILES
+    AbstractSlot.h
+    AbstractSlot.cpp
+    ArgumentPattern.h
+    ArgumentPattern.cpp
+    CombinationPattern.h
+    CombinationPattern.cpp
+    DocumentPattern.cpp
+    DocumentPattern.h
+    EntityLabelPattern.h
+    EntityLabelPattern.cpp
+    EventPattern.h
+    EventPattern.cpp
+    ExtractionPattern.h
+    ExtractionPattern.cpp
+    IntersectionPattern.h
+    IntersectionPattern.cpp
+    MatchStorage.h
+    MatchStorage.cpp
+    MentionPattern.h
+    MentionPattern.cpp
+    NegationPattern.h
+    NegationPattern.cpp
+    ParseNodePattern.h
+    ParseNodePattern.cpp
+    Pattern.h
+    Pattern.cpp
+    PatternMatcher.h
+    PatternMatcher.cpp
+    PatternReturn.h
+    PatternReturn.cpp
+    PatternSet.h
+    PatternSet.cpp
+    PatternTypes.h
+    PatternWordSet.h
+    PatternWordSet.cpp
+    PropPattern.h
+    PropPattern.cpp
+    PropStatusManager.h
+    PropStatusManager.cpp
+    PseudoPattern.h
+    PseudoPattern.cpp
+    QueryDate.h
+    QueryDate.cpp
+    QuotationPattern.h
+    QuotationPattern.cpp
+    RegexPattern.h
+    RegexPattern.cpp
+    RelationPattern.h
+    RelationPattern.cpp
+    ScoringFactory.h
+    ScoringFactory.cpp
+    ShortcutPattern.h
+    ShortcutPattern.cpp
+    SimpleSlot.h
+    SimpleSlot.cpp
+    TextPattern.h
+    TextPattern.cpp
+    TopicPattern.h
+    TopicPattern.cpp
+    UnionPattern.h
+    UnionPattern.cpp
+    ValueMentionPattern.h
+    ValueMentionPattern.cpp
+  SUBDIRS
+    features
+    multilingual
+)

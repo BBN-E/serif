@@ -1,0 +1,20 @@
+//#########################################################################
+//# Copyright (c) 2007 by BBNT Solutions LLC                              #
+//# All Rights Reserved.                                                  #
+//#                                                                       #
+//# Generic/common/ProfileDefinition.h.in                                 #
+//#                                                                       #
+//# This file is dynamically instantiated by CMake.                       #
+//# The resulting file is put in:                                         #
+//# $binary_dir/dynamic_includes/common/ProfileDefinition.h               #
+//#########################################################################
+
+#ifndef PROFILING_DEFINITION_H
+#define PROFILING_DEFINITION_H
+
+// the default is that it is set and Serif prints progress output
+#cmakedefine SERIF_SHOW_PROGRESS
+
+#cmakedefine CUBE2_INSTALL
+
+#endif

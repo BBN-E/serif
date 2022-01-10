@@ -1,0 +1,197 @@
+########################################################################
+# 02/09/12, Nick Ward                                                  #
+#                                                                      #
+# mr.serif-english.par:                                                #
+#   This is a Serif parameter file designed to run a blend of          #
+#   our current best models in English and Distillation models,        #
+#   with Machine Reading-specific overrides.                           #
+#                                                                      #
+########################################################################
+
+# Default variables (must be defined first)
+parallel:             000
+serif_score:          foobarbaz
+
+source_format:        segments
+do_sentence_breaking: false
+
+# Depend on the standard Serif configuration
+INCLUDE %par_dir%/master.english.par
+
+######### Session Information ################################
+
+OVERRIDE use_sentence_level_relation_finding: false
+
+OVERRIDE ignore_errors: false
+
+######### Global Configuration Parameters ####################
+
+OVERRIDE word_cluster_bits_file:    %serif_data%/english/clusters/GALEY2.hBits
+OVERRIDE lc_word_cluster_bits_file: %serif_data%/english/clusters/GALEY2.lowercase.hBits
+
+UNSET symbol_table_initialization_file
+
+######### Module-specific params #############################
+
+# ----- Document Reader -----
+
+exclude_headlines:                      true
+OVERRIDE doc_reader_regions_to_process: HEADLINE,POST,POSTDATE,POSTER,SPEAKER,SUBJECT,TEXT,TURN
+OVERRIDE doc_reader_region_breaks:      TURN,P,QUOTE,SPEAKER,POSTER,POSTDATE,SUBJECT,DATE_TIME,DATETIME
+
+segment_input_field:            src
+mt_doc_reader_preserve_offsets: true
+use_filename_as_docid:          true
+
+# ----- Sentence Breaker -----
+
+use_GALE_sentence_break_heuristics:  true
+sentence_breaker_dateline_mode:	     aggressive
+sentence_breaker_dateline_parentheticals: %serif_data%/english/sentences/dateline_parentheticals.list
+
+# ----- Tokenizer -----
+
+# ----- Names/IdentiFinder -----
+
+OVERRIDE pidf_model_file:           %serif_data%/english/names/pidf/GALEY2.weights
+OVERRIDE lowercase_pidf_model_file: %serif_data%/english/names/pidf/GALEY2.lc.weights
+
+pidf_vocab_file:           %serif_data%/english/names/pidf/GALEY2.vocab
+lowercase_pidf_vocab_file: %serif_data%/english/names/pidf/GALEY2.lc.vocab
+
+OVERRIDE pidf_features_file: %serif_data%/english/names/pidf/GALEY2.features
+
+# ----- Values -----
+
+OVERRIDE timex_model_file:           %serif_data%/english/values/pidf/all-timex-GALEY2.weights
+OVERRIDE timex_vocab_file:           %serif_data%/english/values/pidf/all-timex-GALEY2.vocab
+OVERRIDE lowercase_timex_model_file: %serif_data%/english/values/pidf/all-timex-GALEY2.lc.weights
+OVERRIDE lowercase_timex_vocab_file: %serif_data%/english/values/pidf/all-timex-GALEY2.lc.vocab
+
+OVERRIDE other_value_model_file:           %serif_data%/english/values/pidf/all-other-values-GALEY2.weights
+OVERRIDE other_value_vocab_file:           %serif_data%/english/values/pidf/all-other-values-GALEY2.vocab
+OVERRIDE lowercase_other_value_model_file: %serif_data%/english/values/pidf/all-other-values-GALEY2.lc.weights
+OVERRIDE lowercase_other_value_vocab_file: %serif_data%/english/values/pidf/all-other-values-GALEY2.lc.vocab
+
+# ----- Parser -----
+
+# Narrow beam for faster parse
+parser_lambda: -1
+parser_max_entries_per_cell: 5
+parser_shortcuts: %serif_data%/english/parser/parser-shortcuts/parser-shortcuts-fairly-aggressive
+
+# Use the older model
+OVERRIDE parser_model:           %serif_data%/english/parser/full-with-complete-dates.50
+OVERRIDE lowercase_parser_model: %serif_data%/english/parser/lowercase-with-dates.50
+
+# Don't use cache
+UNSET probs_cache_type
+UNSET probs_cache_max_k_entries
+UNSET probs_cache_in_path
+
+# ----- Mention Recognizer / Descriptor Classifier -----
+
+OVERRIDE p1_nom_premod_model_file: %serif_data%/english/nominals/p1/all-GALEY2.nominal-premods.weights.p1
+
+OVERRIDE p1_desc_model_file:    %serif_data%/english/nominals/p1/all-GALEY2.descriptors.weights.p1
+OVERRIDE p1_desc_features_file: %serif_data%/english/nominals/p1/desc.2005.default.features
+
+# ----- Proposition Finder -----
+
+use_2009_props: true
+
+# ----- Metonymy / Roles -----
+
+# ----- Entities (Reference Resolution) -----
+
+# ----- Name Linker -----
+
+OVERRIDE name_link_mode: stat
+
+OVERRIDE use_simple_rule_namelink: true
+
+simple_rule_name_link_distillation: true
+simple_rule_name_link_conservative: false
+
+# Not sure why this isn't in the main English file...
+dtnamelink_gpe_wk_file: %serif_data%/english/coref/names/p1/wk_gpe_sorted.txt
+
+# ----- Descriptor Linker -----
+
+OVERRIDE dt_coref_model_type: P1
+dt_coref_search_strategy: BEST
+dt_coref_overgen_threshold: 25000
+
+OVERRIDE dt_coref_model_file: %serif_data%/english/coref/nominals/p1/p1-desc-coref-GALEY2-all.model
+
+# ----- Pronoun Linker -----
+
+OVERRIDE dt_pron_features_file: %serif_data%/english/coref/pronouns/p1/pronlink-GALEY5.features
+OVERRIDE dt_pron_model_file:    %serif_data%/english/coref/pronouns/p1/dt-pron-GALEY5.all.model
+
+link_first_and_second_person_pronouns: false
+
+# ----- Doc Entities -----
+
+# ----- Relation Finder -----
+
+OVERRIDE p1_relation_model_file:     %serif_data%/english/relations/p1/GALEY2-relation-p1-all.model
+OVERRIDE maxent_relation_model_file: %serif_data%/english/relations/maxent/GALEY2-relation-maxent-filter-all.model
+OVERRIDE relation_features_file:     %serif_data%/english/relations/relation.ace2005.features
+OVERRIDE p1_relation_undergen_percentage: 0.2
+OVERRIDE p1_relation_overgen_percentage:  0
+
+OVERRIDE alternative_relation_model_file: %serif_data%/english/relations/alt-models/GALEY2-alt-model-params
+
+OVERRIDE vector_tree_relation_model_file: %serif_data%/english/relations/vector-tree/GALEY2-vt-all.model
+
+OVERRIDE relation_time_model_file: %serif_data%/english/relations/timex/GALEY2-relation-timex-all.model
+OVERRIDE relation_time_recall_threshold: 0.2
+
+OVERRIDE ignore_relations_with_matching_heads: false
+
+# ----- Events -----
+
+OVERRIDE event_patterns: %serif_data%/english/events/rules/GALE-event-patterns.txt
+
+OVERRIDE event_trigger_model_file:   %serif_data%/english/events/triggers/GALEY2-trigger-all.model
+OVERRIDE event_trigger_tag_set_file: %serif_data%/english/events/triggers/GALE-event.types
+
+OVERRIDE event_aa_model_file: %serif_data%/english/events/arguments/GALEY2-aa-all.model.maxent
+
+OVERRIDE event_link_model_file: %serif_data%/english/events/link/GALEY2-link-all.model
+
+# ----- Generics -----
+
+# ----- Output -----
+
+OVERRIDE output_format: APF5,SerifXML
+
+suppress_output_comments: false
+output_sentence_boundaries: true
+output_original_text: true
+
+output_MT_format_in_addition_to_chosen_output_format: true
+
+# ----- Scoring -----
+
+UNSET score_script
+
+######### Distillation-specific params ########################
+
+expand_names: true
+
+ignore_singletons: false
+
+# common salient words that may not be confused among each other
+common_words: \\titan3\u70\Distillation\AGILEDistill-Network\Models\Distillation\equivNamesFull\common-words.txt
+
+# pre-computed synonyms for PER, ORG and GPE
+equiv_names_per: \\titan3\u70\Distillation\AGILEDistill-Network\Models\Distillation\equivNamesFull\equivalent.per.txt
+equiv_names_gpe: \\titan3\u70\Distillation\AGILEDistill-Network\Models\Distillation\equivNamesFull\equivalent.gpe.txt
+equiv_names_org: \\titan3\u70\Distillation\AGILEDistill-Network\Models\Distillation\equivNamesFull\equivalent.org.txt
+
+# pre-specified modifier words for PER, ORG, GPE
+names_modifiers_per: \\titan3\u70\Distillation\AGILEDistill-Network\Models\Distillation\equivNamesFull\per.modifiers.txt
+names_modifiers_gpe: \\titan3\u70\Distillation\AGILEDistill-Network\Models\Distillation\equivNamesFull\gpe.modifiers.txt
+names_modifiers_org: \\titan3\u70\Distillation\AGILEDistill-Network\Models\Distillation\equivNamesFull\org.modifiers.txt

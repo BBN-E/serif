@@ -1,0 +1,394 @@
+<html>
+<head>
+  <title>Serif HTTP Server: Processing Documents</title>
+  <link rel="stylesheet" type="text/css" href="serif.css">
+</head>
+<body>
+
+<script language="javascript" type="text/javascript">
+<!--
+function showexample(id) {
+    return true;
+    var elts = document.getElementsByTagName("div");
+    for(var i=0; i<elts.length; i++) {
+        if (elts[i].className == "in2out_example") {
+            if (elts[i].id == id) {
+                elts[i].style.display = "block";
+            } else {
+                elts[i].style.display = "none";
+            }
+        }
+    }
+    return false;
+}
+// -->
+</script>
+
+<div class="body">
+<h1>Serif HTTP Server:<br/>Processing Documents</h1>
+
+<p> A client that wishes to process a document should connect to the
+Serif HTTP Server's port and send an HTTP request message.  </p>
+
+<h2> End-To-End Processing Commands </h2>
+
+<p> If you simply want to process a document from start to finish, the
+simplest way to do so is to use one of the following four HTTP POST
+requests (depending on what kind of document you're processing and
+what kind of output you want).  </p>
+
+<center>
+<table>
+<tr><td class="noborder">&nbsp;</td>
+  <td class="noborder">&nbsp;</td>
+  <th colspan=2 class="noborder"><i>Input Format</i></th></tr>
+<tr><td class="noborder">&nbsp;</td>
+  <td class="noborder">&nbsp;</td>
+  <th>ACE SGM File</th>
+  <th>Plain Text</th></tr>
+<tr><th rowspan=2 class="noborder"><i>Output Format</i></th>
+  <th>APF</th>
+  <td><a href="sgm2apf_example.html">
+      <tt>POST&nbsp;sgm2apf</tt></td>
+  <td><a href="rawtext2apf_example.html">
+      <tt>POST&nbsp;rawtext2apf</tt></td></tr>
+<tr><th>SerifXML</th>
+  <td><a href="sgm2serifxml_example.html">
+      <tt>POST&nbsp;sgm2serifxml</tt></td>
+  <td><a href="rawtext2serifxml_example.html">
+      <tt>POST&nbsp;rawtext2serifxml</tt></td></tr>
+</table>
+</center>
+
+<p>(Click on any of these four commands to see a complete example of a
+client/server session using that command.)</p>
+
+<p> The basic format for these four client requests is: </p>
+
+<pre class="request-template">
+<div class="http-example-label">Client End-To-End Request Message (Template)</div>POST <span class="var">input_format</span>2<span class="var">output_format</span> HTTP/1.0
+Content-length: <span class="var">length</span>
+
+<span class="var">document_contents</span>
+</pre>
+<ul>
+  <li> <span class="var">input_format</span>: The type of document
+     that is being processed: either "<code>sgm</code>"
+     (for <a href="sgm.html">ACE SGM documents</a>), or
+     "<code>rawtext</code>" (for plaintext documents). </li>
+  <li> <span class="var">output_format</span>: The format that should
+    be used to return information about the document: either
+    "<code>serifxml</code>"
+    (for <a href="serifxml_dtd.html">SerifXML</a>), or "<code>apf</code>"
+    (for <a href="ace2008_apf.v5.2.0.dtd.html">ACE APF</a>). </li>
+  <li> <span class="var">document_contents</span>: the contents of
+    the document that should be processed. </li>
+  <li> <span class="var">length</span>: the length of the request body
+    (which, in this case, is equal to the length of the document that
+    should be processed, in bytes)</li>
+</ul>
+
+<h2> SerifXMLRequest Commands </h2>
+
+<p> Although these in2out request messages are easy to use, they don't
+provide much flexibility.  If you need more customized behavior, you
+should use the <code>SerifXMLRequest</code> request message, which can
+be used to send XML-encoded commands to the server.  In particular,
+the <code>&lt;ProcessDocument></code> command is used to request that
+the server process a specified document.  The basic format
+for <code>&lt;ProcessDocument></code> HTTP requests is: </p>
+
+<a name="serifxmlrequest_1"></a>
+<pre class="request-template">
+<div class="http-example-label">Client SerifXMLRequest Message (Template)</div>POST SerifXMLRequest HTTP/1.0
+Content-length: <span class="var">length</span>
+
+&lt;SerifXMLRequest>
+  &lt;ProcessDocument <span class="var">[options]</span>>
+    &lt;Document docid="<span class="var">docid</span>" language="<span class="var">language</span>">
+      &lt;OriginalText>
+        &lt;Contents><span class="var">document_contents</span>&lt;/Contents>
+      &lt;/OriginalText>
+    &lt;/Document>
+  &lt;/ProcessDocument>
+&lt;/SerifXMLRequest>
+</pre>
+
+<ul>
+  <li> <span class="var">docid</span>: A name used to identify this
+    document.  Typically this is the filename of the document. </li>
+  <li> <span class="var">language</span>: The language that the
+    document is written in.  The Serif HTTP server will return an
+    error if this does not match the language that is supported by the
+    server.  Typical values are "<code>English</code>",
+    "<code>Arabic</code>", and "<code>Chinese</code>" </li>
+  <li> <span class="var">document_contents</span>: the contents of
+    the document that should be processed. </li>
+  <li> <span class="var">options</span>: Options that control what
+    processing is done for the document, and how the results are
+    encoded.  See below for a complete list of options.</li>
+  <li> <span class="var">length</span>: the length of the request body.</li>
+</ul>
+
+<h3>SerifXMLRequest ProcessDocument Options</h3>
+
+<p>The following options are used to tell SERIF how it should process
+the input document: </p>
+
+<table>
+<tr>
+  <th>Option</th><th>Description</th><th>Default</th></tr>
+<tr>
+  <td align="left">input_type="<span class="var">sgm|rawtext|auto</span>"</td>
+  <td> Specifies the document type for the input document: use
+    "<code>sgm</code>" for <a href="sgm.html">ACE SGM documents</a>,
+    "<code>rawtext</code>" for plaintext documents, and
+    "<code>auto</code>" to automatically detect the input document
+    type. PLEASE NOTE that if you pass in sgm content in the Contents block of a request, the sgm content must be XML-escaped.  Otherwise the internal sgm formatting will be dropped and you will get an error relating to "No useful SGML tags."</td>
+  <td><code>auto</code></td></tr>
+<tr>
+  <td align="left">end_stage="<span class="var">stage</span>"</td>
+  <td> The last stage that should be run by SERIF.  This is used to
+  perform partial processing on input documents.  For example,
+  use <code>end_stage="parse"</code> to run SERIF up through the
+  parser, skipping processing stages that would come after the parser.
+  See the list of <a href="stages.html">SERIF stages</a> for more
+  details.</td>
+  <td><code>output</code></td></tr>
+<tr>
+  <td align="left">start_stage="<span class="var">stage</span>"</td>
+  <td> The first stage that should be run by SERIF.  This parameter is
+  usually unnecessary, since SERIF can automatically detect the
+  appropriate start stage based on the input. </td>
+  <td><code>START</code></td></tr>
+</table>
+
+<p>The following options control the information content and
+formatting for the server's response:</p>
+
+<table>
+<tr>
+  <th>Option</th><th>Description</th><th>Default</th></tr>
+<tr>
+  <td align="left">output_format="<span class="var">format</span>"</td>
+  <td> The format that should be used when returning the results to 
+    the client.  See the list of <a href="output_formats.html">SERIF
+    output formats</a> for more details. </td>
+  <td><code>SerifXML</code></td></tr>
+<tr>
+  <td align="left">offset_type="<span class="var">type</span>"</td>
+  <td> Controls what kind of offsets are included in the SerifXML 
+    response.  Valid types are "<code>byte</code>", "<code>char</code>", 
+    "<code>edt</code>", and "<code>all</code>". </td>
+  <td><code>all</code></td></tr>
+<tr>
+  <td align="left">verbose_ids="<span class="var">true|false</span>"</td>
+  <td> Controls whether the XML identifiers that are used in the
+    SerifXML result are verbose or simple.  (Verbose identifiers begin
+    with a prefix indicating the annotation type).  Verbose
+    identifiers are easier to read, but less compact.</td>
+  <td><code>false</code></td></tr>
+<tr>
+  <td align="left">hierarchical_ids="<span class="var">true|false</span>"</td>
+  <td> Controls whether the XML identifiers that are used in the
+    SerifXML result are hierarchical.  An example of a hierarchical
+    is "<code>doc-1.sent-3.tokseq-1.tok-8</code>".  Hierarchical
+    identifiers are easier to read, but less compact.</td>
+  <td><code>false</code></td></tr>
+<tr>
+  <td align="left">condensed_offsets="<span class="var">true|false</span>"</td>
+  <td> Controls how offset ranges are encoded in the SerifXML result.
+    If <code>condensed_offsets</code> is true, then a single XML
+    attribute is used, such as: <code>char_offsets="16:20"</code>.  If 
+    <code>condensed_offsets</code> is false, then a pair of XML
+    attributes is used, such as: <code>start_char="16"</code>
+    and <code>end_char="26"</code>.</td>
+  <td><code>true</code></td></tr>
+<tr>
+  <td align="left">include_spans_as_comments="<span class="var">true|false</span>"</td>
+  <td> Controls whether the SerifXML result should include the text 
+    of each span as a comment in the body of its SerifXML element.</td>
+  <td><code>false</code></td></tr>
+<tr>
+  <td align="left">include_spans_as_elements="<span class="var">true|false</span>"</td>
+  <td> Controls whether the SerifXML result should include the text 
+    of each span as a child of its SerifXML element.</td>
+  <td><code>false</code></td></tr>
+<tr>
+  <td align="left">include_mentions_as_comments="<span class="var">true|false</span>"</td>
+  <td> Controls whether the SerifXML result should include a text 
+    representation of each Entity, Relation and Event mention as a
+    comment in the body of its Entity, Relation or Event element. 
+    These text representations are intended to make the SerifXML file
+    easier for humans to read.</td>
+  <td><code>false</code></td></tr>
+<tr>
+  <td align="left">include_name_transliterations="<span class="var">true|false</span>"</td>
+  <td> If true, then a <code>transliteration</code> attribute will be
+     generated for each name, containing an ASCII transliteration of
+     that name.  This is currently only available on Linux versions of
+     SERIF, and only for the Arabic language.</td>
+  <td><code>false</code></td></tr>
+<tr>
+  <td align="left">include_canonical_names="<span class="var">true|false</span>"</td>
+  <td> If true, then a <code>canonical_name_mention_id</code> attribute 
+     will be generated for each Entity that contains at least one named 
+     Mention. The Mention designated with this attribute is intended to
+     be used as the source for generating a single best name string for 
+     the Entity.</td> 
+  <td><code>false</code></td></tr>
+<tr>
+  <td align="left">external_original_text="<span class="var">true|false</span>"</td>
+  <td> If true, then the SerifXML result will use an HREF to point to
+  the original text, rather than including it inline.  If this option
+  is used, then the SerifXML file can only be read if the HREF remains
+  valid.  In particular, SERIF will need to read the original text of
+  the document from this location when reading the SerifXML file.</td>
+  <td><code>false</code></td></tr>
+<tr>
+  <td align="left">parse_encoding="<span class="var">treebank|synnode</span>"</td>
+  <td> Controls whether parse trees should be encoded using a
+  treebank-style string (which uses nested parentheses to capture the
+  syntactic structure), or using nested <code>SynNode</code> XML
+  elements.  The Treebank encoding is more compact, and may be eaiser
+  for humans to read; but the SynNode encoding may be easier to work
+  with if you are using standard XML tools.  Note that SERIF's Java
+  and Python interfaces both know how to read the treebank encoding.</td>
+  <td><code>treebank</code></td></tr>
+</table>  
+
+<!--
+•	session_id 	persistent identifier (used for directory containing session log, output files, etc)
+-->
+
+<h3>SerifXMLRequest ProcessDocument: Remote Documents</h3>
+
+<p> It is also possible to specify the contents of the document
+indirectly, using an <code>href</code> attribute on
+the <code>&lt;OriginalText></code> element, containing the URL of a
+remote document: <p>
+
+<a name="serifxmlrequest_2"></a>
+<pre class="request-template">
+<div class="http-example-label">Client SerifXMLRequest Message (Template)</div>POST SerifXMLRequest HTTP/1.0
+Content-length: <span class="var">length</span>
+
+&lt;SerifXMLRequest>
+  &lt;ProcessDocument <span class="var">[options]</span>>
+    &lt;Document docid="<span class="var">docid</span>" language="<span class="var">language</span>">
+      &lt;OriginalText <span class="changed">href="<span class="var">url</span>"</span>/>
+    &lt;/Document>
+  &lt;/ProcessDocument>
+&lt;/SerifXMLRequest>
+</pre>
+
+<p> Note: Since the document's original text is specified via an
+external URL, the <code>&lt;OriginalText></code> element does <i>not</i> have
+a <code>&lt;Contents></code> child.</p>
+
+<p> Currently, SERIF supports two types of URL: </p>
+
+<table>
+<tr><th>
+  <code>file://<span class="var">...</span></code></th>
+  <td>The absolute path to a file that is accessable from the server.
+    Typically, this will be a file on a shared disk.</td></tr>
+<tr><th>
+    <code>http://<span class="var">...</span></code></th>
+  <td>The URL of a document that can be downloaded via an HTTP get
+    request. </td></tr>
+</table>
+
+<h3>SerifXMLRequest ProcessDocument Examples</h3>
+
+<p> The following example shows how a <code>&lt;ProcessDocument></code>
+request can be used to perform partial processing of an input file (by
+specifying the <code>end_stage</code> option); and to customize the
+way it is serialized (by specifying the <code>offset_type</code>
+and <code>verbose_ids</code> options). </p>
+
+<pre class="example-request">
+<div class="http-example-label">Client Request</div>POST SerifXMLRequest HTTP/1.0
+Content-length: 308
+
+&lt;SerifXMLRequest>
+  &lt;ProcessDocument end_stage="parse" offset_type="char" verbose_ids="true">
+    &lt;Document docid="zucchinis.txt" language="English">
+      &lt;OriginalText>&lt;Contents>
+        Joseph likes fried zucchinis.
+      &lt;/Contents>&lt;/OriginalText>
+    &lt;/Document>
+  &lt;/ProcessDocument>
+&lt;/SerifXMLRequest>
+</pre>
+<pre class="example-response">
+<div class="http-example-label">Server Response</div>HTTP/1.0 200 OK
+Content-length: 1139
+
+&lt;?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+&lt;SerifXML version="18">
+  &lt;Document docid="zucchinis.txt" id="doc-1" is_downcased="FALSE" source_type="UNKNOWN">
+    <a href="serifxmlrequest_example1.html"><span class="result-ellipsis">[. . . Click here to show the full server response . . .]</span></a>
+  &lt;/Document>
+&lt;/SerifXML>
+</pre>
+
+<a name="multistage"><h3>Multi-Stage Processing</h3></a>
+
+In addition to serving as the default output format for the Serif HTTP
+Server, the <code>&lt;Document></code> element (defined by
+the <a href="serifxml_dtd.html">SerifXML DTD</a>) can be used as an
+input value as well.  This allows for more advanced usage patterns,
+including:
+
+<ul>
+<li> <b>Distributed Operation</b>: Serif can be configured to run
+  different stages (or ranges of stages) on different servers.  This
+  increases parallelism; reduces the memory overhead of each server
+  (since the server only needs to load the models for the stage(s) it
+  is responsible); and could be used to implement load-balancing,
+  where slower stages (such as parsing) could have more servers
+  dedicated to them. </li>
+
+<li> <b>System Combination</b>: Serif can be integrated with other
+  systems, or used as a component in a larger system, using the
+  standard <a href="serifxml_dtd.html">SerifXML</a> serialization
+  format for communication.  For example, Serif could be configured to
+  use a user-supplied name finder or parser that is trained on a novel
+  domain. </li>
+</ul>
+
+<p> To process a SerifXML document using the Serif HTTP Server, simply
+send the <code>&lt;Document></code> element as the contents of
+a <code>&lt;ProcessDocument></code> command.  If the SerifXML document
+is stored in an external file, then its location may be specified
+using an empty <code>&lt;Document></code> element with a URL: </p>
+
+<a name="serifxmlrequest_2"></a>
+<pre class="request-template">
+<div class="http-example-label">Client SerifXMLRequest Message (Template)</div>POST SerifXMLRequest HTTP/1.0
+Content-length: <span class="var">length</span>
+
+&lt;SerifXMLRequest>
+  &lt;ProcessDocument <span class="var">[options]</span>>
+    &lt;Document <span class="changed">href="<span class="var">url</span>"</span>/>
+  &lt;/ProcessDocument>
+&lt;/SerifXMLRequest>
+</pre>
+
+<p>As with the document contents, this URL may have the form
+"<code>file://<span class="var">...</span></code>" or
+"<code>http://<span class="var">...</span></code>"
+
+
+<p><a href="index.html">Back</a></p>
+</div>
+</body>
+
+<script language="javascript" type="text/javascript">
+<!--
+showexample('rawtext2apf_example')
+// -->
+</script>
+
+</html>

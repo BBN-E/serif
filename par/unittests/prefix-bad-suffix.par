@@ -1,0 +1,3 @@
+parallel: 000
+.prefix: /path/to/foo
+foo.list: bar baz quux

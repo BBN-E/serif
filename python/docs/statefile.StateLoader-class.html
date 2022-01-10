@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>statefile.StateLoader</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="statefile-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="statefile-module.html">Module&nbsp;statefile</a> ::
+        Class&nbsp;StateLoader
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="statefile.StateLoader-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== TYPE DESCRIPTION ==================== -->
+<h1 class="epydoc">type StateLoader</h1><p class="nomargin-top"><span class="codelink"><a href="statefile-pysrc.html#StateLoader">source&nbsp;code</a></span></p>
+<pre class="base-tree">
+object --+
+         |
+        <strong class="uidshort">StateLoader</strong>
+</pre>
+
+<dl><dt>Known Subclasses:</dt>
+<dd>
+      <ul class="subclass-list">
+<li><a href="statefile.BinaryStateLoader-class.html">BinaryStateLoader</a></li>  </ul>
+</dd></dl>
+
+<hr />
+<p>The basic class used to read data from state files.  This class is 
+  analagous to the C++ class ``Serif/Generic/state/StateLoader.h``, and 
+  most of the methods it defines correspond directly.</p>
+  <p>However, the handling of pointers differs slightly.  In the C++ serif 
+  code, loadPointer() returns an opaque handle, which is then replaced by a
+  real pointer during a second pass, using methods called 
+  resolvePointers().  In this version, loadPointer() will always return the
+  requested object itself.  If the requested object hasn't been defined yet
+  (i.e., for forward pointers), then a pointer to a `Placeholder` object is
+  returned.  When the object in question is eventually defined, it is 
+  created by transforming this placeholder object to the right class.  
+  Thus, there is no need for a second pass to re-adjust pointers.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="statefile.StateLoader-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">source</span>,
+        <span class="summary-sig-arg">verbose</span>=<span class="summary-sig-default">0</span>)</span><br />
+      Create a state loader that loads the given source, which may be 
+      either a filename or an open stream object.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#StateLoader.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="begin_state_tree"></a><span class="summary-sig-name">begin_state_tree</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">state_description</span>=<span class="summary-sig-default">None</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#StateLoader.begin_state_tree">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="end_state_tree"></a><span class="summary-sig-name">end_state_tree</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#StateLoader.end_state_tree">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="load_string"></a><span class="summary-sig-name">load_string</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#StateLoader.load_string">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="load_specific_string"></a><span class="summary-sig-name">load_specific_string</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">expected_str</span>,
+        <span class="summary-sig-arg">message</span>=<span class="summary-sig-default">None</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#StateLoader.load_specific_string">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="load_symbol"></a><span class="summary-sig-name">load_symbol</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#StateLoader.load_symbol">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="load_integer"></a><span class="summary-sig-name">load_integer</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#StateLoader.load_integer">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="load_unsigned"></a><span class="summary-sig-name">load_unsigned</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#StateLoader.load_unsigned">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="load_real"></a><span class="summary-sig-name">load_real</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#StateLoader.load_real">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="load_pointer"></a><span class="summary-sig-name">load_pointer</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#StateLoader.load_pointer">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="begin_list"></a><span class="summary-sig-name">begin_list</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">expected_name</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">uid_target</span>=<span class="summary-sig-default">None</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#StateLoader.begin_list">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="end_list"></a><span class="summary-sig-name">end_list</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#StateLoader.end_list">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="skip_list"></a><span class="summary-sig-name">skip_list</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">expected_name</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#StateLoader.skip_list">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr bgcolor="#e8f0f8" >
+  <th colspan="2" class="group-header"
+    >&nbsp;&nbsp;&nbsp;&nbsp;Pointers</th></tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="register_pointer"></a><span class="summary-sig-name">register_pointer</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">uid</span>,
+        <span class="summary-sig-arg">obj</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#StateLoader.register_pointer">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="has_placeholder"></a><span class="summary-sig-name">has_placeholder</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">uid</span>=<span class="summary-sig-default">None</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#StateLoader.has_placeholder">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_pointer"></a><span class="summary-sig-name">get_pointer</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">uid</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#StateLoader.get_pointer">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="has_pointer"></a><span class="summary-sig-name">has_pointer</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">uid</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#StateLoader.has_pointer">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="statefile.StateLoader-class.html#new_object" class="summary-sig-name">new_object</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">cls</span>,
+        <span class="summary-sig-arg">uid</span>)</span><br />
+      Return a new object of type `cls`, whose uid is `uid`.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#StateLoader.new_object">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr bgcolor="#e8f0f8"  class="private">
+  <th colspan="2" class="group-header"
+    >&nbsp;&nbsp;&nbsp;&nbsp;Internal helper methods</th></tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_consume"></a><span class="summary-sig-name">_consume</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">regexp</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#StateLoader._consume">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_parse_error"></a><span class="summary-sig-name">_parse_error</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">message</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#StateLoader._parse_error">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_check_version"></a><span class="summary-sig-name">_check_version</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">version</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#StateLoader._check_version">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_log"></a><span class="summary-sig-name">_log</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">msg</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#StateLoader._log">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_STATE_TREE"></a><span class="summary-name">_STATE_TREE</span> = <code title="re.compile(r'\(Serif-state (v\S+)')">re.compile(r'\(Serif-state <code class="re-group">(</code>v\S<code class="re-op">+</code><code class="re-group">)</code>')</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_END_STATE_TREE"></a><span class="summary-name">_END_STATE_TREE</span> = <code title="re.compile(r'\)')">re.compile(r'\)')</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_STRING"></a><span class="summary-name">_STRING</span> = <code title="re.compile(r'&quot;([^&quot;]*)&quot;')">re.compile(r'&quot;<code class="re-group">(</code><code class="re-group">[^</code>&quot;<code class="re-group">]</code><code class="re-op">*</code><code class="re-group">)</code>&quot;')</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_INTEGER"></a><span class="summary-name">_INTEGER</span> = <code title="re.compile(r'(-?\d+)')">re.compile(r'<code class="re-group">(</code>-<code class="re-op">?</code>\d<code class="re-op">+</code><code class="re-group">)</code>')</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_UNSIGNED"></a><span class="summary-name">_UNSIGNED</span> = <code title="re.compile(r'(\d+)')">re.compile(r'<code class="re-group">(</code>\d<code class="re-op">+</code><code class="re-group">)</code>')</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_REAL"></a><span class="summary-name">_REAL</span> = <code title="re.compile(r'(-?\d*(?:\.?\d*)?(?:e\+\d+)?)')">re.compile(r'<code class="re-group">(</code>-<code class="re-op">?</code>\d<code class="re-op">*</code><code class="re-group">(?:</code>\.<code class="re-op">?</code>\d<code class="re-op">*</code><code class="re-group">)</code><code class="re-op">?</code><code class="re-group">(?:</code>e\+\d<code class="re-op">+</code><code class="re-group">)</code><code class="re-op">?</code><code class="re-group">)</code>')</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_POINTER"></a><span class="summary-name">_POINTER</span> = <code title="re.compile(r'@(\d+)')">re.compile(r'@<code class="re-group">(</code>\d<code class="re-op">+</code><code class="re-group">)</code>')</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_BEGIN_LIST"></a><span class="summary-name">_BEGIN_LIST</span> = <code title="re.compile(r'\(([^\s@\(\)]*)(?:@(\d+))?')">re.compile(r'\(<code class="re-group">(</code><code class="re-group">[</code><code class="re-op">^</code>\s@\(\)<code class="re-group">]</code><code class="re-op">*</code><code class="re-group">)</code><code class="re-group">(?:</code>@<code class="re-group">(</code>\d<code class="re-op">+</code><code class="re-group">)</code><code class="re-group">)</code><code class="re-op">?</code>')</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_END_LIST"></a><span class="summary-name">_END_LIST</span> = <code title="re.compile(r'\)')">re.compile(r'\)')</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_SKIP_LIST"></a><span class="summary-name">_SKIP_LIST</span> = <code title="re.compile(r'([^\(\)&quot;]+|&quot;[^&quot;]*&quot;|[\(\)])')">re.compile(r'<code class="re-group">(</code><code class="re-group">[</code><code class="re-op">^</code>\(\)&quot;<code class="re-group">]</code><code class="re-op">+</code><code class="re-op">|</code>&quot;<code class="re-group">[^</code>&quot;<code class="re-group">]</code><code class="re-op">*</code>&quot;<code class="re-op">|</code><code class="re-group">[</code>\(\)<code class="re-group">]</code><code class="re-group">)</code>')</code>
+    </td>
+  </tr>
+<tr bgcolor="#e8f0f8" >
+  <th colspan="2" class="group-header"
+    >&nbsp;&nbsp;&nbsp;&nbsp;Internal helper methods</th></tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_WHITESPACE"></a><span class="summary-name">_WHITESPACE</span> = <code title="re.compile(r'\s*')">re.compile(r'\s<code class="re-op">*</code>')</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="SUPPORTED_VERSIONS"></a><span class="summary-name">SUPPORTED_VERSIONS</span> = <code title="['v1.5']"><code class="variable-group">[</code><code class="variable-quote">'</code><code class="variable-string">v1.5</code><code class="variable-quote">'</code><code class="variable-group">]</code></code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">source</span>,
+        <span class="sig-arg">verbose</span>=<span class="sig-default">0</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="statefile-pysrc.html#StateLoader.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Create a state loader that loads the given source, which may be either
+  a filename or an open stream object.  (To read from a string, use a 
+  StringIO object.)</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>verbose</code></strong> - If nonzero, display messages showing the progress of the state 
+          loader.  Higher levels give more verbosity.</li>
+    </ul></dd>
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="new_object"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">new_object</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">cls</span>,
+        <span class="sig-arg">uid</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="statefile-pysrc.html#StateLoader.new_object">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return a new object of type `cls`, whose uid is `uid`.  If a 
+  Placeholder object has been created for `uid`, then this new object will 
+  be created by changing that Placeholder object's __class__.  Otherwise, 
+  it will be created by calling object.__new__().</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="statefile-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1
+    on Wed Sep  9 17:20:56 2009
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

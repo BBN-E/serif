@@ -1,0 +1,34 @@
+# Serif Libraries export cmake file
+
+# Directory to search for CMake Modules and includes (e.g. FindBoost)
+SET (CMAKE_MODULE_PATH @CMAKE_CURRENT_SOURCE_DIR@/CMake ${CMAKE_MODULE_PATH})
+
+# Set up the various language-specific configurations (eg English_Release)
+# and preprocessor directives.
+INCLUDE(macro)
+INCLUDE(configurations)
+INCLUDE(definitions)
+
+# Add the SERIF library include directories to the include search path.
+SET(SERIF_INCLUDE_DIRS_ESC "@SERIF_INCLUDE_DIRS_ESC@")
+FOREACH(DIR ${SERIF_INCLUDE_DIRS_ESC})
+    INCLUDE_DIRECTORIES("${DIR}")
+ENDFOREACH()
+
+# Add Boost link directories to the directory linking path
+SET(BOOST_LIBRARY_DIRS_ESC "@BOOST_LIBRARY_DIRS_ESC@")
+FOREACH(DIR ${BOOST_LIBRARY_DIRS_ESC})
+    LINK_DIRECTORIES("${DIR}")
+ENDFOREACH()
+
+# Export some useful variables.
+SET(BUILD_LANGUAGE "@BUILD_LANGUAGE@")
+SET(GENERIC_LIBRARIES "@GENERIC_LIBRARIES@")
+SET(WIN "@WIN@")
+
+# Export dependency locations
+SET(XercesC_LIBRARIES "@XercesC_LIBRARIES@")
+SET(Boost_LIBRARIES "@Boost_LIBRARIES@")
+SET(Boost_shared_LIBRARIES "@Boost_shared_LIBRARIES@")
+SET(Boost_LIBRARY_DIRS "@Boost_LIBRARY_DIRS@")
+SET(Boost_INCLUDE_DIR "@Boost_INCLUDE_DIR@")

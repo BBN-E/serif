@@ -1,0 +1,4 @@
+@ ./unsupervised_events.defaults.par
+problem_definition: %events_root%/test/Justice.Arrest.problem
+file_list: %events_root%/test/Justice.Arrest.list
+event_style: ace

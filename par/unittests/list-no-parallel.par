@@ -1,0 +1,4 @@
+INCLUDE required-defaults.par
+
+foo.prefix: /path/to/foo
+foo.list: bar baz quux

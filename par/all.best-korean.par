@@ -1,0 +1,145 @@
+#######################################################################
+#                                                                     #
+# korean.par: intial Korean Serif parameter file 		      #
+#                                                                     #
+#######################################################################
+
+parallel: +parallel+
+
+######### Experiment Information ############################
+
+# Location of text file listing input documents:
+batch_file.prefix:  \\traid01\speed\Serif\kr_data\test\sample-batch\
+batch_file.list: source-files.txt
+
+# Location of all output:
+experiment_dir.prefix: +expt_dir+\
+experiment_dir.list:  sample-batch
+
+# Location of key and src directories: 
+key_dir:  \\traid01\speed\Serif\kr_data\test\sample-batch\
+
+######### Session Information ################################
+
+# Valid stages are:
+#     START, sent-break, tokens, part-of-speech, names, values, parse, 
+#     npchunk, mentions, props, metonymy, entities, events, relations, 
+#     sent-level-end, doc-entities, doc-relations-events, doc-values, 
+#     generics, xdoc, output, score, END
+
+start_stage: START
+end_stage: output
+
+state_saver_stages: tokens
+dump_theories: true
+
+use_sentence_level_relation_finding: false
+use_sentence_level_event_finding: false
+
+######### Global Configuration Parameters ####################
+
+# we expand the beam to width 20 for tokenization, and then condense again after names
+token_branch: 1
+pos_branch: 1
+name_branch: 1
+nested_name_branch: 1
+value_branch: 1
+parse_branch: 1
+desc_branch: 1
+link_branch: 1
+names_beam_width: 1 
+beam_width: 20
+
+entity_type_set:  \\traid01\speed\Serif\kr_data\reflex_entity_types.txt
+entity_subtype_set: \\traid01\speed\Serif\data\subtypes\entity-subtypes-2005.txt
+value_type_set: \\traid01\speed\Serif\data\ace_2005_value_types.txt
+
+word_cluster_bits_file: \\traid01\speed\Serif\kr_data\clusters\newswire-kpa-1994-2000.hBits
+
+check_memory: false
+
+######### Module-specific params #############################
+
+# ----- Document Reader -----
+
+doc_reader_regions_to_process: TEXT,TURN,SPEAKER,POSTER,POSTDATE,SUBJECT
+doc_reader_region_breaks: TURN,P,QUOTE
+doc_reader_datetime_tags: DATE_TIME,DATETIME
+downcase_all_uppercase_docs: false
+
+# ----- Sentence Breaker -----
+
+# ----- Tokenizer -----
+tokenizer_subst: \\traid01\speed\Serif\kr_data\tokens\token-subst.data
+
+# ----- Morphology -----
+do_bigram_morph_selection: true
+MorphModel: \\traid01\speed\Serif\kr_data\morphs\KTB2-model
+unicode_euc_table: \\traid01\speed\Serif\kr_data\encoding\My-KSX1001.txt
+morph_xfst_path: \\traid01\speed\Software\XEROX\xfst\lookup.exe
+morph_klex_path: \\traid01\speed\Serif\kr_data\morphs\klex.fst
+
+# ----- Names -----
+
+pidf_model_file: \\traid01\speed\Serif\kr_data\pidf\morph-analyzed-kpa9400-all.weights
+pidf_tag_set_file: \\traid01\speed\Serif\kr_data\pidf\ACE-Plus-2.tags
+pidf_features_file: \\traid01\speed\Serif\kr_data\pidf\bi_and_tri_wc.features
+
+pidf_interleave_tags: true
+pidf_learn_transitions: false
+
+# ----- Parser -----
+
+primary_parse: npchunk_parse
+
+# ----- NP Chunker -----
+do_np_chunk: true
+
+pnpchunk_tag_set_file: \\traid01\speed\Serif\kr_data\npchunks\np_tags.txt
+pnpchunk_features_file: \\traid01\speed\Serif\kr_data\npchunks\npchunk_features.txt
+pnpchunk_model_file: \\traid01\speed\Serif\kr_data\npchunks\KTB2-npchunk
+
+# ----- Mention Recognizer / Descriptor Classifier -----
+
+do_desc_recognition: false
+
+# ----- Pronoun Classifier -----
+
+# ----- Name Linker -----
+
+name_link_mode: rule
+
+# ----- Descriptor Linker -----
+
+desc_link_mode: off
+
+# ----- Pronoun Linker -----
+
+# ----- Entities (Reference Resolution) -----
+
+unify_appositives: false
+create_partitive_entities: false
+abbrev_maker_file: \\traid01\speed\Serif\kr_data\edt\empty_abbrevs
+
+# ----- Metonymy / Roles -----
+
+# ----- Event Finder -----
+
+allow_events_to_subsume_relations: false
+
+# ----- Relation Finder -----
+
+event_model_type: NONE
+merge_rel_mentions_across_type: false
+event_linking_style: NONE
+ignore_relations_with_matching_heads: false
+
+# ----- Doc Entities -----
+
+do_strategic_linking: false
+##singleton_descriptor_percentage: 0
+##singleton_merge_size: 2
+
+# ----- Output -----
+
+output_format: APF5

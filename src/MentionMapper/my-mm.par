@@ -1,0 +1,15 @@
+parallel: +parallel+
+
+verbose: true
+
+file-list-from: +file_list_from+
+file-list-to: +file_list_to+
+file-to-suffix: +file_to_suffix+
+
+mention-mapper-log-file: +log_file+
+
+generate-ignore: +generate_ignore+
+
+entity-type-set:  //traid01/speed/EnglishACE/2007-ACE-Evaluation/models/ace_2004_entity_types.txt
+entity-subtype-set: //traid01/speed/EnglishACE/2007-ACE-Evaluation/models/subtypes/entity-subtypes-2005.txt
+value-type-set:   //traid01/speed/EnglishACE/2007-ACE-Evaluation/models/ace_2005_value_types.txt

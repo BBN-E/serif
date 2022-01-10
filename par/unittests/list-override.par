@@ -1,0 +1,4 @@
+parallel: 000
+OVERRIDE foo: /path/to/foo/quuuuux
+foo.prefix: /path/to/foo
+foo.list: bar baz quux

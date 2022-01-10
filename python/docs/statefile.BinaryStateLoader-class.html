@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>statefile.BinaryStateLoader</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="statefile-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="statefile-module.html">Module&nbsp;statefile</a> ::
+        Class&nbsp;BinaryStateLoader
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="statefile.BinaryStateLoader-class.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== TYPE DESCRIPTION ==================== -->
+<h1 class="epydoc">type BinaryStateLoader</h1><p class="nomargin-top"><span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader">source&nbsp;code</a></span></p>
+<pre class="base-tree">
+ object --+    
+          |    
+<a href="statefile.StateLoader-class.html">StateLoader</a> --+
+              |
+             <strong class="uidshort">BinaryStateLoader</strong>
+</pre>
+
+<hr />
+<p>In principle, this can load binary state files.  But it's untested, 
+  and probably won't work yet.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Instance Methods</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-InstanceMethods"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="statefile.BinaryStateLoader-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">source</span>)</span><br />
+      Create a state loader that loads the given source, which may be 
+      either a filename or an open stream object.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="statefile.BinaryStateLoader-class.html#begin_state_tree" class="summary-sig-name">begin_state_tree</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">state_description</span>=<span class="summary-sig-default">None</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader.begin_state_tree">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="statefile.BinaryStateLoader-class.html#end_state_tree" class="summary-sig-name">end_state_tree</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader.end_state_tree">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="statefile.BinaryStateLoader-class.html#load_string" class="summary-sig-name">load_string</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader.load_string">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="statefile.BinaryStateLoader-class.html#load_integer" class="summary-sig-name">load_integer</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader.load_integer">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="statefile.BinaryStateLoader-class.html#load_unsigned" class="summary-sig-name">load_unsigned</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader.load_unsigned">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="statefile.BinaryStateLoader-class.html#load_real" class="summary-sig-name">load_real</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader.load_real">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="statefile.BinaryStateLoader-class.html#load_pointer" class="summary-sig-name">load_pointer</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader.load_pointer">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="statefile.BinaryStateLoader-class.html#begin_list" class="summary-sig-name">begin_list</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">expected_name</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">uid_target</span>=<span class="summary-sig-default">None</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader.begin_list">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="statefile.BinaryStateLoader-class.html#end_list" class="summary-sig-name">end_list</a>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader.end_list">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="statefile.StateLoader-class.html">StateLoader</a></code></b>:
+      <code><a href="statefile.StateLoader-class.html#load_specific_string">load_specific_string</a></code>,
+      <code><a href="statefile.StateLoader-class.html#load_symbol">load_symbol</a></code>,
+      <code><a href="statefile.StateLoader-class.html#skip_list">skip_list</a></code>
+      </p>
+    </td>
+  </tr>
+<tr bgcolor="#e8f0f8" >
+  <th colspan="2" class="group-header"
+    >&nbsp;&nbsp;&nbsp;&nbsp;Pointers</th></tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="statefile.StateLoader-class.html">StateLoader</a></code></b>:
+      <code><a href="statefile.StateLoader-class.html#get_pointer">get_pointer</a></code>,
+      <code><a href="statefile.StateLoader-class.html#has_placeholder">has_placeholder</a></code>,
+      <code><a href="statefile.StateLoader-class.html#has_pointer">has_pointer</a></code>,
+      <code><a href="statefile.StateLoader-class.html#new_object">new_object</a></code>,
+      <code><a href="statefile.StateLoader-class.html#register_pointer">register_pointer</a></code>
+      </p>
+    </td>
+  </tr>
+<tr bgcolor="#e8f0f8"  class="private">
+  <th colspan="2" class="group-header"
+    >&nbsp;&nbsp;&nbsp;&nbsp;Internal helper methods</th></tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="statefile.BinaryStateLoader-class.html#_consume" class="summary-sig-name" onclick="show_private();">_consume</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">structobj</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader._consume">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="statefile.StateLoader-class.html">StateLoader</a></code></b> (private):
+      <code><a href="statefile.StateLoader-class.html#_check_version" onclick="show_private();">_check_version</a></code>,
+      <code><a href="statefile.StateLoader-class.html#_log" onclick="show_private();">_log</a></code>,
+      <code><a href="statefile.StateLoader-class.html#_parse_error" onclick="show_private();">_parse_error</a></code>
+      </p></div>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="BYTE_ORDER"></a><span class="summary-name">BYTE_ORDER</span> = <code title="'&lt;'"><code class="variable-quote">'</code><code class="variable-string">&lt;</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_UNSIGNED_SHORT_INT"></a><span class="summary-name">_UNSIGNED_SHORT_INT</span> = <code title="struct.Struct(BYTE_ORDER+ 'H')">struct.Struct(BYTE_ORDER+ 'H')</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_SIGNED_INT"></a><span class="summary-name">_SIGNED_INT</span> = <code title="struct.Struct(BYTE_ORDER+ 'i')">struct.Struct(BYTE_ORDER+ 'i')</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_UNSIGNED_INT"></a><span class="summary-name">_UNSIGNED_INT</span> = <code title="struct.Struct(BYTE_ORDER+ 'I')">struct.Struct(BYTE_ORDER+ 'I')</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="_FLOAT"></a><span class="summary-name">_FLOAT</span> = <code title="struct.Struct(BYTE_ORDER+ 'f')">struct.Struct(BYTE_ORDER+ 'f')</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="statefile.BinaryStateLoader-class.html#_SPECIAL_BEGIN_LIST_TOKS" class="summary-name" onclick="show_private();">_SPECIAL_BEGIN_LIST_TOKS</a> = <code title="{'Argument': 4,
+ 'EntitySet': 0,
+ 'Mention': 7,
+ 'PartOfSpeech': 3,
+ 'Proposition': 6,
+ 'PropositionArgs': 5,
+ 'SynNode': 1,
+ 'Token': 2}"><code class="variable-group">{</code><code class="variable-quote">'</code><code class="variable-string">Argument</code><code class="variable-quote">'</code><code class="variable-op">: </code>4<code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">EntitySet</code><code class="variable-quote">'</code><code class="variable-op">: </code>0<code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">Me</code><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="statefile.StateLoader-class.html">StateLoader</a></code></b> (private):
+      <code><a href="statefile.StateLoader-class.html#_BEGIN_LIST" onclick="show_private();">_BEGIN_LIST</a></code>,
+      <code><a href="statefile.StateLoader-class.html#_END_LIST" onclick="show_private();">_END_LIST</a></code>,
+      <code><a href="statefile.StateLoader-class.html#_END_STATE_TREE" onclick="show_private();">_END_STATE_TREE</a></code>,
+      <code><a href="statefile.StateLoader-class.html#_INTEGER" onclick="show_private();">_INTEGER</a></code>,
+      <code><a href="statefile.StateLoader-class.html#_POINTER" onclick="show_private();">_POINTER</a></code>,
+      <code><a href="statefile.StateLoader-class.html#_REAL" onclick="show_private();">_REAL</a></code>,
+      <code><a href="statefile.StateLoader-class.html#_SKIP_LIST" onclick="show_private();">_SKIP_LIST</a></code>,
+      <code><a href="statefile.StateLoader-class.html#_STATE_TREE" onclick="show_private();">_STATE_TREE</a></code>,
+      <code><a href="statefile.StateLoader-class.html#_STRING" onclick="show_private();">_STRING</a></code>,
+      <code><a href="statefile.StateLoader-class.html#_UNSIGNED" onclick="show_private();">_UNSIGNED</a></code>
+      </p></div>
+    </td>
+  </tr>
+<tr bgcolor="#e8f0f8" >
+  <th colspan="2" class="group-header"
+    >&nbsp;&nbsp;&nbsp;&nbsp;Internal helper methods</th></tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="statefile.StateLoader-class.html">StateLoader</a></code></b>:
+      <code><a href="statefile.StateLoader-class.html#SUPPORTED_VERSIONS">SUPPORTED_VERSIONS</a></code>
+      </p>
+    <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="statefile.StateLoader-class.html">StateLoader</a></code></b> (private):
+      <code><a href="statefile.StateLoader-class.html#_WHITESPACE" onclick="show_private();">_WHITESPACE</a></code>
+      </p></div>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-MethodDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">source</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Create a state loader that loads the given source, which may be either
+  a filename or an open stream object.  (To read from a string, use a 
+  StringIO object.)</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>verbose</code></strong> - If nonzero, display messages showing the progress of the state 
+          loader.  Higher levels give more verbosity.</li>
+    </ul></dd>
+    <dt>Overrides:
+        <a href="statefile.StateLoader-class.html#__init__">StateLoader.__init__</a>
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="begin_state_tree"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">begin_state_tree</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">state_description</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader.begin_state_tree">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="statefile.StateLoader-class.html#begin_state_tree">StateLoader.begin_state_tree</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="end_state_tree"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">end_state_tree</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader.end_state_tree">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="statefile.StateLoader-class.html#end_state_tree">StateLoader.end_state_tree</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="load_string"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">load_string</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader.load_string">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="statefile.StateLoader-class.html#load_string">StateLoader.load_string</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="load_integer"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">load_integer</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader.load_integer">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="statefile.StateLoader-class.html#load_integer">StateLoader.load_integer</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="load_unsigned"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">load_unsigned</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader.load_unsigned">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="statefile.StateLoader-class.html#load_unsigned">StateLoader.load_unsigned</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="load_real"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">load_real</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader.load_real">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="statefile.StateLoader-class.html#load_real">StateLoader.load_real</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="load_pointer"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">load_pointer</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader.load_pointer">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="statefile.StateLoader-class.html#load_pointer">StateLoader.load_pointer</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="begin_list"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">begin_list</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">expected_name</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">uid_target</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader.begin_list">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="statefile.StateLoader-class.html#begin_list">StateLoader.begin_list</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="end_list"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">end_list</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader.end_list">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="statefile.StateLoader-class.html#end_list">StateLoader.end_list</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_consume"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_consume</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">structobj</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="statefile-pysrc.html#BinaryStateLoader._consume">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="statefile.StateLoader-class.html#_consume" onclick="show_private();">StateLoader._consume</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== CLASS VARIABLE DETAILS ==================== -->
+<a name="section-ClassVariableDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variable Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariableDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="_SPECIAL_BEGIN_LIST_TOKS"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">_SPECIAL_BEGIN_LIST_TOKS</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-group">{</code><code class="variable-quote">'</code><code class="variable-string">Argument</code><code class="variable-quote">'</code><code class="variable-op">: </code>4<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">EntitySet</code><code class="variable-quote">'</code><code class="variable-op">: </code>0<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">Mention</code><code class="variable-quote">'</code><code class="variable-op">: </code>7<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">PartOfSpeech</code><code class="variable-quote">'</code><code class="variable-op">: </code>3<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">Proposition</code><code class="variable-quote">'</code><code class="variable-op">: </code>6<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">PropositionArgs</code><code class="variable-quote">'</code><code class="variable-op">: </code>5<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">SynNode</code><code class="variable-quote">'</code><code class="variable-op">: </code>1<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">Token</code><code class="variable-quote">'</code><code class="variable-op">: </code>2<code class="variable-group">}</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="statefile-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1
+    on Wed Sep  9 17:20:55 2009
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

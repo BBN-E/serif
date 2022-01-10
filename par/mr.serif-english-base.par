@@ -1,0 +1,22 @@
+########################################################################
+# 03/05/12, Dave Kolas                                                 #
+#                                                                      #
+# mr.serif-english-base.par:                                           #
+#   This is a Serif parameter file designed to run a blend of          #
+#   our current best models in English and Distillation models,        #
+#   with Machine Reading-specific overrides.                           #
+#                                                                      #
+########################################################################
+
+# External variables (must be defined first)
+serif_data:         +serif_data+
+start_stage:        START
+end_stage:          output
+experiment_dir:     +serif_rundir+
+batch_file:         %experiment_dir%/input.txt
+par_dir:            +par_dir+
+
+OVERRIDE source_format: +source_format+
+
+# Depend on the MR Serif configuration
+INCLUDE +par_dir+/mr.serif-english.par

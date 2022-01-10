@@ -1,0 +1,71 @@
+####################################################################
+# Copyright (c) 2007 by BBNT Solutions LLC                         #
+# All Rights Reserved.                                             #
+#                                                                  #
+# Generic/names/discmodel/featuretypes                             #
+#                                                                  #
+####################################################################
+
+ADD_SERIF_LIBRARY_SUBDIR(featuretypes
+  SOURCE_FILES
+    IdFAllIdFWordFeatFeatureType.h
+    IdFCenterTrigramFeatureType.h
+    IdFCenterTrigramIDFFeatureType.h
+    IdFCenterTrigramWCFeatureType.h
+    IdFDefiniteWordFeature.h
+    IdFDomainWCFeatureType.h
+    IdFSecondaryWCFeatureType.h
+    IdFFirst2LettersFeatureType.h
+    IdFFirst3LettersFeatureType.h
+    IdFFirstLetterFeatureType.h
+    IdFIdFWordFeatFeatureType.h
+    IdFLCWordFeatureType.h
+    IdFLast2LettersFeatureType.h
+    IdFLast3LettersFeature.h
+    IdFLast3LettersFeatureType.h
+    IdFLastLetterFeatureType.h
+    IdFNext2WC12FeatureType.h
+    IdFNext2WC16FeatureType.h
+    IdFNext2WC20FeatureType.h
+    IdFNext2WC8FeatureType.h
+    IdFNextBigramCutOffFeatureType.h
+    IdFNextBigramFeatureType.h
+    IdFNextBigramWCFeatureType.h
+    IdFNextTrigramFeatureType.h
+    IdFNextTrigramWCFeatureType.h
+    IdFNextWC12FeatureType.h
+    IdFNextWC16FeatureType.h
+    IdFNextWC20FeatureType.h
+    IdFNextWC8FeatureType.h
+    IdFNextWordFeatureType.h
+    IdFPrev2WC12FeatureType.h
+    IdFPrev2WC16FeatureType.h
+    IdFPrev2WC20FeatureType.h
+    IdFPrev2WC8FeatureType.h
+    IdFPrevBigramCutOffFeatureType.h
+    IdFPrevBigramFeatureType.h
+    IdFPrevBigramWCFeatureType.h
+    IdFPrevTagFeatureType.h
+    IdFPrevTrigramFeatureType.h
+    IdFPrevTrigramWCFeatureType.h
+    IdFPrevWC12FeatureType.h
+    IdFPrevWC16FeatureType.h
+    IdFPrevWC20FeatureType.h
+    IdFPrevWC8FeatureType.h
+    IdFPrevWordFeatureType.h
+    IdFRareWordFeatureType.h
+    IdFReducedTagFeatureType.h
+    IdFSecondaryDecoderFeatureType.h
+    IdFSemiReducedTagFeatureType.h
+    IdFSingleWordNameListFeatureType.h
+    IdFStemVariantsFeatureType.h
+    IdFTagBiasFeatureType.h
+    IdFWC12FeatureType.h
+    IdFWC16FeatureType.h
+    IdFWC20FeatureType.h
+    IdFWC8FeatureType.h
+    IdFWordBigramFreqFeatureType.h
+    IdFWordFeatureType.h
+    IdFWordFreqAndWCFeatureType.h
+    IdFWordWithoutAl.h
+)

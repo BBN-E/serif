@@ -1,0 +1,34 @@
+Conflict.Attack
+3
+ag_p,ag_g,ag_o,v_p,v_g,v_l,at_l,gbg_p,gbg_o,gbg_l
+20,20,10,20,20,10,20,200,200,200
+0.8	HeadWordImpliesClass	ag_p,v_p	rebels,soldiers,terrorist,terrorists
+0.9	HeadWordImpliesClass	gbg_o	interfax,afp,council,administration
+0.5	HeadWordImpliesClass	v_p	hostage,hostages
+0.9	HeadWordImpliesClass	v_p	victim,victims
+0.8	HeadWordImpliesClass	v_p,gbg_p	civilian,civilians,people
+0.7	HeadWordImpliesClass	gbg_p	officials,official,spokesman,lawyers
+0.8	PropDepImpliesClass	ag_g	invaded_<sub>,invasion_<poss>
+0.8	PropDepImpliesClass	ag_p,ag_g,ag_o	attacked_<sub>,bombed_<sub>,killed_<sub>,kill_<sub>,shot_<sub>,attack_<poss>,attacks_<poss>
+0.2	PropDepImpliesClass	ag_p	fired_<sub>
+0.8	PropDepImpliesClass	v_p	shot_<obj>,killed_<obj>,fired_at,fired_on,kill_<obj>,wounded_<obj>
+0.8	PropDepImpliesClass	v_g,v_l	invaded_<obj>,invasion_of
+0.8	PropDepImpliesClass	v_p,v_g,v_l	attacked_<obj>,bombed_<obj>,sank_<obj>,captured_<obj>,attack_on
+0.75	PropDepImpliesClass	at_l	attack_in,attacked_in
+0.95	EntityTypeImpliesClass	ag_p,v_p,gbg_p	PER
+0.95	EntityTypeImpliesClass	ag_g,v_g,gbg_l,at_l	GPE
+0.95	EntityTypeImpliesClass	ag_o,v_g,gbg_o	ORG
+0.95	EntityTypeImpliesClass	ag_g,v_l,at_l,gbg_l	LOC
+0.1	EntityTypeImpliesClass	ag_p	PER
+0.1	EntityTypeImpliesClass	v_p	PER
+0.3	EntityTypeImpliesClass	gbg_p	PER
+0.1	EntityTypeImpliesClass	ag_o	ORG
+0.1	EntityTypeImpliesClass	v_l	LOC
+0.1	EntityTypeImpliesClass	at_l	LOC
+0.3	EntityTypeImpliesClass	gbg_l	LOC
+0.1	EntityTypeImpliesClass	v_l	LOC
+0.2	EntityTypeImpliesClass	gbg_o	ORG
+0.1	EntityTypeImpliesClass	ag_g	GPE
+0.1	EntityTypeImpliesClass	v_g	GPE
+0.2	EntityTypeImpliesClass	gbg_l	GPE
+

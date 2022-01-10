@@ -1,0 +1,29 @@
+########################################################################
+# 08/29/11, Liz Boschee                                                #
+#                                                                      #
+# regtest.speed.ace2008-arabic.par  		                       #
+#   This is a Serif parameter file designed to run the FAST ACE2008    #
+#   regression test of the Arabic ACE Serif system.                    #
+#                                                                      #
+########################################################################
+
+# External variables (must be defined first)
+parallel:           +parallel+
+serif_data:         +serif_data+
+serif_score:        +serif_score+
+start_stage:        +start_stage+
+end_stage:          +end_stage+
+perl_binary:        +perl_binary+
+serif_regression:   +serif_regression+
+os_suffix:          +os_suffix+
+expt_dir:           +expt_dir+
+state_saver_stages: +state_saver_stages+
+
+INCLUDE +par_dir+/master.arabic.par
+INCLUDE +par_dir+/master.arabic-regtest.par
+INCLUDE +par_dir+/master.arabic-speed.par
+
+# Caches only exist for 16 batches, so we need to pad this with 000, presumably for the
+#  batches that used to be excluded from the regtest (the odd 2005 batches)
+probs_cache_in_path.prefix: %serif_data%/arabic/parser/caches-arabic080811/cache-+parallel+-
+probs_cache_in_path.list: 000 001 002 003 004 005 006 007 008 009 010 000 011 000 012 000 000 013 000 014 000 015 000 016

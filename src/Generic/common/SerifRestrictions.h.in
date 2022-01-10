@@ -1,0 +1,17 @@
+//#########################################################################
+//# Copyright (c) 2007 by BBNT Solutions LLC                              #
+//# All Rights Reserved.                                                  #
+//#                                                                       #
+//# Generic/common/SerifRestrictions.h.in                                 #
+//#                                                                       #
+//# This file is dynamically instantiated by CMake.                       #
+//# The resulting file is created in:                                     #
+//# $binary_dir/dynamic_includes/common/SerifRestrictions.h               #
+//#########################################################################
+
+#ifndef SERIF_RESTRICTIONS_H
+#define SERIF_RESTRICTIONS_H
+
+#cmakedefine BLOCK_FULL_SERIF_OUTPUT
+
+#endif

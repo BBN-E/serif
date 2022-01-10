@@ -1,0 +1,23 @@
+########################################################################
+# 08/29/11, Liz Boschee                                                #
+#                                                                      #
+# regtest.ace2008-arabic.par  			                       #
+#   This is a Serif parameter file designed to run the BEST ACE2008    #
+#   regression test of the Arabic ACE Serif system.                    #
+#                                                                      #
+########################################################################
+
+# External variables (must be defined first)
+parallel:           +parallel+
+serif_data:         +serif_data+
+serif_score:        +serif_score+
+start_stage:        +start_stage+
+end_stage:          +end_stage+
+perl_binary:        +perl_binary+
+serif_regression:   +serif_regression+
+os_suffix:          +os_suffix+
+expt_dir:           +expt_dir+
+state_saver_stages: +state_saver_stages+
+
+INCLUDE +par_dir+/master.arabic.par
+INCLUDE +par_dir+/master.arabic-regtest.par

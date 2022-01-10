@@ -1,0 +1,29 @@
+########################################################################
+# 08/29/11, Liz Boschee                                                #
+#                                                                      #
+# regtest.speed_npchunk.best_english.par:                              #
+#   This is a Serif parameter file designed to run our current         #
+#   fast models, but with np chunks isntead of full parses             #
+#                                                                      #
+########################################################################
+
+# External variables (must be defined first)
+parallel:           +parallel+
+serif_data:         +serif_data+
+serif_score:        +serif_score+
+start_stage:        +start_stage+
+end_stage:          +end_stage+
+expt_dir:           +expt_dir+
+state_saver_stages: +state_saver_stages+
+
+INCLUDE +par_dir+/master.english.par
+INCLUDE +par_dir+/master.english-regtest.par
+INCLUDE +par_dir+/master.english-speed.par
+INCLUDE +par_dir+/master.english-npchunk.par
+
+# Override relation files; -speed does it one way and -regtest does it 
+#  another way and -npchunk does it yet another way; we have to do it a 
+#  fourth way when combining them
+OVERRIDE p1_relation_model_file.prefix:   %serif_data%/english/relations/p1/np-chunk-features-orig
+OVERRIDE p1_relation_model_file.list: -adj-1.model -adj-2.model -adj-3.model -adj-4.model -adj-5.model -adj-6.model -adj-7.model -adj-8.model
+OVERRIDE relation_finder_use_alt_models:  false

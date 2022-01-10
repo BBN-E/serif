@@ -1,0 +1,24 @@
+In CMakeLists.txt, uncomment this line in INCLUDE_DIRECTORIES:
+
+ #${GPERFTOOLS_INCLUDE_DIR}
+
+In your program:
+* add this include:
+#include <gperftools/profiler.h>
+
+* Add this to the beginning of your program:
+
+ProfilerStart("profile_file_name");
+
+* Add this to the end:
+ProfilerStop();
+
+
+You'll need to add this to your final linker line:
+
+-L/opt/gperftools-VERISON/lib -lprofiler
+
+At runtime, you'll need the gperftools lib directory on your LD_LIBRARY_PATH as well
+
+
+Eventually this (except for the source alteration) should get integrated into CMake.

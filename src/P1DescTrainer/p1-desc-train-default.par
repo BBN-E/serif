@@ -1,0 +1,48 @@
+# Default P1DescTrainer parameter file
+
+# task is:
+# 'desc-classify': classify non-nominal-premod desctriptors
+# 'premod-classify': classify only nominal-premod descriptors
+# 'desc-premod-classify': classify all descriptors, including nominal premods
+p1-desc-task: premod-classify
+
+# number of total sentences in the files specified by p1-training-file-list
+# [optional -- if not specified, the program will count for you]
+# p1-num-training-sentences: <some-integer>
+
+# list of state files to train on (each in the form of a state-3-mentions file)
+p1-training-file-list: <your-desired-training-list>
+
+# number of training cycles
+p1-trainer-epochs: 5
+
+# if true, collect all features seen in training data before training
+p1-trainer-seed-features: true
+
+# if true, allow new features to be added during training
+p1-trainer-add-hyp-features: true
+
+# number of sentences between adding current weight table to running average.
+# As a special case, if this is set to 0, then weight-summing is not
+# done at all.
+p1-trainer-weightsum-granularity: 16
+
+p1-desc-model-file: <your-desired-model-output-file>.weights
+p1-desc-features-file: \\traid01\projects\serif\data\desc-classify\p1\default.features
+# if none of the wordnet features are turned on, then you can set this
+# to false to make the trainer much faster:
+p1-desc-use-wordnet: false
+p1-desc-tag-set-file: \\traid01\projects\serif\data\desc-classify\p1\desc.tags
+trainer-log-file: <your-desired-log-file>.log
+
+
+# this does dev-test mode, instead of training
+p1-desc-devtest: false
+# dev-test only:
+p1-desc-devtest-out: //traid01/users/sscarano/premods/devtest-premod-desc-headclass-7.html
+
+
+# basic Serif parameters
+entity-type-set: \\traid01\projects\serif\data\ace_2004_entity_types.txt
+word-net-dictionary-path: //traid01/projects/software/wn16/dict
+word-cluster-bits-file: //traid01/Projects/DiscriminativeTagger/LanguageData/CSRWSJ/csr-wsj.hBits

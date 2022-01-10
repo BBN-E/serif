@@ -1,0 +1,178 @@
+<html>
+<head>
+  <title>Serif HTTP Server: sgm2apf Example</title>
+  <link rel="stylesheet" type="text/css" href="serif.css">
+</head>
+<body>
+<div class="body">
+
+<h1>Example Session: sgm2apf</h1>
+
+<pre class="example-request">
+<div class="http-example-label">Client Request</div>
+POST sgm2serifxml HTTP/1.0
+content-length: 244
+
+&lt;DOC>
+&lt;DOCID> man-with-telescope &lt;/DOCID>
+&lt;DOCTYPE SOURCE="newswire"> NEWS STORY &lt;/DOCTYPE>
+&lt;DATETIME> 20101115 &lt;/DATETIME>
+&lt;BODY>
+&lt;TEXT>
+&lt;HEADLINE>
+Man seen with telescope!
+&lt;/HEADLINE>
+I saw a man on the hill with a telescope.
+&lt;/TEXT>
+&lt;/BODY>
+</pre>
+<pre class="example-response">
+<div class="http-example-label">Server Response</div>
+HTTP/1.0 200 OK
+Content-length: 8500
+
+&lt;?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+&lt;SerifXML version="18">
+
+  &lt;Document docid="man-with-telescope" id="a1" is_downcased="FALSE" language="English" source_type="newswire">
+    &lt;OriginalText char_offsets="0:243" edt_offsets="0:118" id="a2">
+      &lt;Contents>&lt;DOC&gt;
+&lt;DOCID&gt; man-with-telescope &lt;/DOCID&gt;
+&lt;DOCTYPE SOURCE="newswire"&gt; NEWS STORY &lt;/DOCTYPE&gt;
+&lt;DATETIME&gt; 20101115 &lt;/DATETIME&gt;
+&lt;BODY&gt;
+&lt;TEXT&gt;
+&lt;HEADLINE&gt;
+Man seen with telescope!
+&lt;/HEADLINE&gt;
+I saw a man on the hill with a telescope.
+&lt;/TEXT&gt;
+&lt;/BODY&gt;
+&lt;/Contents>
+    &lt;/OriginalText>
+    &lt;DateTime char_offsets="103:110" edt_offsets="36:43" id="a3"/>
+    &lt;Regions>
+      &lt;Region char_offsets="137:227" edt_offsets="47:116" id="a4" is_receiver="FALSE" is_speaker="FALSE" tag="TEXT">
+        &lt;Contents>
+
+Man seen with telescope!
+
+I saw a man on the hill with a telescope.
+&lt;/Contents>
+      &lt;/Region>
+    &lt;/Regions>
+    &lt;Segments/>
+    &lt;Metadata>
+      &lt;Span char_offsets="137:228" edt_offsets="47:116" id="a5" region_type="TEXT" span_type="RegionSpan"/>
+    &lt;/Metadata>
+    &lt;Sentences>
+      &lt;Sentence char_offsets="149:172" edt_offsets="49:72" id="a6" is_annotated="TRUE" region_id="a4">
+        &lt;TokenSequence id="a7" score="0">
+          &lt;Token char_offsets="149:151" edt_offsets="49:51" id="a8">Man&lt;/Token>
+          &lt;Token char_offsets="153:156" edt_offsets="53:56" id="a9">seen&lt;/Token>
+          &lt;Token char_offsets="158:161" edt_offsets="58:61" id="a10">with&lt;/Token>
+          &lt;Token char_offsets="163:171" edt_offsets="63:71" id="a11">telescope&lt;/Token>
+          &lt;Token char_offsets="172:172" edt_offsets="72:72" id="a12">!&lt;/Token>
+        &lt;/TokenSequence>
+        &lt;PartOfSpeechSequence id="a13" score="0" token_sequence_id="a7"/>
+        &lt;NameTheory id="a14" score="0" token_sequence_id="a7"/>
+        &lt;ValueMentionSet id="a15" score="0" token_sequence_id="a7"/>
+        &lt;Parse id="a16" score="-48.4184265" token_sequence_id="a7">
+          &lt;TreebankString node_id_method="DFS">(S^ (NPA (NNP^ man)) (VP^ (VBN^ seen) (PP (IN^ with) (NPA (NN^ telescope)))) (. !))&lt;/TreebankString>
+        &lt;/Parse>
+        &lt;MentionSet desc_score="2" id="a17" name_score="0" parse_id="a16">
+          &lt;Mention entity_subtype="UNDET" entity_type="PER" id="a18" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a16.1"/>
+          &lt;Mention entity_subtype="UNDET" entity_type="OTH" id="a19" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a16.10"/>
+        &lt;/MentionSet>
+        &lt;PropositionSet id="a20" mention_set_id="a17">
+          &lt;Proposition head_id="a16.2" id="a21" type="noun">
+            &lt;Argument mention_id="a18" role="&lt;ref>"/>
+          &lt;/Proposition>
+          &lt;Proposition head_id="a16.11" id="a23" type="noun">
+            &lt;Argument mention_id="a19" role="&lt;ref>"/>
+          &lt;/Proposition>
+          &lt;Proposition head_id="a16.5" id="a22" type="verb">
+            &lt;Argument mention_id="a18" role="&lt;sub>"/>
+            &lt;Argument mention_id="a19" role="with"/>
+          &lt;/Proposition>
+        &lt;/PropositionSet>
+        &lt;RelMentionSet id="a24" score="0"/>
+        &lt;EventMentionSet id="a25" score="0"/>
+        &lt;SentenceTheory event_mention_set_id="a25" id="a26" mention_set_id="a17" name_theory_id="a14" parse_id="a16" part_of_speech_sequence_id="a13" primary_parse="full_parse" proposition_set_id="a20" rel_mention_set_id="a24" token_sequence_id="a7" value_mention_set_id="a15"/>
+      &lt;/Sentence>
+      &lt;Sentence char_offsets="186:226" edt_offsets="75:115" id="a27" is_annotated="TRUE" region_id="a4">
+        &lt;TokenSequence id="a28" score="0">
+          &lt;Token char_offsets="186:186" edt_offsets="75:75" id="a29">I&lt;/Token>
+          &lt;Token char_offsets="188:190" edt_offsets="77:79" id="a30">saw&lt;/Token>
+          &lt;Token char_offsets="192:192" edt_offsets="81:81" id="a31">a&lt;/Token>
+          &lt;Token char_offsets="194:196" edt_offsets="83:85" id="a32">man&lt;/Token>
+          &lt;Token char_offsets="198:199" edt_offsets="87:88" id="a33">on&lt;/Token>
+          &lt;Token char_offsets="201:203" edt_offsets="90:92" id="a34">the&lt;/Token>
+          &lt;Token char_offsets="205:208" edt_offsets="94:97" id="a35">hill&lt;/Token>
+          &lt;Token char_offsets="210:213" edt_offsets="99:102" id="a36">with&lt;/Token>
+          &lt;Token char_offsets="215:215" edt_offsets="104:104" id="a37">a&lt;/Token>
+          &lt;Token char_offsets="217:225" edt_offsets="106:114" id="a38">telescope&lt;/Token>
+          &lt;Token char_offsets="226:226" edt_offsets="115:115" id="a39">.&lt;/Token>
+        &lt;/TokenSequence>
+        &lt;PartOfSpeechSequence id="a40" score="0" token_sequence_id="a28"/>
+        &lt;NameTheory id="a41" score="0" token_sequence_id="a28"/>
+        &lt;ValueMentionSet id="a42" score="0" token_sequence_id="a28"/>
+        &lt;Parse id="a43" score="-47.7131462" token_sequence_id="a28">
+          &lt;TreebankString node_id_method="DFS">(S^ (NPA (PRP^ i)) (VP^ (VBD^ saw) (NPA (DT a) (NN^ man)) (PP (IN^ on) (NP (NPA^ (DT the) (NN^ hill)) (PP (IN^ with) (NPA (DT a) (NN^ telescope)))))) (. .))&lt;/TreebankString>
+        &lt;/Parse>
+        &lt;MentionSet desc_score="4" id="a44" name_score="0" parse_id="a43">
+          &lt;Mention entity_subtype="UNDET" entity_type="PER" id="a45" intended_type="UNDET" is_metonymy="FALSE" mention_type="pron" role_type="UNDET" syn_node_id="a43.1"/>
+          &lt;Mention entity_subtype="UNDET" entity_type="PER" id="a46" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a43.2"/>
+          &lt;Mention entity_subtype="UNDET" entity_type="PER" id="a47" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a43.7"/>
+          &lt;Mention entity_subtype="Land-Region-Natural" entity_type="LOC" id="a48" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a43.15"/>
+          &lt;Mention entity_subtype="UNDET" entity_type="OTH" id="a49" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a43.16"/>
+          &lt;Mention entity_subtype="UNDET" entity_type="OTH" id="a50" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a43.24"/>
+        &lt;/MentionSet>
+        &lt;PropositionSet id="a51" mention_set_id="a44">
+          &lt;Proposition head_id="a43.1" id="a52" type="pronoun">
+            &lt;Argument mention_id="a45" role="&lt;ref>"/>
+          &lt;/Proposition>
+          &lt;Proposition head_id="a43.10" id="a54" type="noun">
+            &lt;Argument mention_id="a47" role="&lt;ref>"/>
+          &lt;/Proposition>
+          &lt;Proposition head_id="a43.27" id="a56" type="noun">
+            &lt;Argument mention_id="a50" role="&lt;ref>"/>
+          &lt;/Proposition>
+          &lt;Proposition head_id="a43.19" id="a55" type="noun">
+            &lt;Argument mention_id="a48" role="&lt;ref>"/>
+            &lt;Argument mention_id="a50" role="with"/>
+          &lt;/Proposition>
+          &lt;Proposition head_id="a43.5" id="a53" type="verb">
+            &lt;Argument mention_id="a45" role="&lt;sub>"/>
+            &lt;Argument mention_id="a47" role="&lt;obj>"/>
+            &lt;Argument mention_id="a48" role="on"/>
+          &lt;/Proposition>
+        &lt;/PropositionSet>
+        &lt;RelMentionSet id="a57" score="0.233999997">
+          &lt;RelMention id="a58" left_mention_id="a47" modality="Asserted" right_mention_id="a48" score="0.233999997" tense="Unspecified" type="PHYS.Located"/>
+        &lt;/RelMentionSet>
+        &lt;EventMentionSet id="a59" score="0"/>
+        &lt;SentenceTheory event_mention_set_id="a59" id="a60" mention_set_id="a44" name_theory_id="a41" parse_id="a43" part_of_speech_sequence_id="a40" primary_parse="full_parse" proposition_set_id="a51" rel_mention_set_id="a57" token_sequence_id="a28" value_mention_set_id="a42"/>
+      &lt;/Sentence>
+    &lt;/Sentences>
+    &lt;EntitySet id="a61" score="-793733">
+      &lt;Entity entity_type="PER" id="a62" is_generic="FALSE" mention_ids="a18 a47"/>
+      &lt;Entity entity_type="LOC" id="a63" is_generic="FALSE" mention_ids="a48"/>
+      &lt;Entity entity_type="PER" id="a64" is_generic="TRUE" mention_ids="a45"/>
+    &lt;/EntitySet>
+    &lt;ValueSet id="a65"/>
+    &lt;RelationSet id="a66">
+      &lt;Relation id="a67" left_entity_id="a62" modality="Asserted" rel_mention_ids="a58" right_entity_id="a63" tense="Unspecified" type="PHYS.Located"/>
+    &lt;/RelationSet>
+    &lt;EventSet id="a68"/>
+    &lt;ValueMentionSet id="a69" score="0"/>
+    &lt;RelMentionSet id="a70" score="0"/>
+    &lt;Lexicon/>
+  &lt;/Document>
+
+&lt;/SerifXML>
+</pre>
+
+</div>
+</body>
+</html>

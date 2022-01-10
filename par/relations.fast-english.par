@@ -1,0 +1,31 @@
+########################################################################
+# 7/29/14, Nick Ward                                                   #
+#                                                                      #
+# relations.fast-english.par:                                          #
+#   This is a Serif parameter file designed to run our current         #
+#   system with fast parsing English through relations.                #
+#                                                                      #
+########################################################################
+
+# External variables (must be defined first)
+parallel:           000
+serif_data:         +serif_data+
+serif_score:        NONE
+start_stage:        START
+end_stage:          doc-relations-events
+state_saver_stages: NONE
+
+INCLUDE +par_dir+/master.english.par
+
+license_file: %serif_data%/unspec/misc/cicero.lic
+
+# Parser
+OVERRIDE parse_branch: 1
+parser_lambda: -1
+parser_max_entries_per_cell: 5
+maximum_pos_tags: 1
+prune_pos_tags: true
+parser_shortcuts: %serif_data%/english/parser/parser-shortcuts/parser-shortcuts-fairly-aggressive
+OVERRIDE parser_model:           %serif_data%/english/parser/ordered/full-with-complete-dates.50
+OVERRIDE lowercase_parser_model: %serif_data%/english/parser/ordered/lowercase-with-dates.50
+OVERRIDE max_parser_seconds: 30

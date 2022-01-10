@@ -1,0 +1,37 @@
+########################################################################
+# 08/29/11, Liz Boschee                                                #
+#                                                                      #
+# master.arabic-throughput.par                                         #
+#   Include this file to run on the throughput batch, with             #
+#   special throughput settings.                                       #
+#                                                                      #
+# The throughput directory contains:                                   #
+#   2007-wl-0 2007-wl-1 2007-wl-2 2007-wl-3 2007-nw-0 2007-nw-1        #
+#   2007-nw-2 2007-nw-3 2007-nw-4 2007-nw-5 2007-nw-6 2005-bn-adj-2    #
+#   2005-bn-adj-4 2005-nw-adj-2 2005-nw-adj-4 2005-nw-adj-6            #
+#   2005-wl-adj-2                                                      #
+#                                                                      #
+# Note that these models are test-on-train.                            #
+#                                                                      #
+########################################################################
+
+# Structured as prefix/list to please the build_serif.pl script
+batch_file.prefix: %serif_regression%/Arabic/RegressionTest_2005-2007%os_suffix%/
+batch_file.list: throughput/source-files.txt
+
+experiment_dir.prefix: %expt_dir%
+experiment_dir.list: throughput
+
+key_dir.prefix: %serif_regression%/Arabic/RegressionTest_2005-2007%os_suffix%
+key_dir.list: throughput
+
+# Display throughput results when we're done.
+print_profiling_results: true
+#OVERRIDE check_memory: true
+
+# Memory management
+num_docs_per_cleanup: 100
+
+# Might as well check to make sure we're not having problems
+OVERRIDE ignore_errors: false
+

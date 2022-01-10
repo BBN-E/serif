@@ -1,0 +1,26 @@
+# Location of text file listing input documents:
+sb-document-filelist: <your-documentfilelist>
+#C:\SERIF\src\StandaloneSentenceBreaker\ar-test-batch.txt
+# Location of the session log
+sb-session-log: <your-sessionlog>
+#C:\SERIF\src\StandaloneSentenceBreaker\ar-log.txt
+# Location of output file
+sb-outfile: <your-outputfile>
+#C:\SERIF\src\StandaloneSentenceBreaker\ar-out.txt
+# ----- Document Reader -----
+# this is for TapDocumentReader. It only works on English.
+exclude-headlines: true
+
+
+# ----- Sentence Breaker -----
+
+# for EELD only:
+use-eeld-dateline-heuristics: false
+
+# sentence break on lists like:
+# A. Item
+# B. Item
+# C. Item
+use-itea-sentence-break-heuristics: false
+
+

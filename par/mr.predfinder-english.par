@@ -1,0 +1,110 @@
+########################################################################
+# 02/14/12, Nick Ward                                                  #
+#                                                                      #
+# mr.predfinder-english.par:                                           #
+#   This is a Serif parameter file designed to run the pred-finder     #
+#   stage/module after cross-doc lite and mr.serif-english.par have    #
+#   been run.
+#                                                                      #
+########################################################################
+
+# External variables (must be defined first)
+serif_data:         //mercury-04/u10/serif/data
+start_stage:        generics
+end_stage:          pred-finder
+
+# Depend on the MR Serif configuration
+INCLUDE %par_dir%/mr.serif-english.par
+
+OVERRIDE source_format: serifxml
+
+######### General I/O ########################################
+
+# ----- Logging -----
+
+log_file:        [none]
+log_file_append: false
+log_ignore:      [none]
+log_force:       [none]
+log_threshold:   INFO
+log_show_ids:    false
+
+verbose: false
+verbose_pattern_verification: false
+
+warn_about_unfound_nfl_players: false
+warn_when_few_entities_produced: false
+
+# ----- Output -----
+
+# Control how ELF XML is organized
+sort_output:               false
+sort_elf_elements:         false
+
+# Control what text and attributes are on each ELF XMLelement
+elf_include_text_excerpts: true
+show_ids_for_individuals:  true
+show_source_attrib:        true
+show_confidence_attrib:    true
+
+# Output additional debugging information
+dump_unclustered_elf: false
+
+######### Serif Overrides ####################################
+
+OVERRIDE modules: English,PredFinder
+
+# ----- Proposition Finder -----
+
+OVERRIDE proposition_unreliability_indicator_words: %regtest_dir%/mr/resources/machine-reading-unreliability-indicator-words.txt
+
+######### Processing Stages ##################################
+
+# ----- Error Checking -----
+
+validate_manual_patterns: true
+validate_only: false
+
+# ----- Manual Patterns -----
+
+# ----- LearnIt Patterns -----
+
+# Should match LearnIt2 training parameters
+triggering_features: KeywordPatternFeature,KeywordInSentenceFeature,SlotsIdentityFeature,PropPatternFeature,TextPatternFeature,EventFeature,RelationFeature
+non_triggering_features: SlotIdentityFeature,SlotContainsWordFeature,YYMMDDFeature,NotYYMMDDFeature,SlotBiasFeature,SentenceBiasFeature
+relation_prior: 0.1
+learnit2_feature_weight_threshold: 0.1
+
+temporal_feature_threshold: 0.1
+temporal_attributes: t:HoldsAt,t:ClippedBefore,t:ClippedAfter
+apply_temporal_module_to: eru:AttendsSchool,eru:HasSpouse,eru:HasTopMemberOrEmployee,eru:ResidesInGPE-spec,eru:PersonInOrganization,eru:HasEmployer
+record_temporal_source: true
+
+# ----- Macros -----
+
+# ----- Inference -----
+
+# Lookup tables
+location_expansions_table:  %regtest_dir%/resources/locations/loc-expansion-pop50K.txt
+country_name_equivalencies: %regtest_dir%/resources/country_aliases.txt
+individual_type_name_list:  %regtest_dir%/mr/resources/individual_type_name_list.txt
+terrorist_organizations:    %regtest_dir%/mr/resources/individual_type_name_list.txt
+continent_expansions_table: %regtest_dir%/mr/resources/continent_expansions.txt
+
+# NFL game coreference
+use_conditional_cluster_equality: true
+do_sentence_level_individual_coref: true
+
+coerce_strings_to_mentions: true
+fix_newswire_leads: true
+coerce_bound_types: true
+
+use_fixed_gender_guesser: true
+prefer_pronouns_for_per_subtype_guess: true
+
+# ----- ID Assignment -----
+
+use_hash_based_game_ids: true
+use_document_level_uri_assignment: true
+
+check_george_bush: true

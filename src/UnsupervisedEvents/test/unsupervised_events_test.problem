@@ -1,0 +1,9 @@
+attack	treaty	legislation	protest	election
+0.8	FeatureImpliesClass	attack	attack,killed,wounded,exploded,rebels,war
+0.8	FeatureImpliesClass	treaty	ratification,treaty,pact
+0.8	FeatureImpliesClass	legislation	legislation,bill
+0.8	FeatureImpliesClass	protest	protest,protesters,demonstration
+0.8	FeatureImpliesClass	election	election
+0.8	FeatureImpliesClass	treaty,legislation,election	vote
+0.8	FeatureImpliesClass	treaty,legislation	senate,ratification
+

@@ -1,0 +1,14 @@
+serif_data:                  +SERIF_DATA+
+
+# ----- Tokenizer -----
+tokenizer_params:             %serif_data%/english/tokenization/default.params
+tokenizer_subst:              %serif_data%/english/tokenization/token-subst.data
+tokenizer_short_words:        %serif_data%/english/tokenization/short-words.data
+tokenizer_non_final_abbrevs:  %serif_data%/english/tokenization/non-final-abbrevs.data
+tokenizer_no_split_abbrevs:   %serif_data%/english/tokenization/no-split-abbrevs.data
+tokenizer_hyphenated_endings: %serif_data%/english/tokenization/hyphenated-endings.data
+tokenizer_hyphenated_tokens:  %serif_data%/english/tokenization/hyphenated-tokens.data
+tokenizer_hyphenated_prefixes:%serif_data%/english/tokenization/hyphenated-prefixes.data
+split_hyphenated_names:       true
+downcase_all_uppercase_docs:  true
+use_GALE_tokenization:        true

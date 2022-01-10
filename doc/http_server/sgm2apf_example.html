@@ -1,0 +1,103 @@
+<html>
+<head>
+  <title>Serif HTTP Server: sgm2apf Example</title>
+  <link rel="stylesheet" type="text/css" href="serif.css">
+</head>
+<body>
+<div class="body">
+
+<h1>Example Session: sgm2apf</h1>
+
+<pre class="example-request">
+<div class="http-example-label">Client Request</div>
+POST sgm2apf HTTP/1.0
+content-length: 244
+
+&lt;DOC>
+&lt;DOCID> man-with-telescope &lt;/DOCID>
+&lt;DOCTYPE SOURCE="newswire"> NEWS STORY &lt;/DOCTYPE>
+&lt;DATETIME> 20101115 &lt;/DATETIME>
+&lt;BODY>
+&lt;TEXT>
+&lt;HEADLINE>
+Man seen with telescope!
+&lt;/HEADLINE>
+I saw a man on the hill with a telescope.
+&lt;/TEXT>
+&lt;/BODY>
+</pre>
+<pre class="example-response">
+<div class="http-example-label">Server Response</div>
+HTTP/1.0 200 OK
+Content-length: 2496
+
+&lt;?xml version="1.0"?>
+&lt;!DOCTYPE source_file SYSTEM "apf.v5.2.0.dtd">
+&lt;source_file SOURCE="newswire" TYPE="text" VERSION="2.0" URI="man-with-telescope">
+  &lt;document DOCID="man-with-telescope">
+
+    &lt;entity ID="man-with-telescope-E0" TYPE="PER" SUBTYPE="Individual" CLASS="SPC">
+        &lt;entity_mention TYPE="NOM" ID="man-with-telescope-E0-M0.0">
+          &lt;extent>
+              &lt;charseq START="49" END="51">Man&lt;/charseq>
+          &lt;/extent>
+          &lt;head>
+              &lt;charseq START="49" END="51">Man&lt;/charseq>
+          &lt;/head>
+        &lt;/entity_mention>
+        &lt;entity_mention TYPE="NOM" ID="man-with-telescope-E0-M1.2">
+          &lt;extent>
+              &lt;charseq START="81" END="85">a man&lt;/charseq>
+          &lt;/extent>
+          &lt;head>
+              &lt;charseq START="83" END="85">man&lt;/charseq>
+          &lt;/head>
+        &lt;/entity_mention>
+    &lt;/entity>
+
+    &lt;entity ID="man-with-telescope-E1" TYPE="LOC" SUBTYPE="Land-Region-Natural" CLASS="SPC">
+        &lt;entity_mention TYPE="NOM" ID="man-with-telescope-E1-M1.3">
+          &lt;extent>
+              &lt;charseq START="90" END="114">the hill with a telescope&lt;/charseq>
+          &lt;/extent>
+          &lt;head>
+              &lt;charseq START="94" END="97">hill&lt;/charseq>
+          &lt;/head>
+        &lt;/entity_mention>
+    &lt;/entity>
+
+    &lt;timex2 ID="man-with-telescope-T10000" VAL="2010-11-15">
+        &lt;timex2_mention ID="man-with-telescope-T10000-M1">
+            &lt;extent>
+              &lt;charseq START="36" END="43">20101115&lt;/charseq>
+            &lt;/extent>
+        &lt;/timex2_mention>
+    &lt;/timex2>
+
+    &lt;relation ID="man-with-telescope-R0" TYPE="PHYS" SUBTYPE="Located" MODALITY="Asserted" TENSE="Unspecified">
+      &lt;relation_argument REFID="man-with-telescope-E0" ROLE="Arg-1"/>
+      &lt;relation_argument REFID="man-with-telescope-E1" ROLE="Arg-2"/>
+        &lt;relation_mention ID="man-with-telescope-R0-M100">
+          &lt;extent>
+              &lt;charseq START="81" END="85">a man&lt;/charseq>
+          &lt;/extent>
+          &lt;relation_mention_argument REFID="man-with-telescope-E0-M1.2" ROLE="Arg-1">
+            &lt;extent>
+              &lt;charseq START="81" END="85">a man&lt;/charseq>
+            &lt;/extent>
+          &lt;/relation_mention_argument>
+          &lt;relation_mention_argument REFID="man-with-telescope-E1-M1.3" ROLE="Arg-2">
+            &lt;extent>
+              &lt;charseq START="90" END="114">the hill with a telescope&lt;/charseq>
+            &lt;/extent>
+          &lt;/relation_mention_argument>
+        &lt;/relation_mention>
+    &lt;/relation>
+
+  &lt;/document>
+&lt;/source_file>
+</pre>
+
+</div>
+</body>
+</html>

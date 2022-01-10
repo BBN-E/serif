@@ -1,0 +1,68 @@
+########################################################################
+# 04/17/2014, Liz Boschee                                              #
+#                                                                      #
+# master.awake.english.par                                             #
+#                                                                      #
+# This parameter file is intended to be imported. It requires that     #
+# the following paramters be defined before it is imported:            #
+#                                                                      #
+#   * serif_data..........Path to SERIF data directory                 #
+#   * bbn_actor_db........Path to BBN actor database                   #
+#                                                                      #
+# This file should be imported AFTER the core SERIF parameters, as it  #
+# overrides several of them with AwAKE-specific requirements.          #
+#                                                                      #
+########################################################################
+
+#
+# EVENT OPTIONS (necessary for FactFinder!)
+# --------------------------------------------
+
+# This will provide us with Quotation events, which are important for FactFinder
+OVERRIDE event_pattern_set: %serif_data%/english/events/rules/expanded-bpl-event-patterns.txt
+
+# FACT FINDER OPTIONS
+# ----------------------------
+
+run_fact_finder: true
+fact_pattern_dir: %serif_data%/english/facts
+fact_pattern_list: %serif_data%/english/facts/fact_pattern_files.list
+sector_fact_pattern_list: %serif_data%/english/facts/sectors/sector_fact_pattern_files.list
+find_custom_facts: true
+augment_employment_facts: true
+print_factfinder_coldstart_info: false
+original_language: English
+
+valid_gpe_titles: %serif_data%/english/facts/valid_gpe_titles.txt
+valid_gpe_title_starts: %serif_data%/english/facts/valid_gpe_title_starts.txt
+valid_gpe_title_ends: %serif_data%/english/facts/valid_gpe_title_ends.txt
+valid_title_modifiers: %serif_data%/english/facts/valid_title_modifiers.txt
+
+# Regular SERIF allows future facts, but we do not in the AWAKE mode
+OVERRIDE blocked_proposition_types: negative,alleged,modal,if,unreliable,future 
+
+# ACTOR LINKING OPTIONS
+# ----------------------------
+
+do_actor_match: true
+country_modifier_words: %serif_data%/english/actor-match/valid_country_modifier_words.txt
+person_modifier_words: %serif_data%/english/actor-match/valid_person_modifier_words.txt
+organization_modifier_words: %serif_data%/english/actor-match/valid_organization_modifier_words.txt
+strip_punctuation_when_matching_jabari_patterns: true
+include_cities_for_default_country_selection: true
+nicknames_file: %serif_data%/english/actor-match/common_nicknames.txt
+
+# Settings determined to be the best for Freebase; if you are using a manually-curated seed database, you could perhaps be more aggressive
+actor_match_require_exact_entity_type_match: true
+allow_fac_org_matches: true
+actor_match_only_match_names: true 
+
+# GAZETTEER OPTIONS
+# ----------------------------
+
+us_state_names: %serif_data%/english/actor-match/geonames/us_state_names.txt
+gazetteer_nationality_to_nation: %serif_data%/english/actor-match/geonames/nationality_to_nation.txt
+gazetteer_state_abbreviations: %serif_data%/english/actor-match/geonames/state_abbreviations.txt
+gazetteer_location_rules: %serif_data%/english/actor-match/geonames/location_rules.txt
+awake_gazetteer_tablename_prefix: NONE
+blocked_gazetteer_entries: %serif_data%/english/actor-match/geonames/blocked_gazetteer_entries.txt

@@ -1,0 +1,52 @@
+########################################################################
+# 02/11/15, Alex Zamanian                                              #
+#                                                                      #
+# regtest.awake.english.english.par                                    #
+#                                                                      #
+# Parameter file for processing ACE-style *.sgm files with MSA-style   #
+# settings.                                                            #
+#                                                                      #
+########################################################################
+
+parallel:           +parallel+
+state_saver_stages: NONE
+serif_score:        NONE
+
+serif_data:         +serif_data+
+start_stage:        +start_stage+
+end_stage:          output
+
+experiment_dir:     +expt_dir+
+batch_file:         +batch_file+
+icews_lib_dir:      +icews_lib_dir+
+awake_lib_dir:	    +awake_lib_dir+
+
+bbn_actor_db: sqlite://%awake_lib_dir%/database/actor_db.freebase.sqlite?readonly&copy&cache_size=30000&temp_store=MEMORY
+
+INCLUDE +par_dir+/master.english.par
+INCLUDE +par_dir+/master.english-speed.par
+INCLUDE +par_dir+/master.awake.english.par
+
+OVERRIDE state_saver_stages: NONE
+
+input_type: text
+
+# Only set to CAMEOXML because in the deliverable making process
+# I was pointing build_deliverable.py at an ACCENT release dir.
+OVERRIDE output_format: CAMEOXML
+
+OVERRIDE run_fact_finder: false
+max_parser_seconds: 5
+
+document_zoners: prose
+remove_foreign_sentences: true
+common_in_language_words: %serif_data%/english/sentences/common_english_words.list
+common_in_language_name_words: %serif_data%/english/sentences/common_name_tokens.list
+
+OVERRIDE relation_model_type: NONE
+
+min_per_actor_importance_score: 3.5
+min_org_actor_importance_score: 1.5
+limited_actor_match: true
+
+license_file: %serif_data%/unspec/misc/SERIF.lic

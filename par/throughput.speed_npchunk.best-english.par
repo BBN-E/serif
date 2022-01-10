@@ -1,0 +1,25 @@
+########################################################################
+# 08/29/11, Liz Boschee                                                #
+#                                                                      #
+# throughput.agg_parse-english.par                                     #
+#   Exactly the same as all.best-english_npchunk.par, but with         # 
+#   throughput settings.                                               #
+#                                                                      #
+########################################################################
+
+# External variables (must be defined first)
+parallel:           +parallel+
+serif_data:         +serif_data+
+serif_score:        +serif_score+
+start_stage:        +start_stage+
+end_stage:          +end_stage+
+perl_binary:        +perl_binary+
+serif_regression:   +serif_regression+
+os_suffix:          +os_suffix+
+expt_dir:           +expt_dir+
+state_saver_stages: +state_saver_stages+
+
+INCLUDE +par_dir+/master.english.par
+INCLUDE +par_dir+/master.english-speed.par
+INCLUDE +par_dir+/master.english-npchunk.par
+INCLUDE +par_dir+/master.english-throughput.par

@@ -1,0 +1,73 @@
+<html>
+<head>
+  <title>Shutting Down & Restarting the Serif Server</title>
+  <link rel="stylesheet" type="text/css" href="serif.css">
+</head>
+<body>
+<div class="body">
+<h1>Shutting Down & Restarting the Serif Server</h1>
+
+<p> The SerifHTTP server defines four POST commands that can be used
+to shut down or restart the server: </p>
+
+<table>
+<tr><th align="left" valign="top">
+  <code>POST&nbsp;Shutdown</code></th>
+  <td>Shut down the server.  The server will stop accepting
+  connections, but will finish processing any client connections that
+  are currently active. </th></tr>
+<tr><th align="left" valign="top">
+  <code>POST&nbsp;ImmediateShutdown</code></th>
+  <td>Shut down the server immediately.  The server will stop
+  accepting connections, and will close any client connections that
+  are currently active. </th></tr>
+<tr><th align="left" valign="top">
+  <code>POST&nbsp;Restart</code></th>
+  <td>Restart the server.  The server will stop accepting connections,
+  and finish processing any client connections that are currently
+  active.  Once all active connections have been processed, the server
+  will restart (using the same command-line arguments that it was
+  originally run with).  If the configuration file has changed, then
+  it will be reloaded. </th></tr>
+<tr><th align="left" valign="top">
+  <code>POST&nbsp;ImmediateRestart</code></th>
+  <td>Restart the server immediately The server will stop accepting
+  connections, and close any client connections that are currently
+  active.  It will then restart (using the same command-line arguments
+  that it was originally run with).  If the configuration file has
+  changed, then it will be reloaded. </th></tr>
+</table>
+
+
+<p> The following example illustrates the use of these commands.
+(Note that, per the HTTP specification, the request message must be
+terminated by a blank line.) </p>
+
+<pre class="example-request">
+<div class="http-example-label">Client Request</div>POST Shutdown HTTP/1.0
+Content-Length: 0
+
+</pre>
+<pre class="example-response">
+<div class="http-example-label">Server Response</div>HTTP/1.0 200 OK
+Content-Length: 133
+Content-Type: text/html
+
+&lt;html>
+&lt;head>
+&lt;title>Serif HTTP Server: Shutdown&lt;/title>
+&lt;/head>
+&lt;body>
+Shutting down the Serif HTTP Server...
+&lt;/body>
+&lt;/html>
+</pre>
+
+<p> If you are accessing this webpage via a live Serif HTTP server,
+then you can shut down or restart that server from
+the <a href="index.html">Serif HTTP Server Home Page</a>.
+
+<p><a href="index.html">Back</a></p>
+</div>
+</body>
+</html>

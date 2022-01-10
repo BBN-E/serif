@@ -1,0 +1,30 @@
+########################################################################
+# 08/29/11, Liz Boschee                                                #
+#                                                                      #
+# master.chinese-throughput.par                                        #
+#   Include this file to run on the throughput batch, with             #
+#   throughput settings.                                               # 
+#                                                                      #
+# Note that these models are test-on-train.                            #
+#                                                                      #
+########################################################################
+
+# Structured as prefix/list to please the build_serif.pl script
+batch_file.prefix: %serif_regression%/data-2005-v4.0%os_suffix%/Chinese/
+batch_file.list: all-regression/source-files.txt
+
+experiment_dir.prefix: %expt_dir%/
+experiment_dir.list: all-regression
+
+key_dir.prefix: %serif_regression%/data-2005-v4.0%os_suffix%/Chinese/
+key_dir.list: all-regression/
+
+# Display throughput results when we're done.
+print_profiling_results: true
+#OVERRIDE check_memory: true
+
+# Memory management
+num_docs_per_cleanup: 100
+
+# Might as well check to make sure we're not having problems
+OVERRIDE ignore_errors: false

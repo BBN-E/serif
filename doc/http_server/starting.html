@@ -1,0 +1,71 @@
+<html>
+<head>
+  <title>Starting the Serif HTTP Server</title>
+  <link rel="stylesheet" type="text/css" href="serif.css">
+</head>
+<body>
+<div class="body">
+<h1>Starting the Serif HTTP Server</h1>
+
+
+<pre class="terminal">
+<div class="label">Command-Line Usage</div>Usage: Serif --http-server [<span class="var">OPTIONS</span>] <span class="var">PARFILE</span>
+
+    <span class="var">PARFILE</span>: The SERIF parameter file, specifying where models are located.
+
+Options:
+  --http-server            Run Serif in HTTP server mode
+  --http-server-port <span class="var">N</span>     The port number that the HTTP server should use to 
+                             listen for incoming connections.
+  --http-server-logdir <span class="var">dir</span> If specified, then log all HTTP POST requests and 
+                             their responses to this directory.
+  -h [ --help ]            Describe the allowed options
+  -v [ --verbose ]         Generate verbose output
+  -q [ --quiet ]           Do not write messages to stdout/stderr
+  -o <span class="var">dir</span>                   The experiment directory.  This directory is used to 
+                             store session logs, and may be used to cache output 
+                             files.
+  -p <span class="var">param=value</span>           Override a specific parameter's value
+  --subprocess-server      Run Serif in subprocess server mode.
+</pre>
+
+<p>There is a separate version of the HTTP Server for each language
+that can be processed by SERIF.  These binaries are
+named <code>SerifHTTPServer_<span class="var">Langauge</span></code>, and are located in
+the <code>bin</code> directory of your Serif installation.  </p>
+
+
+<p> The only required argument
+is <code><span class="var">PARFILE</span></code>, the absolute path of
+the Serif parameter file.  This file lets Serif know where to find its
+trained model files, and sets a wide variety of parameters used to
+control those models (see the <a href="config.html">server
+configuration</a> documentation for more details).  Typically you will
+also want to specify a port number that Serif should listen on: </p>
+
+<pre class="terminal">
+<div class="label">Example</div><span class="prompt">% </span><span class="user-input">setenv SERIF_HOME /exports/serif</span>
+<span class="prompt">% </span><span class="user-input">${SERIF_HOME}/bin/x86_64/Serif ${SERIF_HOME}/par/english.par --http-server --http-server-port 8080</span>
+This is UNIX Serif, version 6.0.0.
+  Build date: Mar 27 2012 10:12:48
+  Using Modules: SerifHTTPServer English
+
+Copyright 2012 by BBN Technologies Corp.
+All Rights Reserved.
+
+[SerifHTTPServer] Initializing SERIF Work Queue
+[SerifHTTPServer] Serif XML Server listening on port 8080
+</pre>
+
+<p> To verify that the server is running correctly, connect to it with
+your web browser.  For example, if the server is running on the
+machine "<code>serif.bbn.com</code>", on port <code>8080</code>, then
+you would type the following URL into your browser:
+"<code>http://serif.bbn.com:8080/</code>".  If the server is running
+correctly, you will see a webpage containing the Serif HTTP Server
+documentation. </p>
+
+<p><a href="index.html">Back</a></p>
+</div>
+</body>
+</html>

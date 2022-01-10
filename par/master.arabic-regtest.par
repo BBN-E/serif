@@ -1,0 +1,57 @@
+########################################################################
+# 08/29/11, Liz Boschee                                                #
+# 04/18/08, Tal Blum                                                   #
+#                                                                      #
+# master.arabic-regtest.par                                            #
+#   Include this file to run on the ACE2008 Arabic regression test.    #
+#   This regression test subsumes the 2005 regression test with two    #
+#   more cross validation batches of models (4 vs 2 in 2005)           #
+#   The 2005 models are marked with the letters e (even) and o (odd).  #
+#   The additional cross validation batches are marked with t (third)  #
+#   and f (fourth).                                                    #
+#                                                                      #
+#   The descriptor classification, descriptor coref, and relation      #
+#   models were retrained in 2011. It's not clear to me why the        #
+#   values model doesn't have a regtest breakdown.                     #
+#                                                                      #
+#   This should always be included AFTER master.arabic.par, since      #
+#   it overrides some of those parameters.                             #
+#                                                                      #
+########################################################################
+
+track_files_read: true
+open_file_retries: 4
+OVERRIDE ignore_errors: false
+
+input_type: sgm
+OVERRIDE doc_reader_calculate_edt_offsets: true
+OVERRIDE doc_reader_offsets_start_at_first_tag: false
+
+license_file: %serif_data%/unspec/misc/bbn_idx.lic
+
+# Regtest directories
+batch_file.prefix: %serif_regression%/Arabic/RegressionTest_2005-2007%os_suffix%/
+batch_file.list: 2007-wl-0/source-files.txt 2007-wl-1/source-files.txt 2007-wl-2/source-files.txt 2007-wl-3/source-files.txt 2007-nw-0/source-files.txt 2007-nw-1/source-files.txt 2007-nw-2/source-files.txt 2007-nw-3/source-files.txt 2007-nw-4/source-files.txt 2007-nw-5/source-files.txt 2007-nw-6/source-files.txt 2005-bn-adj-1/source-files.txt 2005-bn-adj-2/source-files.txt 2005-bn-adj-3/source-files.txt 2005-bn-adj-4/source-files.txt 2005-bn-adj-5/source-files.txt 2005-nw-adj-1/source-files.txt 2005-nw-adj-2/source-files.txt 2005-nw-adj-3/source-files.txt 2005-nw-adj-4/source-files.txt 2005-nw-adj-5/source-files.txt 2005-nw-adj-6/source-files.txt 2005-wl-adj-1/source-files.txt 2005-wl-adj-2/source-files.txt
+
+experiment_dir.prefix: %expt_dir%/
+experiment_dir.list: 2007-wl-0 2007-wl-1 2007-wl-2 2007-wl-3 2007-nw-0 2007-nw-1 2007-nw-2 2007-nw-3 2007-nw-4 2007-nw-5 2007-nw-6 2005-bn-adj-1 2005-bn-adj-2 2005-bn-adj-3 2005-bn-adj-4 2005-bn-adj-5 2005-nw-adj-1 2005-nw-adj-2 2005-nw-adj-3 2005-nw-adj-4 2005-nw-adj-5 2005-nw-adj-6 2005-wl-adj-1 2005-wl-adj-2
+
+key_dir.prefix: %serif_regression%/Arabic/RegressionTest_2005-2007%os_suffix%/
+key_dir.list: 2007-wl-0 2007-wl-1 2007-wl-2 2007-wl-3 2007-nw-0 2007-nw-1 2007-nw-2 2007-nw-3 2007-nw-4 2007-nw-5 2007-nw-6 2005-bn-adj-1 2005-bn-adj-2 2005-bn-adj-3 2005-bn-adj-4 2005-bn-adj-5 2005-nw-adj-1 2005-nw-adj-2 2005-nw-adj-3 2005-nw-adj-4 2005-nw-adj-5 2005-nw-adj-6 2005-wl-adj-1 2005-wl-adj-2
+
+# Regtest models
+OVERRIDE pidf_model_file.prefix: %serif_data%/arabic/names/pidf/ace2007-names-excl_
+OVERRIDE pidf_model_file.list: f.p1 t.p1 f.p1 t.p1 f.p1 t.p1 f.p1 t.p1 f.p1 t.p1 f.p1 o.p1 e.p1 o.p1 e.p1 o.p1 o.p1 e.p1 o.p1 e.p1 o.p1 e.p1 o.p1 e.p1
+
+OVERRIDE p1_desc_model_file.prefix: %serif_data%/arabic/nominals/p1/desc-classify.august2011.excl-
+OVERRIDE p1_desc_model_file.list: f.weights.p1 t.weights.p1 f.weights.p1 t.weights.p1 f.weights.p1 t.weights.p1 f.weights.p1 t.weights.p1 f.weights.p1 t.weights.p1 f.weights.p1 o.weights.p1 e.weights.p1 o.weights.p1 e.weights.p1 o.weights.p1 o.weights.p1 e.weights.p1 o.weights.p1 e.weights.p1 o.weights.p1 e.weights.p1 o.weights.p1 e.weights.p1
+
+OVERRIDE dt_coref_model_file.prefix: %serif_data%/arabic/coref/nominals/p1/dt-desc-coref.august2011.excl-
+OVERRIDE dt_coref_model_file.list: f.weights t.weights f.weights t.weights f.weights t.weights f.weights t.weights f.weights t.weights f.weights o.weights e.weights o.weights e.weights o.weights o.weights e.weights o.weights e.weights o.weights e.weights o.weights e.weights
+
+OVERRIDE relation_model_file.prefix:  %serif_data%/arabic/relations/p1/relation-p1.august2011.excl-
+OVERRIDE relation_model_file.list: nothing.weights nothing.weights nothing.weights nothing.weights nothing.weights nothing.weights nothing.weights nothing.weights nothing.weights nothing.weights nothing.weights 2005-bn-adj-1.weights 2005-bn-adj-2.weights 2005-bn-adj-3.weights 2005-bn-adj-4.weights 2005-bn-adj-5.weights 2005-nw-adj-1.weights 2005-nw-adj-2.weights 2005-nw-adj-3.weights 2005-nw-adj-4.weights 2005-nw-adj-5.weights 2005-nw-adj-6.weights 2005-wl-adj-1.weights 2005-wl-adj-2.weights
+
+OVERRIDE maxent_relation_model_file.prefix: %serif_data%/arabic/relations/maxent/relation-maxent.august2011.excl-
+OVERRIDE maxent_relation_model_file.list: nothing.weights nothing.weights nothing.weights nothing.weights nothing.weights nothing.weights nothing.weights nothing.weights nothing.weights nothing.weights nothing.weights 2005-bn-adj-1.weights 2005-bn-adj-2.weights 2005-bn-adj-3.weights 2005-bn-adj-4.weights 2005-bn-adj-5.weights 2005-nw-adj-1.weights 2005-nw-adj-2.weights 2005-nw-adj-3.weights 2005-nw-adj-4.weights 2005-nw-adj-5.weights 2005-nw-adj-6.weights 2005-wl-adj-1.weights 2005-wl-adj-2.weights
+

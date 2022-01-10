@@ -1,0 +1,30 @@
+########################################################################
+# 08/29/11, Liz Boschee                                                #
+#                                                                      #
+# master.english-npchunk.par                                           #
+#   Include this parameter file to speed up your parsing at the cost   #
+#   of accuracy, by using np-chunks.                                   #
+#                                                                      #
+#                                                                      #
+#  NOTE: ASSUMES THE USE OF master.english-speed.par                   #
+#                                                                      #
+########################################################################
+
+## Part of Speech
+part_of_speech_model_type: SIMPLE
+ordered_part_of_speech_table_file: %serif_data%/english/parser/ordered/full-with-complete-dates.50.pos
+
+## Switch to NP chunks
+use_flat_parser: true
+OVERRIDE primary_parse: npchunk_parse
+
+UNSET probs_cache_type
+UNSET probs_cache_max_k_entries
+UNSET probs_cache_in_path
+UNSET maximum_pos_tags
+UNSET prune_pos_tags
+UNSET parser_shortcuts
+
+## Relations (np chunk models)
+OVERRIDE p1_relation_model_file: %serif_data%/english/relations/p1/np-chunk-features-orig-all.model
+OVERRIDE relation_features_file: %serif_data%/english/relations/p1/relation-np-chunk-orig.features

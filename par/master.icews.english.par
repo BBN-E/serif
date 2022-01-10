@@ -1,0 +1,186 @@
+########################################################################
+# icews.english.par                                                    #
+#                                                                      #
+# This parameter file is intended to be imported. It requires that     #
+# the following paramters be defined before it is imported:            #
+#                                                                      #
+#   * icews_lib_dir..........Path to ICEWS lib directory               #
+#                                                                      #
+# This file should be imported AFTER the core SERIF parameters, as it  #
+# overrides several of them with ICEWS-specific requirements.          #
+#                                                                      #
+# Source documents will be read from the ICEWS database "stories"      #
+# table, unless you override elsewhere the                             #
+# icews_read_stories_from_database parameter.                          #
+#                                                                      #
+########################################################################
+
+# Use tmpfs (in-memory filesystem) to store temporary files.  This 
+# increases sqlite database access speed when the "copy" option is
+# used.
+#OVERRIDE linux_temp_dir: /dev/shm
+
+#======================================================================
+# SERIF overrides
+OVERRIDE run_icews: true
+OVERRIDE blocked_proposition_types: future,negative,modal,if,unreliable
+OVERRIDE treat_nominal_premods_like_names_in_props: true
+OVERRIDE dt_coref_rank_overgen_threshold: 0
+OVERRIDE block_headword_clashes: true
+OVERRIDE xor_always_decrypt: true
+
+#======================================================================
+# Master ICEWS Parameters
+
+# Code all the events
+icews_event_codes: 01*,02*,03*,04*,05*,06*,07*,08*,09*,10*,11*,12*,13*,14*,15*,16*,17*,18*,19*,20*
+
+#======================================================================
+# ICEWS ActorMentionFinder Parameters
+icews_actor_finder_dir:                      %icews_lib_dir%/actor_mention_finder
+icews_agent_actor_patterns:                  %icews_actor_finder_dir%/agent_actor_patterns.txt
+icews_actor_patterns:                        %icews_actor_finder_dir%/actor_patterns.txt
+icews_agent_patterns:                        %icews_actor_finder_dir%/agent_patterns.txt
+icews_composite_actor_patterns:              %icews_actor_finder_dir%/composite_actor_patterns.txt
+icews_actor_suppressed_patterns:             %icews_actor_finder_dir%/actor_suppressed_patterns.txt
+icews_agent_suppressed_patterns:             %icews_actor_finder_dir%/agent_suppressed_patterns.txt
+encode_person_matching_country_as_citizen: true
+person_modifier_words:                       %serif_data%/english/actor-match/valid_person_modifier_words.txt
+organization_modifier_words:                 %serif_data%/english/actor-match/valid_organization_modifier_words.txt
+country_modifier_words:                      %serif_data%/english/actor-match/valid_country_modifier_words.txt
+person_agent_name_words:                     %icews_actor_finder_dir%/person_agent_name_words.txt
+strip_punctuation_when_matching_jabari_patterns: true
+icews_disable_coref:                         false
+icews_disable_plural_pronoun_actors:         false
+icews_disable_pronoun_actors:                false
+icews_disable_plural_actors:                 false
+icews_block_default_country_if_another_country_in_same_sentence: true
+icews_block_default_country_if_unknown_paired_actor_is_found: false
+icews_block_default_country_patterns:        %icews_actor_finder_dir%/block_default_country_patterns.txt
+icews_block_event_loc_paired_actor_patterns: %icews_actor_finder_dir%/block_event_loc_patterns.txt
+us_state_names:                              %serif_data%/english/actor-match/geonames/us_state_names.txt
+actors_not_contributing_to_country_counts:   %icews_actor_finder_dir%/actors_not_contributing_to_country_counts.txt
+
+#======================================================================
+# Gazetteer Parameters
+gazetteer_nationality_to_nation:             %serif_data%/english/actor-match/geonames/nationality_to_nation.txt
+gazetteer_state_abbreviations:               %serif_data%/english/actor-match/geonames/state_abbreviations.txt
+gazetteer_location_rules:                    %serif_data%/english/actor-match/geonames/location_rules.txt
+blocked_gazetteer_entries:                   %serif_data%/english/actor-match/geonames/blocked_gazetteer_entries.txt
+# Use higher max_ambiguity (~25) for non-default resolution
+max_ambiguity_for_gazetteer_actors: 3
+
+#======================================================================
+# ICEWS EventMentionFinder Parameters
+icews_event_types:                           %icews_lib_dir%/event_types.txt
+icews_event_models:                          %icews_lib_dir%/event-models.txt
+icews_event_model_dir:                       %icews_lib_dir%/event_models
+icews_block_event_models:                    %icews_event_model_dir%/block_event_models.list
+icews_block_contingent_event_models:         %icews_event_model_dir%/block_contingent_event.model
+icews_replace_event_type_models:             %icews_event_model_dir%/replace_event_models.list
+icews_propagate_event_actor_label_models:    %icews_event_model_dir%/propagate_event_actor_label.model
+icews_event_tense_models: 		     %icews_event_model_dir%/event_tense.model
+icews_event_uniqueness:                      ONE_GROUP_PER_ACTOR_PAIR_PER_EVENT_GROUP_PER_ICEWS_SENTENCE
+icews_event_overrides:                       ONE_GROUP_PER_MENTION_PAIR
+icews_create_events_with_generic_actors:     true
+require_source_and_target_for_icews_events:  true
+allow_source_only_icews_protest_events:	     true
+
+#======================================================================
+# ICEWS Input Selection
+
+# By default, don't assume we have ICEWS sentence numbers. If one is
+# reading ICEWS_XMLText, we do, but we can override this wherever we
+# set the source format.
+use_icews_sentence_numbers: false
+
+# If true, then the input documents will be read from the ICEWS
+# database.  If false, then documents will be read from files, using
+# SERIF's normal input mechanisms.
+icews_read_stories_from_database: true
+
+# Location of the primary ICEWS database.  To use Oracle or MySQL 
+# databases, the appropriate feature modules must be installed.
+
+# Default database is SQLITE
+icews_db: sqlite://%icews_lib_dir%/database/icews.current.sqlite?readonly&copy&cache_size=30000&temp_store=MEMORY
+icews_gazetteer_tablename_prefix: serif
+
+## OTHER EXAMPLE FORMATS FOR DATABASES
+#icews_db: oracle://e-oracle-02.bbn.com:1521/orcl.bbn.com?user=eloper&password=eloper
+#icews_db: mysql://icews-mysql-01.bbn.com/rcdr?user=eloper&password=eloper
+
+# Location of alternate ICEWS databases.  These can be used to specify 
+# separate databases for read for specific collections of tables.  If
+# not set, then they default to %icews_db%.
+#icews_stories_db: %icews_db%
+#icews_story_serifxml_db: %icews_db%
+#gazetteer_db: %icews_db%
+
+# If true, then the batch_file parameter (which is used for SERIF's
+# normal input mechanisms) should contain a list of story ids that
+# should be processed.
+icews_get_story_ids_from_batch_file: false
+
+# ICEWS defines two sentence cutoffs.  The "soft" cutoff 
+# (actor_event_sentence_cutoff) just tells the ICEWS stages to ignore
+# any sentences past the given cutoff; but these sentences are still 
+# processed by other SERIF stages (parsing, relations, etc).  
+# The "hard" cutoff (icews_hard_sentence_cutoff), on the other hand, 
+# causes the ICEWS reader to discard any sentences past the given 
+# sentence, so they will not be used (or even seen) by any serif stage.
+# This parameter ***ONLY APPLIES*** when using the ICEWSXML file format
+icews_hard_sentence_cutoff: 6
+
+# These parameters may be used to specify the range of stories that
+# should be processed, if reading from the ICEWS database
+#icews_min_storyid: 0
+#icews_max_storyid: 1000
+#icews_min_story_ingest_date: YYYY-MM-DD
+#icews_max_story_ingest_date: YYYY-MM-DD
+#icews_story_source: XXXXX
+
+#======================================================================
+# ICEWS Output
+
+# Should we save the final results in the output directory when we
+# are processing stories from the ICEWS database?
+icews_save_final_serifxml: true
+
+## If specified, then this is the name of a database table where events
+## should be written.  In the final deployed system, this will probably
+## be set to "events," to write to the events table; but for testing
+## purposes, please use a temporary table such as "serif_events" or
+## "test_events".  If the specified table does not exist, then it will
+## be created (by copying the structure used by the "events" table).
+#icews_save_events_to_database_table: serif_events
+
+# Determines the output database table format; this is overridden
+# only rarely for specific projects
+icews_output_format: ICEWS
+
+# This parameter tells SERIF to check whether a given event is present
+# in the database before writing it.  This will help prevent
+# duplicates, but it's still possible to get a duplicate if two
+# processes are writing to the database at the same time.  (In
+# particular, no locking is currently used between the check for the
+# existence of the event and the addition of the event).
+icews_check_for_duplicate_rows_when_writing_to_database: true
+
+#======================================================================
+# ICEWS Caching
+
+icews_cache_serifxml_in_database: false
+
+## If you want, you can cache pre-icews serifxml to disk; this will
+## make ICEWS run about 3x faster once the serifxml files have been
+## cached.  But you must remember to flush the cache if you make
+## any changes to the pre-icews serif stages.
+#OVERRIDE icews_cache_serifxml_in_dir: /nfs/mercury-03/u12/ICEWS/story_serifxml_cache
+
+#======================================================================
+# ICEWS Logging
+
+actor_event_verbosity: 0
+profile_sql: false
+icews_log_sector_frequencies: false

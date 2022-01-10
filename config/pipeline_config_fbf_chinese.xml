@@ -1,0 +1,224 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE BYBLOS_PIPELINE SYSTEM "server_byblos.dtd">
+<BYBLOS_PIPELINE>
+
+  <!-- Implements a non-server pipeline for file-by-file Modular Serif -->
+
+  <!-- Change ***PATH*** to your base directory -->
+  <!-- Change ***DATA*** to your Serif data directory -->
+  <!-- Change ***BUILD*** to your Serif build directory -->
+  <!-- Change ***REGRESSION*** to your regression data directory -->
+  <!-- Change ***SCORE*** to your scoring script directory -->
+
+  <!-- General Variables -->
+  <VARIABLE name = "BASE_DIR"         value = "***PATH***" />
+  <VARIABLE name = "BUILD_DIR"        value=  "***BUILD***"/> 
+  <VARIABLE name = "serif_data"       value=  "***DATA***" />
+  <VARIABLE name = "serif_regression" value = "***REGRESSION**" />
+  <VARIABLE name = "serif_score"      value = "***SCORE***" />
+
+  <VARIABLE name = "TEMPLATE_DIR"     value = "+BASE_DIR+/templates" /> 
+  <VARIABLE name = "TEMPLATE"         value = "all.speed.best-chinese.pipeline.par" /> 
+  <VARIABLE name = "SB_LOG_DIR"       value = "+BASE_DIR+/log" /> 
+  <VARIABLE name = "log_file"         value = "+BASE_DIR+/pipeline.log" />
+  <VARIABLE name = "NUM_JOBS_RESTART" value = "1000" />
+
+  <VARIABLE name = "server-mode"      value = "false" />
+
+  <VARIABLE name = "INPUT_FILE_SUFFIX"   value = ".source_files"/>
+  <VARIABLE name = "FILE_SUFFIX"         value = ".generated.txt"/>
+  <VARIABLE name = "INPUT_SUFFIX"        value = ".sgm"/>
+  <VARIABLE name = "INTERMEDIATE_SUFFIX" value = ".xml"/>
+
+  <!-- Module ID Variables -->
+  <VARIABLE name = "BATCH_ID"              value = "batch"/>
+  <VARIABLE name = "SENTENCES_ID"          value = "sentences"/>
+  <VARIABLE name = "SENTENCES_ID"          value = "sentences"/>
+  <VARIABLE name = "TOKENS_ID"             value = "tokens"/>
+  <VARIABLE name = "TOKEN_SUB_ID"          value = "token_sub"/>
+  <VARIABLE name = "POS_ID"                value = "pos"/>
+  <VARIABLE name = "PIDF_ID"               value = "pidf"/>
+  <VARIABLE name = "VALUES_ID"             value = "values"/>
+  <VARIABLE name = "PARSE_ID"              value = "parse"/>
+  <VARIABLE name = "NP_CHUNK_ID"           value = "np_chunk"/>
+  <VARIABLE name = "MENTIONS_ID"           value = "mentions"/>
+  <VARIABLE name = "PROPOSITIONS_ID"       value = "propositions"/>
+  <VARIABLE name = "METONYMY_ID"           value = "metonymy"/>
+  <VARIABLE name = "REFERENCE_RESOLVER_ID" value = "reference_resolver"/>
+  <VARIABLE name = "DOC_RELATIONS_ID"      value = "doc_relations"/>
+  <VARIABLE name = "DOC_VALUES_ID"         value = "doc_values"/>
+  <VARIABLE name = "GENERICS_FILTER_ID"    value = "generics_filter"/>
+  <VARIABLE name = "APF_CAS_CONSUMER_ID"   value = "apf_cas_consumer"/>
+
+  <!-- Module Executable Variables -->
+  <VARIABLE name = "BUILD_DIR_AE"              value = "+BUILD_DIR+/AnalysisEngines"/>
+  <VARIABLE name = "BATCH_DOCUMENTS"           value = "+BUILD_DIR+/DocumentSources/batch/LinuxBatchDocumentSource"/>
+  <VARIABLE name = "SENTENCES_ENGINE"          value = "+BUILD_DIR_AE+/sentences/LinuxSentenceAnalysisEngine"/>
+  <VARIABLE name = "TOKENS_ENGINE"             value = "+BUILD_DIR_AE+/tokens/LinuxTokenAnalysisEngine"/>
+  <VARIABLE name = "TOKEN_SUB_ENGINE"          value = "+BUILD_DIR_AE+/tokens/LinuxTokenSubstitutionAnalysisEngine"/>
+  <VARIABLE name = "POS_ENGINE"                value = "+BUILD_DIR_AE+/part-of-speech/LinuxPartOfSpeechAnalysisEngine"/>
+  <VARIABLE name = "PIDF_ENGINE"               value = "+BUILD_DIR_AE+/names/LinuxNameRecognizerAnalysisEngine"/>
+  <VARIABLE name = "VALUES_ENGINE"             value = "+BUILD_DIR_AE+/values/LinuxValuesAnalysisEngine"/>
+  <VARIABLE name = "PARSE_ENGINE"              value = "+BUILD_DIR_AE+/parse/LinuxSyntacticParseAnalysisEngine"/>
+  <VARIABLE name = "NP_CHUNK_ENGINE"           value = "+BUILD_DIR_AE+/npchunk/LinuxNPChunkAnalysisEngine"/>
+  <VARIABLE name = "MENTIONS_ENGINE"           value = "+BUILD_DIR_AE+/mentions/LinuxMentionsAnalysisEngine"/>
+  <VARIABLE name = "PROPOSITIONS_ENGINE"       value = "+BUILD_DIR_AE+/propositions/LinuxPropositionsAnalysisEngine"/>
+  <VARIABLE name = "METONYMY_ENGINE"           value = "+BUILD_DIR_AE+/metonymy/LinuxMetonymyAnalysisEngine"/>
+  <VARIABLE name = "REFERENCE_RESOLVER_ENGINE" value = "+BUILD_DIR_AE+/coref/LinuxReferenceResolverAnalysisEngine"/>
+  <VARIABLE name = "DOC_RELATIONS_ENGINE"      value = "+BUILD_DIR_AE+/doc-relations-events/LinuxDocRelationsEventsAnalysisEngine"/>
+  <VARIABLE name = "DOC_VALUES_ENGINE"         value = "+BUILD_DIR_AE+/doc-values/LinuxDocValuesAnalysisEngine"/>
+  <VARIABLE name = "GENERICS_FILTER_ENGINE"    value = "+BUILD_DIR_AE+/generics-filter/LinuxGenericsFilterAnalysisEngine"/>
+  <VARIABLE name = "APF_CAS_CONSUMER_ENGINE"   value = "+BUILD_DIR+/CASConsumers/apf/LinuxApfCASConsumer"/>
+
+
+  <PIPELINE_LOGFILE path = "+log_file+" />
+  <PIPELINE_SEQUENCE>
+
+    <BYBLOS_COMMAND binary    = "+BATCH_DOCUMENTS+"
+                    template  = "+TEMPLATE_DIR+/+TEMPLATE+" 
+                    etemplate = "+BASE_DIR+/+ETEMPLATE_DIR+/+TEMPLATE+.+BATCH_ID+">
+
+      <PARAM name = "batch_file"          value = "+BASE_DIR+/+WORKING_DIR+/+INPUT_BASENAME++INPUT_FILE_SUFFIX+" />
+      <PARAM name = "expt_dir"            value = "+BASE_DIR+/+WORKING_DIR+" />
+      <PARAM name = "batch_name"          value = "+INPUT_BASENAME+" />
+      <PARAM name = "in_suffix"           value = "+INPUT_SUFFIX+"/>
+      <PARAM name = "out_suffix"          value = ".+BATCH_ID++INTERMEDIATE_SUFFIX+"/>
+      <PARAM name = "out_batch_file_list" value = "+BASE_DIR+/+WORKING_DIR+/+BATCH_ID++FILE_SUFFIX+"/>
+    </BYBLOS_COMMAND>    
+
+    <BYBLOS_COMMAND binary    = "+SENTENCES_ENGINE+"
+                    template  = "+TEMPLATE_DIR+/+TEMPLATE+" 
+                    etemplate = "+BASE_DIR+/+ETEMPLATE_DIR+/+TEMPLATE+.+SENTENCES_ID+">
+
+      <PARAM name = "batch_file"          value = "+BASE_DIR+/+WORKING_DIR+/+BATCH_ID++FILE_SUFFIX+" />
+      <PARAM name = "expt_dir"            value = "+BASE_DIR+/+WORKING_DIR+" />
+      <PARAM name = "batch_name"          value = "+INPUT_BASENAME+" />
+      <PARAM name = "in_suffix"           value = ".+BATCH_ID++INTERMEDIATE_SUFFIX+"/>
+      <PARAM name = "out_suffix"          value = ".+SENTENCES_ID++INTERMEDIATE_SUFFIX+"/>
+      <PARAM name = "out_batch_file_list" value = "+BASE_DIR+/+WORKING_DIR+/+SENTENCES_ID++FILE_SUFFIX+"/>
+    </BYBLOS_COMMAND>    
+
+    <BYBLOS_COMMAND binary    = "+TOKENS_ENGINE+"
+                    template  = "+TEMPLATE_DIR+/+TEMPLATE+" 
+                    etemplate = "+BASE_DIR+/+ETEMPLATE_DIR+/+TEMPLATE+.+TOKENS_ID+">
+
+      <PARAM name = "batch_file"          value = "+BASE_DIR+/+WORKING_DIR+/+SENTENCES_ID++FILE_SUFFIX+" />
+      <PARAM name = "expt_dir"            value = "+BASE_DIR+/+WORKING_DIR+" />
+      <PARAM name = "batch_name"          value = "+INPUT_BASENAME+" />
+      <PARAM name = "in_suffix"           value = ".+SENTENCES_ID++INTERMEDIATE_SUFFIX+"/>
+      <PARAM name = "out_suffix"          value = ".+TOKENS_ID++INTERMEDIATE_SUFFIX+"/>
+      <PARAM name = "out_batch_file_list" value = "+BASE_DIR+/+WORKING_DIR+/+TOKENS_ID++FILE_SUFFIX+"/>
+    </BYBLOS_COMMAND>    
+
+     <BYBLOS_COMMAND binary    = "+PIDF_ENGINE+"
+                    template  = "+TEMPLATE_DIR+/+TEMPLATE+" 
+                    etemplate = "+BASE_DIR+/+ETEMPLATE_DIR+/+TEMPLATE+.+PIDF_ID+">
+
+      <PARAM name = "batch_file"          value = "+BASE_DIR+/+WORKING_DIR+/+TOKENS_ID++FILE_SUFFIX+" />
+      <PARAM name = "expt_dir"            value = "+BASE_DIR+/+WORKING_DIR+" />
+      <PARAM name = "batch_name"          value = "+INPUT_BASENAME+" />
+      <PARAM name = "in_suffix"           value = ".+TOKENS_ID++INTERMEDIATE_SUFFIX+"/>
+      <PARAM name = "out_suffix"          value = ".+PIDF_ID++INTERMEDIATE_SUFFIX+"/>
+      <PARAM name = "out_batch_file_list" value = "+BASE_DIR+/+WORKING_DIR+/+PIDF_ID++FILE_SUFFIX+"/>
+    </BYBLOS_COMMAND>    
+
+    <BYBLOS_COMMAND binary    = "+VALUES_ENGINE+"
+                    template  = "+TEMPLATE_DIR+/+TEMPLATE+" 
+                    etemplate = "+BASE_DIR+/+ETEMPLATE_DIR+/+TEMPLATE+.+VALUES_ID+">
+
+      <PARAM name = "batch_file"          value = "+BASE_DIR+/+WORKING_DIR+/+PIDF_ID++FILE_SUFFIX+" />
+      <PARAM name = "expt_dir"            value = "+BASE_DIR+/+WORKING_DIR+" />
+      <PARAM name = "batch_name"          value = "+INPUT_BASENAME+" />
+      <PARAM name = "in_suffix"           value = ".+PIDF_ID++INTERMEDIATE_SUFFIX+"/>
+      <PARAM name = "out_suffix"          value = ".+VALUES_ID++INTERMEDIATE_SUFFIX+"/>
+      <PARAM name = "out_batch_file_list" value = "+BASE_DIR+/+WORKING_DIR+/+VALUES_ID++FILE_SUFFIX+"/>
+    </BYBLOS_COMMAND>    
+
+    <BYBLOS_COMMAND binary    = "+PARSE_ENGINE+"
+                    template  = "+TEMPLATE_DIR+/+TEMPLATE+" 
+                    etemplate = "+BASE_DIR+/+ETEMPLATE_DIR+/+TEMPLATE+.+PARSE_ID+">
+
+      <PARAM name = "batch_file"          value = "+BASE_DIR+/+WORKING_DIR+/+VALUES_ID++FILE_SUFFIX+" />
+      <PARAM name = "expt_dir"            value = "+BASE_DIR+/+WORKING_DIR+" />
+      <PARAM name = "batch_name"          value = "+INPUT_BASENAME+" />
+      <PARAM name = "in_suffix"           value = ".+VALUES_ID++INTERMEDIATE_SUFFIX+"/>
+      <PARAM name = "out_suffix"          value = ".+PARSE_ID++INTERMEDIATE_SUFFIX+"/>
+      <PARAM name = "out_batch_file_list" value = "+BASE_DIR+/+WORKING_DIR+/+PARSE_ID++FILE_SUFFIX+"/>
+      <!-- Module-Specific Parameters -->
+      <PARAM name = "CACHE_TYPE"          value = "simple" />
+      <PARAM name = "CACHE_ENTRIES"       value = "1000" />
+    </BYBLOS_COMMAND>  
+
+    <BYBLOS_COMMAND binary    = "+MENTIONS_ENGINE+"
+                    template  = "+TEMPLATE_DIR+/+TEMPLATE+" 
+                    etemplate = "+BASE_DIR+/+ETEMPLATE_DIR+/+TEMPLATE+.+MENTIONS_ID+">
+
+      <PARAM name = "batch_file"          value = "+BASE_DIR+/+WORKING_DIR+/+PARSE_ID++FILE_SUFFIX+" />
+      <PARAM name = "expt_dir"            value = "+BASE_DIR+/+WORKING_DIR+" />
+      <PARAM name = "batch_name"          value = "+INPUT_BASENAME+" />
+      <PARAM name = "in_suffix"           value = ".+PARSE_ID++INTERMEDIATE_SUFFIX+"/>
+      <PARAM name = "out_suffix"          value = ".+MENTIONS_ID++INTERMEDIATE_SUFFIX+"/>
+      <PARAM name = "out_batch_file_list" value = "+BASE_DIR+/+WORKING_DIR+/+MENTIONS_ID++FILE_SUFFIX+"/>
+    </BYBLOS_COMMAND>    
+
+    <BYBLOS_COMMAND binary    = "+PROPOSITIONS_ENGINE+"
+                    template  = "+TEMPLATE_DIR+/+TEMPLATE+" 
+                    etemplate = "+BASE_DIR+/+ETEMPLATE_DIR+/+TEMPLATE+.+PROPS_ID+">
+
+      <PARAM name = "batch_file"          value = "+BASE_DIR+/+WORKING_DIR+/+MENTIONS_ID++FILE_SUFFIX+" />
+      <PARAM name = "expt_dir"            value = "+BASE_DIR+/+WORKING_DIR+" />
+      <PARAM name = "batch_name"          value = "+INPUT_BASENAME+" />
+      <PARAM name = "in_suffix"           value = ".+MENTIONS_ID++INTERMEDIATE_SUFFIX+"/>
+      <PARAM name = "out_suffix"          value = ".+PROPOSITIONS_ID++INTERMEDIATE_SUFFIX+"/>
+      <PARAM name = "out_batch_file_list" value = "+BASE_DIR+/+WORKING_DIR+/+PROPOSITIONS_ID++FILE_SUFFIX+"/>
+    </BYBLOS_COMMAND>    
+
+    <BYBLOS_COMMAND binary    = "+REFERENCE_RESOLVER_ENGINE+"
+                    template  = "+TEMPLATE_DIR+/+TEMPLATE+" 
+                    etemplate = "+BASE_DIR+/+ETEMPLATE_DIR+/+TEMPLATE+.+REF_RESOLVER_ID+">
+
+      <PARAM name = "batch_file"          value = "+BASE_DIR+/+WORKING_DIR+/+PROPOSITIONS_ID++FILE_SUFFIX+" />
+      <PARAM name = "expt_dir"            value = "+BASE_DIR+/+WORKING_DIR+" />
+      <PARAM name = "batch_name"          value = "+INPUT_BASENAME+" />
+      <PARAM name = "in_suffix"           value = ".+PROPOSITIONS_ID++INTERMEDIATE_SUFFIX+"/>
+      <PARAM name = "out_suffix"          value = ".+REFERENCE_RESOLVER_ID++INTERMEDIATE_SUFFIX+"/>
+      <PARAM name = "out_batch_file_list" value = "+BASE_DIR+/+WORKING_DIR+/+REFERENCE_RESOLVER_ID++FILE_SUFFIX+"/>
+    </BYBLOS_COMMAND>    
+
+    <BYBLOS_COMMAND binary    = "+DOC_RELATIONS_ENGINE+"
+                    template  = "+TEMPLATE_DIR+/+TEMPLATE+" 
+                    etemplate = "+BASE_DIR+/+ETEMPLATE_DIR+/+TEMPLATE+.+DOC_RELATIONS_ID+">
+
+      <PARAM name = "batch_file"          value = "+BASE_DIR+/+WORKING_DIR+/+REFERENCE_RESOLVER_ID++FILE_SUFFIX+" />
+      <PARAM name = "expt_dir"            value = "+BASE_DIR+/+WORKING_DIR+" />
+      <PARAM name = "batch_name"          value = "+INPUT_BASENAME+" />
+      <PARAM name = "in_suffix"           value = ".+REFERENCE_RESOLVER_ID++INTERMEDIATE_SUFFIX+"/>
+      <PARAM name = "out_suffix"          value = ".+DOC_RELATIONS_ID++INTERMEDIATE_SUFFIX+"/>
+      <PARAM name = "out_batch_file_list" value = "+BASE_DIR+/+WORKING_DIR+/+DOC_RELATIONS_ID++FILE_SUFFIX+"/>
+    </BYBLOS_COMMAND>    
+
+    <BYBLOS_COMMAND binary    = "+DOC_VALUES_ENGINE+"
+                    template  = "+TEMPLATE_DIR+/+TEMPLATE+" 
+                    etemplate = "+BASE_DIR+/+ETEMPLATE_DIR+/+TEMPLATE+.+DOC_VALUES_ID+">
+
+      <PARAM name = "batch_file"          value = "+BASE_DIR+/+WORKING_DIR+/+DOC_RELATIONS_ID++FILE_SUFFIX+" />
+      <PARAM name = "expt_dir"            value = "+BASE_DIR+/+WORKING_DIR+" />
+      <PARAM name = "batch_name"          value = "+INPUT_BASENAME+" />
+      <PARAM name = "in_suffix"           value = ".+DOC_RELATIONS_ID++INTERMEDIATE_SUFFIX+"/>
+      <PARAM name = "out_suffix"          value = ".+DOC_VALUES_ID++INTERMEDIATE_SUFFIX+"/>
+      <PARAM name = "out_batch_file_list" value = "+BASE_DIR+/+WORKING_DIR+/+DOC_VALUES_ID++FILE_SUFFIX+"/>
+    </BYBLOS_COMMAND>    
+
+    <BYBLOS_COMMAND binary   = "+APF_CAS_CONSUMER_ENGINE+"
+                    template  = "+TEMPLATE_DIR+/+TEMPLATE+" 
+                    etemplate = "+BASE_DIR+/+ETEMPLATE_DIR+/+TEMPLATE+.+APF_CAS_CONSUMER_ID+">
+
+      <PARAM name = "batch_file"          value = "+BASE_DIR+/+WORKING_DIR+/+DOC_VALUES_ID++FILE_SUFFIX+" />
+      <PARAM name = "expt_dir"            value = "+BASE_DIR+/+WORKING_DIR+" />
+      <PARAM name = "batch_name"          value = "+INPUT_BASENAME+" />
+      <PARAM name = "in_suffix"           value = ".+DOC_VALUES_ID++INTERMEDIATE_SUFFIX+"/>
+    </BYBLOS_COMMAND>    
+
+
+  </PIPELINE_SEQUENCE>
+</BYBLOS_PIPELINE>

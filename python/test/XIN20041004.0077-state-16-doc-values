@@ -1,0 +1,1404 @@
+(Serif-state v1.5 "Sentence breaks: " 1 "gigaword/XIN20041004.0077" 4
+  (sentence-breaks "ANNOTATABLE_REGION" 179 363 "ANNOTATABLE_REGION" 374 575 "ANNOTATABLE_REGION" 586 651 "ANNOTATABLE_REGION" 653 826)
+)
+(Serif-state v1.5 "DocTheory following stage: doc-values" 1214 4
+  (DocTheory@1 4
+    (DocTheory::_sentTheories
+      (SentenceTheory "full_parse" "gigaword/XIN20041004.0077"
+        (SentenceTheory::subtheories 10 0
+          (TokenSequence@21 0.000000 0 32
+            (TokenSequence::_tokens
+              (Token@22 "Americans" 108 116)
+              (Token@23 "Richard" 118 124)
+              (Token@24 "Axel" 126 129)
+              (Token@25 "and" 131 133)
+              (Token@26 "Linda" 135 139)
+              (Token@27 "B." 141 142)
+              (Token@28 "Buck" 144 147)
+              (Token@29 "were" 149 152)
+              (Token@30 "awarded" 154 160)
+              (Token@31 "the" 162 164)
+              (Token@32 "2004" 166 169)
+              (Token@33 "Nobel" 171 175)
+              (Token@34 "Prize" 177 181)
+              (Token@35 "for" 183 185)
+              (Token@36 "medicine" 187 194)
+              (Token@37 "for" 196 198)
+              (Token@38 "their" 200 204)
+              (Token@39 "work" 206 209)
+              (Token@40 "on" 211 212)
+              (Token@41 "odorant" 214 220)
+              (Token@42 "receptors" 222 230)
+              (Token@43 "and" 232 234)
+              (Token@44 "the" 236 238)
+              (Token@45 "organization" 240 251)
+              (Token@46 "of" 253 254)
+              (Token@47 "the" 256 258)
+              (Token@48 "olfactory" 260 268)
+              (Token@49 "system" 270 275)
+              (Token@50 "in" 277 278)
+              (Token@51 "human" 280 284)
+              (Token@52 "beings" 286 291)
+              (Token@53 "." 292 292)))
+          1
+          (POSSequence@54 0 32 0.000000
+            (POSSequence::_pos
+              (PartOfSpeech@55 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@56 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@57 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@58 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@59 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@60 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@61 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@62 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@63 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@64 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@65 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@66 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@67 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@68 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@69 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@70 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@71 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@72 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@73 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@74 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@75 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@76 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@77 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@78 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@79 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@80 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@81 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@82 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@83 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@84 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@85 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@86 1 "DummyPOS" 0.100000)))
+          2
+          (NameTheory@87 0.000000 3
+            (NameTheory::nameSpans
+              (NameSpan@88 0 0 "GPE")
+              (NameSpan@89 1 2 "PER")
+              (NameSpan@90 4 6 "PER")))
+          3
+          (ValueMentionSet@91 1
+            (ValueMentionSet::_values
+              (ValueMention@92 0 0 10 10 "TIMEX2.TIME")))
+          5
+          (Parse@93 -166.750717
+            (SynNode@203 620 "S" 0 31 -1 @0 3 1
+              (
+                (SynNode@204 621 "NP" 0 6 0 @203 4 3
+                  (
+                    (SynNode@299 622 "NPP" 0 0 1 @204 1 0
+                      (
+                        (SynNode@206 623 "NNPS" 0 0 -1 @299 1 0
+                          (
+                            (SynNode@207 624 "americans" 0 0 -1 @206 0 0
+                              ())))))
+                    (SynNode@303 625 "NPP" 1 2 2 @204 2 1
+                      (
+                        (SynNode@209 626 "NNP" 1 1 -1 @303 1 0
+                          (
+                            (SynNode@210 627 "richard" 1 1 -1 @209 0 0
+                              ())))
+                        (SynNode@211 628 "NNP" 2 2 -1 @303 1 0
+                          (
+                            (SynNode@212 629 "axel" 2 2 -1 @211 0 0
+                              ())))))
+                    (SynNode@213 630 "CC" 3 3 -1 @204 1 0
+                      (
+                        (SynNode@214 631 "and" 3 3 -1 @213 0 0
+                          ())))
+                    (SynNode@307 632 "NPP" 4 6 3 @204 3 2
+                      (
+                        (SynNode@216 633 "NNP" 4 4 -1 @307 1 0
+                          (
+                            (SynNode@217 634 "linda" 4 4 -1 @216 0 0
+                              ())))
+                        (SynNode@218 635 "NNP" 5 5 -1 @307 1 0
+                          (
+                            (SynNode@219 636 "b." 5 5 -1 @218 0 0
+                              ())))
+                        (SynNode@220 637 "NNP" 6 6 -1 @307 1 0
+                          (
+                            (SynNode@221 638 "buck" 6 6 -1 @220 0 0
+                              ())))))))
+                (SynNode@222 639 "VP" 7 30 -1 @203 2 0
+                  (
+                    (SynNode@223 640 "VBD" 7 7 -1 @222 1 0
+                      (
+                        (SynNode@224 641 "were" 7 7 -1 @223 0 0
+                          ())))
+                    (SynNode@225 642 "VP" 8 30 -1 @222 4 0
+                      (
+                        (SynNode@226 643 "VBN" 8 8 -1 @225 1 0
+                          (
+                            (SynNode@227 644 "awarded" 8 8 -1 @226 0 0
+                              ())))
+                        (SynNode@228 645 "NPA" 9 12 4 @225 4 3
+                          (
+                            (SynNode@229 646 "DT" 9 9 -1 @228 1 0
+                              (
+                                (SynNode@230 647 "the" 9 9 -1 @229 0 0
+                                  ())))
+                            (SynNode@231 648 "DATE" 10 10 5 @228 1 0
+                              (
+                                (SynNode@232 649 "CD" 10 10 -1 @231 1 0
+                                  (
+                                    (SynNode@233 650 "2004" 10 10 -1 @232 0 0
+                                      ())))))
+                            (SynNode@234 651 "NNP" 11 11 6 @228 1 0
+                              (
+                                (SynNode@235 652 "nobel" 11 11 -1 @234 0 0
+                                  ())))
+                            (SynNode@236 653 "NNP" 12 12 -1 @228 1 0
+                              (
+                                (SynNode@237 654 "prize" 12 12 -1 @236 0 0
+                                  ())))))
+                        (SynNode@238 655 "PP" 13 27 -1 @225 2 0
+                          (
+                            (SynNode@239 656 "IN" 13 13 -1 @238 1 0
+                              (
+                                (SynNode@240 657 "for" 13 13 -1 @239 0 0
+                                  ())))
+                            (SynNode@241 658 "NP" 14 27 7 @238 3 0
+                              (
+                                (SynNode@242 659 "NP" 14 20 8 @241 2 0
+                                  (
+                                    (SynNode@243 660 "NPA" 14 14 9 @242 1 0
+                                      (
+                                        (SynNode@244 661 "NN" 14 14 -1 @243 1 0
+                                          (
+                                            (SynNode@245 662 "medicine" 14 14 -1 @244 0 0
+                                              ())))))
+                                    (SynNode@246 663 "PP" 15 20 -1 @242 2 0
+                                      (
+                                        (SynNode@247 664 "IN" 15 15 -1 @246 1 0
+                                          (
+                                            (SynNode@248 665 "for" 15 15 -1 @247 0 0
+                                              ())))
+                                        (SynNode@249 666 "NP" 16 20 10 @246 2 0
+                                          (
+                                            (SynNode@250 667 "NPA" 16 17 11 @249 2 1
+                                              (
+                                                (SynNode@251 668 "PRP$" 16 16 12 @250 1 0
+                                                  (
+                                                    (SynNode@252 669 "their" 16 16 -1 @251 0 0
+                                                      ())))
+                                                (SynNode@253 670 "NN" 17 17 -1 @250 1 0
+                                                  (
+                                                    (SynNode@254 671 "work" 17 17 -1 @253 0 0
+                                                      ())))))
+                                            (SynNode@255 672 "PP" 18 20 -1 @249 2 0
+                                              (
+                                                (SynNode@256 673 "IN" 18 18 -1 @255 1 0
+                                                  (
+                                                    (SynNode@257 674 "on" 18 18 -1 @256 0 0
+                                                      ())))
+                                                (SynNode@258 675 "NPA" 19 20 13 @255 2 1
+                                                  (
+                                                    (SynNode@259 676 "CD" 19 19 -1 @258 1 0
+                                                      (
+                                                        (SynNode@260 677 "odorant" 19 19 -1 @259 0 0
+                                                          ())))
+                                                    (SynNode@261 678 "NNS" 20 20 -1 @258 1 0
+                                                      (
+                                                        (SynNode@262 679 "receptors" 20 20 -1 @261 0 0
+                                                          ())))))))))))))
+                                (SynNode@263 680 "CC" 21 21 -1 @241 1 0
+                                  (
+                                    (SynNode@264 681 "and" 21 21 -1 @263 0 0
+                                      ())))
+                                (SynNode@265 682 "NP" 22 27 14 @241 2 0
+                                  (
+                                    (SynNode@266 683 "NPA" 22 23 15 @265 2 1
+                                      (
+                                        (SynNode@267 684 "DT" 22 22 -1 @266 1 0
+                                          (
+                                            (SynNode@268 685 "the" 22 22 -1 @267 0 0
+                                              ())))
+                                        (SynNode@269 686 "NN" 23 23 -1 @266 1 0
+                                          (
+                                            (SynNode@270 687 "organization" 23 23 -1 @269 0 0
+                                              ())))))
+                                    (SynNode@271 688 "PP" 24 27 -1 @265 2 0
+                                      (
+                                        (SynNode@272 689 "IN" 24 24 -1 @271 1 0
+                                          (
+                                            (SynNode@273 690 "of" 24 24 -1 @272 0 0
+                                              ())))
+                                        (SynNode@274 691 "NPA" 25 27 16 @271 3 2
+                                          (
+                                            (SynNode@275 692 "DT" 25 25 -1 @274 1 0
+                                              (
+                                                (SynNode@276 693 "the" 25 25 -1 @275 0 0
+                                                  ())))
+                                            (SynNode@277 694 "NN" 26 26 17 @274 1 0
+                                              (
+                                                (SynNode@278 695 "olfactory" 26 26 -1 @277 0 0
+                                                  ())))
+                                            (SynNode@279 696 "NN" 27 27 -1 @274 1 0
+                                              (
+                                                (SynNode@280 697 "system" 27 27 -1 @279 0 0
+                                                  ())))))))))))))
+                        (SynNode@281 698 "PP" 28 30 -1 @225 2 0
+                          (
+                            (SynNode@282 699 "IN" 28 28 -1 @281 1 0
+                              (
+                                (SynNode@283 700 "in" 28 28 -1 @282 0 0
+                                  ())))
+                            (SynNode@284 701 "NPA" 29 30 18 @281 2 1
+                              (
+                                (SynNode@285 702 "JJ" 29 29 19 @284 1 0
+                                  (
+                                    (SynNode@286 703 "human" 29 29 -1 @285 0 0
+                                      ())))
+                                (SynNode@287 704 "NNS" 30 30 -1 @284 1 0
+                                  (
+                                    (SynNode@288 705 "beings" 30 30 -1 @287 0 0
+                                      ())))))))))))
+                (SynNode@289 706 "." 31 31 -1 @203 1 0
+                  (
+                    (SynNode@290 707 "." 31 31 -1 @289 0 0
+                      ()))))))
+          6
+          (MentionSet@182 0.000000 11.000000 @203 0 20
+            (MentionSet::_mentions
+              (Mention@183 0 6 "OTH" "UNDET" 0 "UNDET" "UNDET" @204 @182 -1 1 -1 -1 -1)
+              (Mention@184 1 1 "GPE" "UNDET" 0 "Nation" "LOC" @299 @182 0 -1 2 -1 -1)
+              (Mention@185 2 1 "PER" "UNDET" 0 "UNDET" "UNDET" @303 @182 0 -1 3 -1 -1)
+              (Mention@186 3 1 "PER" "UNDET" 0 "UNDET" "UNDET" @307 @182 0 -1 -1 -1 -1)
+              (Mention@187 4 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @228 @182 -1 -1 -1 -1 -1)
+              (Mention@188 5 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @231 @182 -1 -1 -1 -1 -1)
+              (Mention@189 6 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @234 @182 -1 -1 -1 -1 -1)
+              (Mention@190 7 6 "OTH" "UNDET" 0 "UNDET" "UNDET" @241 @182 -1 8 -1 -1 -1)
+              (Mention@191 8 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @242 @182 7 -1 14 -1 -1)
+              (Mention@192 9 0 "OTH" "UNDET" 0 "UNDET" "UNDET" @243 @182 -1 -1 -1 -1 -1)
+              (Mention@193 10 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @249 @182 -1 -1 -1 -1 -1)
+              (Mention@194 11 0 "OTH" "UNDET" 0 "UNDET" "UNDET" @250 @182 -1 -1 -1 -1 -1)
+              (Mention@195 12 2 "UNDET" "UNDET" 0 "UNDET" "UNDET" @251 @182 -1 -1 -1 -1 -1)
+              (Mention@196 13 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @258 @182 -1 -1 -1 -1 -1)
+              (Mention@197 14 3 "ORG" "UNDET" 0 "Non-Governmental" "UNDET" @265 @182 7 -1 -1 -1 -1)
+              (Mention@198 15 0 "ORG" "UNDET" 0 "UNDET" "UNDET" @266 @182 -1 -1 -1 -1 -1)
+              (Mention@199 16 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @274 @182 -1 -1 -1 -1 -1)
+              (Mention@200 17 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @277 @182 -1 -1 -1 -1 -1)
+              (Mention@201 18 3 "PER" "UNDET" 0 "Group" "UNDET" @284 @182 -1 -1 -1 -1 -1)
+              (Mention@202 19 3 "PER" "UNDET" 0 "UNDET" "UNDET" @285 @182 -1 -1 -1 -1 -1)))
+          7
+          (PropositionSet@291 18
+            (PropositionSet::_props
+              (Proposition@292 3 6 @0 @0 @0 @0 @0 4
+                (Proposition::_args@292
+                  (Argument@293 0 "<ref>" 0)
+                  (Argument@294 0 "<member>" 1)
+                  (Argument@295 0 "<member>" 2)
+                  (Argument@296 0 "<member>" 3)))
+              (Proposition@297 0 7 @0 @0 @0 @0 @0 2
+                (Proposition::_args@297
+                  (Argument@298 0 "<ref>" 1)
+                  (Argument@300 2 "<null-symbol>" @299)))
+              (Proposition@301 1 7 @0 @0 @0 @0 @0 2
+                (Proposition::_args@301
+                  (Argument@302 0 "<ref>" 2)
+                  (Argument@304 2 "<null-symbol>" @303)))
+              (Proposition@305 2 7 @0 @0 @0 @0 @0 2
+                (Proposition::_args@305
+                  (Argument@306 0 "<ref>" 3)
+                  (Argument@308 2 "<null-symbol>" @307)))
+              (Proposition@309 17 0 @226 @0 @0 @0 @0 4
+                (Proposition::_args@309
+                  (Argument@310 0 "<obj>" 0)
+                  (Argument@311 0 "<iobj>" 4)
+                  (Argument@312 0 "for" 7)
+                  (Argument@313 0 "in" 18)))
+              (Proposition@314 4 2 @234 @0 @0 @0 @0 1
+                (Proposition::_args@314
+                  (Argument@315 0 "<ref>" 4)))
+              (Proposition@316 6 3 @236 @0 @0 @0 @0 2
+                (Proposition::_args@316
+                  (Argument@317 0 "<ref>" 4)
+                  (Argument@318 0 "<temp>" 5)))
+              (Proposition@319 5 2 @232 @0 @0 @0 @0 1
+                (Proposition::_args@319
+                  (Argument@320 0 "<ref>" 5)))
+              (Proposition@321 15 6 @0 @0 @0 @0 @0 3
+                (Proposition::_args@321
+                  (Argument@322 0 "<ref>" 7)
+                  (Argument@323 0 "<member>" 8)
+                  (Argument@324 0 "<member>" 14)))
+              (Proposition@325 11 3 @244 @0 @0 @0 @0 2
+                (Proposition::_args@325
+                  (Argument@326 0 "<ref>" 8)
+                  (Argument@327 0 "for" 10)))
+              (Proposition@328 10 3 @253 @0 @0 @0 @0 3
+                (Proposition::_args@328
+                  (Argument@329 0 "<ref>" 10)
+                  (Argument@330 0 "<poss>" 12)
+                  (Argument@331 0 "on" 13)))
+              (Proposition@332 7 8 @251 @0 @0 @0 @0 1
+                (Proposition::_args@332
+                  (Argument@333 0 "<ref>" 12)))
+              (Proposition@334 8 2 @259 @0 @0 @0 @0 1
+                (Proposition::_args@334
+                  (Argument@335 0 "<ref>" 13)))
+              (Proposition@336 9 3 @261 @0 @0 @0 @0 1
+                (Proposition::_args@336
+                  (Argument@337 0 "<ref>" 13)))
+              (Proposition@338 14 3 @269 @0 @0 @0 @0 2
+                (Proposition::_args@338
+                  (Argument@339 0 "<ref>" 14)
+                  (Argument@340 0 "of" 16)))
+              (Proposition@341 12 2 @277 @0 @0 @0 @0 1
+                (Proposition::_args@341
+                  (Argument@342 0 "<ref>" 16)))
+              (Proposition@343 13 3 @279 @0 @0 @0 @0 1
+                (Proposition::_args@343
+                  (Argument@344 0 "<ref>" 16)))
+              (Proposition@345 16 3 @287 @0 @0 @0 @0 2
+                (Proposition::_args@345
+                  (Argument@346 0 "<ref>" 18)
+                  (Argument@347 0 "<unknown>" 19))))
+            0)
+          8
+          (EntitySet@348 4 926287.000000 5
+            (EntitySet::_entities
+              (Entity@349 0 "GPE" 1
+                (Entity::mentions 1))
+              (Entity@350 1 "PER" 2
+                (Entity::mentions 2 18))
+              (Entity@351 2 "PER" 1
+                (Entity::mentions 3))
+              (Entity@352 3 "ORG" 1
+                (Entity::mentions 14))
+              (Entity@353 4 "PER" 1
+                (Entity::mentions 19))))
+          9
+          (RelMentionSet@354 0
+            (RelMentionSet::_relations))
+          10
+          (EventMentionSet@355 0
+            (EventMentionSet::_ementions))))
+      (SentenceTheory "full_parse" "gigaword/XIN20041004.0077"
+        (SentenceTheory::subtheories 10 0
+          (TokenSequence@357 0.000000 1 39
+            (TokenSequence::_tokens
+              (Token@358 "The" 296 298)
+              (Token@359 "pair" 300 303)
+              (Token@360 "can" 305 307)
+              (Token@361 "get" 309 311)
+              (Token@362 "a" 313 313)
+              (Token@363 "prize" 315 319)
+              (Token@364 "of" 321 322)
+              (Token@365 "10" 324 325)
+              (Token@366 "million" 327 333)
+              (Token@367 "kronor" 335 340)
+              (Token@368 "-LRB-" 342 342)
+              (Token@369 "about" 343 347)
+              (Token@370 "1.3" 349 351)
+              (Token@371 "million" 353 359)
+              (Token@372 "US" 361 362)
+              (Token@373 "dollars" 364 370)
+              (Token@374 "-RRB-" 371 371)
+              (Token@375 "from" 373 376)
+              (Token@376 "the" 378 380)
+              (Token@377 "Nobel" 382 386)
+              (Token@378 "jury" 388 391)
+              (Token@379 "at" 393 394)
+              (Token@380 "the" 396 398)
+              (Token@381 "Karolinska" 400 409)
+              (Token@382 "Institute" 411 419)
+              (Token@383 "for" 421 423)
+              (Token@384 "their" 425 429)
+              (Token@385 "gene" 431 434)
+              (Token@386 "studies" 436 442)
+              (Token@387 "that" 444 447)
+              (Token@388 "explained" 449 457)
+              (Token@389 "how" 459 461)
+              (Token@390 "the" 463 465)
+              (Token@391 "human" 467 471)
+              (Token@392 "sense" 473 477)
+              (Token@393 "of" 479 480)
+              (Token@394 "smell" 482 486)
+              (Token@395 "functions" 488 496)
+              (Token@396 "." 497 497)))
+          1
+          (POSSequence@397 1 39 0.000000
+            (POSSequence::_pos
+              (PartOfSpeech@398 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@399 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@400 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@401 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@402 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@403 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@404 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@405 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@406 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@407 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@408 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@409 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@410 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@411 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@412 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@413 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@414 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@415 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@416 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@417 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@418 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@419 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@420 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@421 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@422 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@423 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@424 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@425 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@426 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@427 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@428 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@429 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@430 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@431 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@432 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@433 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@434 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@435 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@436 1 "DummyPOS" 0.100000)))
+          2
+          (NameTheory@437 0.000000 1
+            (NameTheory::nameSpans
+              (NameSpan@438 23 24 "ORG")))
+          3
+          (ValueMentionSet@439 2
+            (ValueMentionSet::_values
+              (ValueMention@440 100 1 7 9 "Numeric.Money")
+              (ValueMention@441 101 1 11 15 "Numeric.Money")))
+          5
+          (Parse@442 -246.451355
+            (SynNode@574 333 "S" 0 38 -1 @0 3 1
+              (
+                (SynNode@575 334 "NPA" 0 1 0 @574 2 1
+                  (
+                    (SynNode@576 335 "DT" 0 0 -1 @575 1 0
+                      (
+                        (SynNode@577 336 "the" 0 0 -1 @576 0 0
+                          ())))
+                    (SynNode@578 337 "NN" 1 1 -1 @575 1 0
+                      (
+                        (SynNode@579 338 "pair" 1 1 -1 @578 0 0
+                          ())))))
+                (SynNode@580 339 "VP" 2 37 -1 @574 2 0
+                  (
+                    (SynNode@581 340 "MD" 2 2 -1 @580 1 0
+                      (
+                        (SynNode@582 341 "can" 2 2 -1 @581 0 0
+                          ())))
+                    (SynNode@583 342 "VP" 3 37 -1 @580 2 0
+                      (
+                        (SynNode@584 343 "VB" 3 3 -1 @583 1 0
+                          (
+                            (SynNode@585 344 "get" 3 3 -1 @584 0 0
+                              ())))
+                        (SynNode@586 345 "NP" 4 37 1 @583 2 0
+                          (
+                            (SynNode@587 346 "NPA" 4 34 2 @586 3 2
+                              (
+                                (SynNode@588 347 "DT" 4 4 -1 @587 1 0
+                                  (
+                                    (SynNode@589 348 "a" 4 4 -1 @588 0 0
+                                      ())))
+                                (SynNode@590 349 "ADJP" 5 33 -1 @587 2 0
+                                  (
+                                    (SynNode@591 350 "JJ" 5 5 -1 @590 1 0
+                                      (
+                                        (SynNode@592 351 "prize" 5 5 -1 @591 0 0
+                                          ())))
+                                    (SynNode@593 352 "PP" 6 33 -1 @590 2 0
+                                      (
+                                        (SynNode@594 353 "IN" 6 6 -1 @593 1 0
+                                          (
+                                            (SynNode@595 354 "of" 6 6 -1 @594 0 0
+                                              ())))
+                                        (SynNode@596 355 "NP" 7 33 3 @593 3 0
+                                          (
+                                            (SynNode@597 356 "NPA" 7 9 4 @596 2 1
+                                              (
+                                                (SynNode@598 357 "QP" 7 8 -1 @597 2 0
+                                                  (
+                                                    (SynNode@599 358 "CD" 7 7 -1 @598 1 0
+                                                      (
+                                                        (SynNode@600 359 "10" 7 7 -1 @599 0 0
+                                                          ())))
+                                                    (SynNode@601 360 "CD" 8 8 -1 @598 1 0
+                                                      (
+                                                        (SynNode@602 361 "million" 8 8 -1 @601 0 0
+                                                          ())))))
+                                                (SynNode@603 362 "NNS" 9 9 -1 @597 1 0
+                                                  (
+                                                    (SynNode@604 363 "kronor" 9 9 -1 @603 0 0
+                                                      ())))))
+                                            (SynNode@605 364 "PRN" 10 16 -1 @596 3 0
+                                              (
+                                                (SynNode@606 365 "-LRB-" 10 10 -1 @605 1 0
+                                                  (
+                                                    (SynNode@607 366 "-lrb-" 10 10 -1 @606 0 0
+                                                      ())))
+                                                (SynNode@608 367 "PP" 11 15 -1 @605 2 0
+                                                  (
+                                                    (SynNode@609 368 "IN" 11 11 -1 @608 1 0
+                                                      (
+                                                        (SynNode@610 369 "about" 11 11 -1 @609 0 0
+                                                          ())))
+                                                    (SynNode@611 370 "NPA" 12 15 5 @608 3 2
+                                                      (
+                                                        (SynNode@612 371 "QP" 12 13 -1 @611 2 0
+                                                          (
+                                                            (SynNode@613 372 "CD" 12 12 -1 @612 1 0
+                                                              (
+                                                                (SynNode@614 373 "1.3" 12 12 -1 @613 0 0
+                                                                  ())))
+                                                            (SynNode@615 374 "CD" 13 13 -1 @612 1 0
+                                                              (
+                                                                (SynNode@616 375 "million" 13 13 -1 @615 0 0
+                                                                  ())))))
+                                                        (SynNode@617 376 "NNP" 14 14 6 @611 1 0
+                                                          (
+                                                            (SynNode@618 377 "us" 14 14 -1 @617 0 0
+                                                              ())))
+                                                        (SynNode@619 378 "NNS" 15 15 -1 @611 1 0
+                                                          (
+                                                            (SynNode@620 379 "dollars" 15 15 -1 @619 0 0
+                                                              ())))))))
+                                                (SynNode@621 380 "-RRB-" 16 16 -1 @605 1 0
+                                                  (
+                                                    (SynNode@622 381 "-rrb-" 16 16 -1 @621 0 0
+                                                      ())))))
+                                            (SynNode@623 382 "PP" 17 33 -1 @596 2 0
+                                              (
+                                                (SynNode@624 383 "IN" 17 17 -1 @623 1 0
+                                                  (
+                                                    (SynNode@625 384 "from" 17 17 -1 @624 0 0
+                                                      ())))
+                                                (SynNode@626 385 "NP" 18 33 7 @623 3 0
+                                                  (
+                                                    (SynNode@627 386 "NPA" 18 20 8 @626 3 2
+                                                      (
+                                                        (SynNode@628 387 "DT" 18 18 -1 @627 1 0
+                                                          (
+                                                            (SynNode@629 388 "the" 18 18 -1 @628 0 0
+                                                              ())))
+                                                        (SynNode@630 389 "NNP" 19 19 9 @627 1 0
+                                                          (
+                                                            (SynNode@631 390 "nobel" 19 19 -1 @630 0 0
+                                                              ())))
+                                                        (SynNode@632 391 "NN" 20 20 -1 @627 1 0
+                                                          (
+                                                            (SynNode@633 392 "jury" 20 20 -1 @632 0 0
+                                                              ())))))
+                                                    (SynNode@634 393 "PP" 21 28 -1 @626 2 0
+                                                      (
+                                                        (SynNode@635 394 "IN" 21 21 -1 @634 1 0
+                                                          (
+                                                            (SynNode@636 395 "at" 21 21 -1 @635 0 0
+                                                              ())))
+                                                        (SynNode@637 396 "NP" 22 28 10 @634 2 0
+                                                          (
+                                                            (SynNode@638 397 "NPA" 22 24 11 @637 2 1
+                                                              (
+                                                                (SynNode@639 398 "DT" 22 22 -1 @638 1 0
+                                                                  (
+                                                                    (SynNode@640 399 "the" 22 22 -1 @639 0 0
+                                                                      ())))
+                                                                (SynNode@719 400 "NPP" 23 24 12 @638 2 1
+                                                                  (
+                                                                    (SynNode@642 401 "NNP" 23 23 -1 @719 1 0
+                                                                      (
+                                                                        (SynNode@643 402 "karolinska" 23 23 -1 @642 0 0
+                                                                          ())))
+                                                                    (SynNode@644 403 "NNP" 24 24 -1 @719 1 0
+                                                                      (
+                                                                        (SynNode@645 404 "institute" 24 24 -1 @644 0 0
+                                                                          ())))))))
+                                                            (SynNode@646 405 "PP" 25 28 -1 @637 2 0
+                                                              (
+                                                                (SynNode@647 406 "IN" 25 25 -1 @646 1 0
+                                                                  (
+                                                                    (SynNode@648 407 "for" 25 25 -1 @647 0 0
+                                                                      ())))
+                                                                (SynNode@649 408 "NPA" 26 28 13 @646 3 2
+                                                                  (
+                                                                    (SynNode@650 409 "PRP$" 26 26 14 @649 1 0
+                                                                      (
+                                                                        (SynNode@651 410 "their" 26 26 -1 @650 0 0
+                                                                          ())))
+                                                                    (SynNode@652 411 "NN" 27 27 15 @649 1 0
+                                                                      (
+                                                                        (SynNode@653 412 "gene" 27 27 -1 @652 0 0
+                                                                          ())))
+                                                                    (SynNode@654 413 "NNS" 28 28 -1 @649 1 0
+                                                                      (
+                                                                        (SynNode@655 414 "studies" 28 28 -1 @654 0 0
+                                                                          ())))))))))))
+                                                    (SynNode@656 415 "SBAR" 29 33 -1 @626 2 0
+                                                      (
+                                                        (SynNode@657 416 "WHNP" 29 29 16 @656 1 0
+                                                          (
+                                                            (SynNode@658 417 "WDT" 29 29 -1 @657 1 0
+                                                              (
+                                                                (SynNode@659 418 "that" 29 29 -1 @658 0 0
+                                                                  ())))))
+                                                        (SynNode@660 419 "S" 30 33 -1 @656 1 0
+                                                          (
+                                                            (SynNode@661 420 "VP" 30 33 -1 @660 2 0
+                                                              (
+                                                                (SynNode@662 421 "VBD" 30 30 -1 @661 1 0
+                                                                  (
+                                                                    (SynNode@663 422 "explained" 30 30 -1 @662 0 0
+                                                                      ())))
+                                                                (SynNode@664 423 "SBAR" 31 33 -1 @661 2 0
+                                                                  (
+                                                                    (SynNode@665 424 "WHADVP" 31 31 -1 @664 1 0
+                                                                      (
+                                                                        (SynNode@666 425 "WRB" 31 31 -1 @665 1 0
+                                                                          (
+                                                                            (SynNode@667 426 "how" 31 31 -1 @666 0 0
+                                                                              ())))))
+                                                                    (SynNode@668 427 "S" 32 33 -1 @664 1 0
+                                                                      (
+                                                                        (SynNode@669 428 "ADJP" 32 33 -1 @668 2 1
+                                                                          (
+                                                                            (SynNode@670 429 "DT" 32 32 -1 @669 1 0
+                                                                              (
+                                                                                (SynNode@671 430 "the" 32 32 -1 @670 0 0
+                                                                                  ())))
+                                                                            (SynNode@672 431 "JJ" 33 33 -1 @669 1 0
+                                                                              (
+                                                                                (SynNode@673 432 "human" 33 33 -1 @672 0 0
+                                                                                  ())))))))))))))))))))))))))
+                                (SynNode@674 433 "NN" 34 34 -1 @587 1 0
+                                  (
+                                    (SynNode@675 434 "sense" 34 34 -1 @674 0 0
+                                      ())))))
+                            (SynNode@676 435 "PP" 35 37 -1 @586 2 0
+                              (
+                                (SynNode@677 436 "IN" 35 35 -1 @676 1 0
+                                  (
+                                    (SynNode@678 437 "of" 35 35 -1 @677 0 0
+                                      ())))
+                                (SynNode@679 438 "NPA" 36 37 17 @676 2 1
+                                  (
+                                    (SynNode@680 439 "CD" 36 36 -1 @679 1 0
+                                      (
+                                        (SynNode@681 440 "smell" 36 36 -1 @680 0 0
+                                          ())))
+                                    (SynNode@682 441 "NNS" 37 37 -1 @679 1 0
+                                      (
+                                        (SynNode@683 442 "functions" 37 37 -1 @682 0 0
+                                          ())))))))))))))
+                (SynNode@684 443 "." 38 38 -1 @574 1 0
+                  (
+                    (SynNode@685 444 "." 38 38 -1 @684 0 0
+                      ()))))))
+          6
+          (MentionSet@555 0.000000 10.000000 @574 1 18
+            (MentionSet::_mentions
+              (Mention@556 100 3 "PER" "UNDET" 0 "Group" "UNDET" @575 @555 -1 -1 -1 -1 -1)
+              (Mention@557 101 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @586 @555 -1 -1 -1 -1 -1)
+              (Mention@558 102 0 "OTH" "UNDET" 0 "UNDET" "UNDET" @587 @555 -1 -1 -1 -1 -1)
+              (Mention@559 103 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @596 @555 -1 -1 -1 -1 -1)
+              (Mention@560 104 0 "OTH" "UNDET" 0 "UNDET" "UNDET" @597 @555 -1 -1 -1 -1 -1)
+              (Mention@561 105 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @611 @555 -1 -1 -1 -1 -1)
+              (Mention@562 106 2 "PER" "UNDET" 0 "UNDET" "UNDET" @617 @555 -1 -1 -1 -1 -1)
+              (Mention@563 107 3 "PER" "UNDET" 0 "UNDET" "UNDET" @626 @555 -1 -1 -1 -1 -1)
+              (Mention@564 108 0 "PER" "UNDET" 0 "UNDET" "UNDET" @627 @555 -1 -1 -1 -1 -1)
+              (Mention@565 109 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @630 @555 -1 -1 -1 -1 -1)
+              (Mention@566 110 1 "ORG" "UNDET" 0 "UNDET" "UNDET" @637 @555 -1 12 -1 -1 -1)
+              (Mention@567 111 0 "ORG" "UNDET" 0 "UNDET" "UNDET" @638 @555 -1 -1 -1 -1 -1)
+              (Mention@568 112 0 "ORG" "UNDET" 0 "UNDET" "UNDET" @719 @555 10 -1 -1 -1 -1)
+              (Mention@569 113 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @649 @555 -1 -1 -1 -1 -1)
+              (Mention@570 114 2 "ORG" "UNDET" 0 "UNDET" "UNDET" @650 @555 -1 -1 -1 -1 -1)
+              (Mention@571 115 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @652 @555 -1 -1 -1 -1 -1)
+              (Mention@572 116 2 "PER" "UNDET" 0 "UNDET" "UNDET" @657 @555 -1 -1 -1 -1 -1)
+              (Mention@573 117 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @679 @555 -1 -1 -1 -1 -1)))
+          7
+          (PropositionSet@686 24
+            (PropositionSet::_props
+              (Proposition@687 200 3 @578 @0 @0 @0 @0 1
+                (Proposition::_args@687
+                  (Argument@688 0 "<ref>" 0)))
+              (Proposition@689 223 0 @584 @0 @0 @0 @581 2
+                (Proposition::_args@689
+                  (Argument@690 0 "<sub>" 0)
+                  (Argument@691 0 "<obj>" 1)))
+              (Proposition@692 219 2 @591 @0 @0 @0 @0 2
+                (Proposition::_args@692
+                  (Argument@693 0 "<ref>" 1)
+                  (Argument@694 0 "of" 3)))
+              (Proposition@695 201 2 @599 @0 @0 @0 @0 1
+                (Proposition::_args@695
+                  (Argument@696 0 "<ref>" 3)))
+              (Proposition@697 202 2 @601 @0 @0 @0 @0 1
+                (Proposition::_args@697
+                  (Argument@698 0 "<ref>" 3)))
+              (Proposition@699 213 3 @603 @0 @0 @0 @0 2
+                (Proposition::_args@699
+                  (Argument@700 0 "<ref>" 3)
+                  (Argument@701 0 "from" 7)))
+              (Proposition@702 203 2 @630 @0 @0 @0 @0 1
+                (Proposition::_args@702
+                  (Argument@703 0 "<ref>" 7)))
+              (Proposition@704 209 3 @632 @0 @0 @0 @0 2
+                (Proposition::_args@704
+                  (Argument@705 0 "<ref>" 7)
+                  (Argument@706 0 "at" 10)))
+              (Proposition@707 207 2 @647 @0 @0 @0 @0 2
+                (Proposition::_args@707
+                  (Argument@708 0 "<ref>" 10)
+                  (Argument@709 0 "for" 13)))
+              (Proposition@710 204 2 @652 @0 @0 @0 @0 1
+                (Proposition::_args@710
+                  (Argument@711 0 "<ref>" 13)))
+              (Proposition@712 206 3 @654 @0 @0 @0 @0 2
+                (Proposition::_args@712
+                  (Argument@713 0 "<ref>" 13)
+                  (Argument@714 0 "<poss>" 14)))
+              (Proposition@715 205 8 @650 @0 @0 @0 @0 1
+                (Proposition::_args@715
+                  (Argument@716 0 "<ref>" 14)))
+              (Proposition@717 208 7 @0 @0 @0 @0 @0 2
+                (Proposition::_args@717
+                  (Argument@718 0 "<ref>" 10)
+                  (Argument@720 2 "<null-symbol>" @719)))
+              (Proposition@721 210 8 @657 @0 @0 @0 @0 1
+                (Proposition::_args@721
+                  (Argument@722 0 "<ref>" 16)))
+              (Proposition@723 212 0 @662 @0 @0 @0 @0 2
+                (Proposition::_args@723
+                  (Argument@724 0 "<sub>" 16)
+                  (Argument@726 1 "how" @727)))
+              (Proposition@727 211 2 @672 @0 @0 @0 @0 1
+                (Proposition::_args@727
+                  (Argument@728 0 "<ref>" 16)))
+              (Proposition@729 218 2 @609 @0 @0 @0 @0 2
+                (Proposition::_args@729
+                  (Argument@730 0 "<ref>" 3)
+                  (Argument@731 0 "about" 5)))
+              (Proposition@732 214 2 @613 @0 @0 @0 @0 1
+                (Proposition::_args@732
+                  (Argument@733 0 "<ref>" 5)))
+              (Proposition@734 215 2 @615 @0 @0 @0 @0 1
+                (Proposition::_args@734
+                  (Argument@735 0 "<ref>" 5)))
+              (Proposition@736 216 2 @617 @0 @0 @0 @0 1
+                (Proposition::_args@736
+                  (Argument@737 0 "<ref>" 5)))
+              (Proposition@738 217 3 @619 @0 @0 @0 @0 1
+                (Proposition::_args@738
+                  (Argument@739 0 "<ref>" 5)))
+              (Proposition@740 222 3 @674 @0 @0 @0 @0 2
+                (Proposition::_args@740
+                  (Argument@741 0 "<ref>" 1)
+                  (Argument@742 0 "of" 17)))
+              (Proposition@743 220 2 @680 @0 @0 @0 @0 1
+                (Proposition::_args@743
+                  (Argument@744 0 "<ref>" 17)))
+              (Proposition@745 221 3 @682 @0 @0 @0 @0 1
+                (Proposition::_args@745
+                  (Argument@746 0 "<ref>" 17))))
+            200)
+          8
+          (EntitySet@747 4 4709660.000000 8
+            (EntitySet::_entities
+              (Entity@748 0 "GPE" 1
+                (Entity::mentions 1))
+              (Entity@749 1 "PER" 3
+                (Entity::mentions 2 18 100))
+              (Entity@750 2 "PER" 1
+                (Entity::mentions 3))
+              (Entity@751 3 "ORG" 1
+                (Entity::mentions 14))
+              (Entity@752 4 "PER" 1
+                (Entity::mentions 19))
+              (Entity@753 5 "ORG" 2
+                (Entity::mentions 110 114))
+              (Entity@754 6 "PER" 2
+                (Entity::mentions 107 116))
+              (Entity@755 7 "PER" 1
+                (Entity::mentions 106))))
+          9
+          (RelMentionSet@756 0
+            (RelMentionSet::_relations))
+          10
+          (EventMentionSet@757 0
+            (EventMentionSet::_ementions))))
+      (SentenceTheory "full_parse" "gigaword/XIN20041004.0077"
+        (SentenceTheory::subtheories 10 0
+          (TokenSequence@759 0.000000 2 12
+            (TokenSequence::_tokens
+              (Token@760 "The" 501 503)
+              (Token@761 "criteria" 505 512)
+              (Token@762 "for" 514 516)
+              (Token@763 "winning" 518 524)
+              (Token@764 "the" 526 528)
+              (Token@765 "prize" 530 534)
+              (Token@766 "have" 536 539)
+              (Token@767 "not" 541 543)
+              (Token@768 "been" 545 548)
+              (Token@769 "set" 550 552)
+              (Token@770 "specifically" 554 565)
+              (Token@771 "." 566 566)))
+          1
+          (POSSequence@772 2 12 0.000000
+            (POSSequence::_pos
+              (PartOfSpeech@773 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@774 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@775 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@776 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@777 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@778 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@779 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@780 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@781 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@782 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@783 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@784 1 "DummyPOS" 0.100000)))
+          2
+          (NameTheory@785 0.000000 0
+            (NameTheory::nameSpans))
+          3
+          (ValueMentionSet@786 0
+            (ValueMentionSet::_values))
+          5
+          (Parse@787 -68.097267
+            (SynNode@827 0 "S" 0 11 -1 @0 3 1
+              (
+                (SynNode@828 1 "NP" 0 5 0 @827 2 0
+                  (
+                    (SynNode@829 2 "NPA" 0 1 1 @828 2 1
+                      (
+                        (SynNode@830 3 "DT" 0 0 -1 @829 1 0
+                          (
+                            (SynNode@831 4 "the" 0 0 -1 @830 0 0
+                              ())))
+                        (SynNode@832 5 "NNS" 1 1 -1 @829 1 0
+                          (
+                            (SynNode@833 6 "criteria" 1 1 -1 @832 0 0
+                              ())))))
+                    (SynNode@834 7 "PP" 2 5 -1 @828 2 0
+                      (
+                        (SynNode@835 8 "IN" 2 2 -1 @834 1 0
+                          (
+                            (SynNode@836 9 "for" 2 2 -1 @835 0 0
+                              ())))
+                        (SynNode@837 10 "S" 3 5 -1 @834 1 0
+                          (
+                            (SynNode@838 11 "VP" 3 5 -1 @837 2 0
+                              (
+                                (SynNode@839 12 "VBG" 3 3 -1 @838 1 0
+                                  (
+                                    (SynNode@840 13 "winning" 3 3 -1 @839 0 0
+                                      ())))
+                                (SynNode@841 14 "NPA" 4 5 2 @838 2 1
+                                  (
+                                    (SynNode@842 15 "DT" 4 4 -1 @841 1 0
+                                      (
+                                        (SynNode@843 16 "the" 4 4 -1 @842 0 0
+                                          ())))
+                                    (SynNode@844 17 "NN" 5 5 -1 @841 1 0
+                                      (
+                                        (SynNode@845 18 "prize" 5 5 -1 @844 0 0
+                                          ())))))))))))))
+                (SynNode@846 19 "VP" 6 10 -1 @827 3 0
+                  (
+                    (SynNode@847 20 "VBP" 6 6 -1 @846 1 0
+                      (
+                        (SynNode@848 21 "have" 6 6 -1 @847 0 0
+                          ())))
+                    (SynNode@849 22 "RB" 7 7 -1 @846 1 0
+                      (
+                        (SynNode@850 23 "not" 7 7 -1 @849 0 0
+                          ())))
+                    (SynNode@851 24 "VP" 8 10 -1 @846 2 0
+                      (
+                        (SynNode@852 25 "VBN" 8 8 -1 @851 1 0
+                          (
+                            (SynNode@853 26 "been" 8 8 -1 @852 0 0
+                              ())))
+                        (SynNode@854 27 "VP" 9 10 -1 @851 2 0
+                          (
+                            (SynNode@855 28 "VBN" 9 9 -1 @854 1 0
+                              (
+                                (SynNode@856 29 "set" 9 9 -1 @855 0 0
+                                  ())))
+                            (SynNode@857 30 "ADVP" 10 10 -1 @854 1 0
+                              (
+                                (SynNode@858 31 "RB" 10 10 -1 @857 1 0
+                                  (
+                                    (SynNode@859 32 "specifically" 10 10 -1 @858 0 0
+                                      ())))))))))))
+                (SynNode@860 33 "." 11 11 -1 @827 1 0
+                  (
+                    (SynNode@861 34 "." 11 11 -1 @860 0 0
+                      ()))))))
+          6
+          (MentionSet@823 0.000000 3.000000 @827 2 3
+            (MentionSet::_mentions
+              (Mention@824 200 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @828 @823 -1 -1 -1 -1 -1)
+              (Mention@825 201 0 "OTH" "UNDET" 0 "UNDET" "UNDET" @829 @823 -1 -1 -1 -1 -1)
+              (Mention@826 202 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @841 @823 -1 -1 -1 -1 -1)))
+          7
+          (PropositionSet@862 5
+            (PropositionSet::_props
+              (Proposition@863 402 3 @832 @0 @0 @0 @0 2
+                (Proposition::_args@863
+                  (Argument@864 0 "<ref>" 0)
+                  (Argument@866 1 "for" @867)))
+              (Proposition@867 401 0 @839 @0 @0 @0 @0 1
+                (Proposition::_args@867
+                  (Argument@868 0 "<obj>" 2)))
+              (Proposition@869 400 3 @844 @0 @0 @0 @0 1
+                (Proposition::_args@869
+                  (Argument@870 0 "<ref>" 2)))
+              (Proposition@871 403 2 @852 @0 @0 @0 @0 1
+                (Proposition::_args@871
+                  (Argument@872 0 "<ref>" 0)))
+              (Proposition@873 404 0 @855 @0 @857 @849 @0 1
+                (Proposition::_args@873
+                  (Argument@874 0 "<obj>" 0))))
+            400)
+          8
+          (EntitySet@875 4 4709660.000000 8
+            (EntitySet::_entities
+              (Entity@876 0 "GPE" 1
+                (Entity::mentions 1))
+              (Entity@877 1 "PER" 3
+                (Entity::mentions 2 18 100))
+              (Entity@878 2 "PER" 1
+                (Entity::mentions 3))
+              (Entity@879 3 "ORG" 1
+                (Entity::mentions 14))
+              (Entity@880 4 "PER" 1
+                (Entity::mentions 19))
+              (Entity@881 5 "ORG" 2
+                (Entity::mentions 110 114))
+              (Entity@882 6 "PER" 2
+                (Entity::mentions 107 116))
+              (Entity@883 7 "PER" 1
+                (Entity::mentions 106))))
+          9
+          (RelMentionSet@884 0
+            (RelMentionSet::_relations))
+          10
+          (EventMentionSet@885 0
+            (EventMentionSet::_ementions))))
+      (SentenceTheory "full_parse" "gigaword/XIN20041004.0077"
+        (SentenceTheory::subtheories 10 0
+          (TokenSequence@887 0.000000 3 33
+            (TokenSequence::_tokens
+              (Token@888 "Alfred" 568 573)
+              (Token@889 "Nobel" 575 579)
+              (Token@890 "," 580 580)
+              (Token@891 "the" 582 584)
+              (Token@892 "inventor" 586 593)
+              (Token@893 "of" 595 596)
+              (Token@894 "dynamite" 598 605)
+              (Token@895 "who" 607 609)
+              (Token@896 "created" 611 617)
+              (Token@897 "the" 619 621)
+              (Token@898 "awards" 623 628)
+              (Token@899 "," 629 629)
+              (Token@900 "just" 631 634)
+              (Token@901 "said" 636 639)
+              (Token@902 "the" 641 643)
+              (Token@903 "winner" 645 650)
+              (Token@904 "``" 652 652)
+              (Token@905 "shall" 653 657)
+              (Token@906 "have" 659 662)
+              (Token@907 "made" 664 667)
+              (Token@908 "the" 669 671)
+              (Token@909 "most" 673 676)
+              (Token@910 "important" 678 686)
+              (Token@911 "discovery" 688 696)
+              (Token@912 "within" 698 703)
+              (Token@913 "the" 705 707)
+              (Token@914 "field" 709 713)
+              (Token@915 "of" 715 716)
+              (Token@916 "physiology" 718 727)
+              (Token@917 "or" 729 730)
+              (Token@918 "medicine" 732 739)
+              (Token@919 "." 740 740)
+              (Token@920 "''" 741 741)))
+          1
+          (POSSequence@921 3 33 0.000000
+            (POSSequence::_pos
+              (PartOfSpeech@922 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@923 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@924 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@925 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@926 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@927 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@928 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@929 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@930 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@931 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@932 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@933 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@934 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@935 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@936 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@937 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@938 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@939 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@940 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@941 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@942 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@943 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@944 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@945 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@946 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@947 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@948 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@949 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@950 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@951 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@952 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@953 1 "DummyPOS" 0.100000)
+              (PartOfSpeech@954 1 "DummyPOS" 0.100000)))
+          2
+          (NameTheory@955 0.000000 1
+            (NameTheory::nameSpans
+              (NameSpan@956 0 1 "PER")))
+          3
+          (ValueMentionSet@957 0
+            (ValueMentionSet::_values))
+          5
+          (Parse@958 -194.932037
+            (SynNode@1067 466 "S" 0 32 -1 @0 5 2
+              (
+                (SynNode@1068 467 "NP" 0 11 0 @1067 4 0
+                  (
+                    (SynNode@1163 468 "NPP" 0 1 1 @1068 2 1
+                      (
+                        (SynNode@1070 469 "NNP" 0 0 -1 @1163 1 0
+                          (
+                            (SynNode@1071 470 "alfred" 0 0 -1 @1070 0 0
+                              ())))
+                        (SynNode@1072 471 "NNP" 1 1 -1 @1163 1 0
+                          (
+                            (SynNode@1073 472 "nobel" 1 1 -1 @1072 0 0
+                              ())))))
+                    (SynNode@1074 473 "," 2 2 -1 @1068 1 0
+                      (
+                        (SynNode@1075 474 "," 2 2 -1 @1074 0 0
+                          ())))
+                    (SynNode@1076 475 "NP" 3 10 2 @1068 3 0
+                      (
+                        (SynNode@1077 476 "NPA" 3 4 3 @1076 2 1
+                          (
+                            (SynNode@1078 477 "DT" 3 3 -1 @1077 1 0
+                              (
+                                (SynNode@1079 478 "the" 3 3 -1 @1078 0 0
+                                  ())))
+                            (SynNode@1080 479 "NN" 4 4 -1 @1077 1 0
+                              (
+                                (SynNode@1081 480 "inventor" 4 4 -1 @1080 0 0
+                                  ())))))
+                        (SynNode@1082 481 "PP" 5 6 -1 @1076 2 0
+                          (
+                            (SynNode@1083 482 "IN" 5 5 -1 @1082 1 0
+                              (
+                                (SynNode@1084 483 "of" 5 5 -1 @1083 0 0
+                                  ())))
+                            (SynNode@1085 484 "NPA" 6 6 4 @1082 1 0
+                              (
+                                (SynNode@1086 485 "NN" 6 6 -1 @1085 1 0
+                                  (
+                                    (SynNode@1087 486 "dynamite" 6 6 -1 @1086 0 0
+                                      ())))))))
+                        (SynNode@1088 487 "SBAR" 7 10 -1 @1076 2 0
+                          (
+                            (SynNode@1089 488 "WHNP" 7 7 5 @1088 1 0
+                              (
+                                (SynNode@1090 489 "WP" 7 7 -1 @1089 1 0
+                                  (
+                                    (SynNode@1091 490 "who" 7 7 -1 @1090 0 0
+                                      ())))))
+                            (SynNode@1092 491 "S" 8 10 -1 @1088 1 0
+                              (
+                                (SynNode@1093 492 "VP" 8 10 -1 @1092 2 0
+                                  (
+                                    (SynNode@1094 493 "VBD" 8 8 -1 @1093 1 0
+                                      (
+                                        (SynNode@1095 494 "created" 8 8 -1 @1094 0 0
+                                          ())))
+                                    (SynNode@1096 495 "NPA" 9 10 6 @1093 2 1
+                                      (
+                                        (SynNode@1097 496 "DT" 9 9 -1 @1096 1 0
+                                          (
+                                            (SynNode@1098 497 "the" 9 9 -1 @1097 0 0
+                                              ())))
+                                        (SynNode@1099 498 "NNS" 10 10 -1 @1096 1 0
+                                          (
+                                            (SynNode@1100 499 "awards" 10 10 -1 @1099 0 0
+                                              ())))))))))))))
+                    (SynNode@1101 500 "," 11 11 -1 @1068 1 0
+                      (
+                        (SynNode@1102 501 "," 11 11 -1 @1101 0 0
+                          ())))))
+                (SynNode@1103 502 "ADVP" 12 12 -1 @1067 1 0
+                  (
+                    (SynNode@1104 503 "RB" 12 12 -1 @1103 1 0
+                      (
+                        (SynNode@1105 504 "just" 12 12 -1 @1104 0 0
+                          ())))))
+                (SynNode@1106 505 "VP" 13 30 -1 @1067 2 0
+                  (
+                    (SynNode@1107 506 "VBD" 13 13 -1 @1106 1 0
+                      (
+                        (SynNode@1108 507 "said" 13 13 -1 @1107 0 0
+                          ())))
+                    (SynNode@1109 508 "S" 14 30 -1 @1106 3 2
+                      (
+                        (SynNode@1110 509 "NPA" 14 15 7 @1109 2 1
+                          (
+                            (SynNode@1111 510 "DT" 14 14 -1 @1110 1 0
+                              (
+                                (SynNode@1112 511 "the" 14 14 -1 @1111 0 0
+                                  ())))
+                            (SynNode@1113 512 "NN" 15 15 -1 @1110 1 0
+                              (
+                                (SynNode@1114 513 "winner" 15 15 -1 @1113 0 0
+                                  ())))))
+                        (SynNode@1115 514 "``" 16 16 -1 @1109 1 0
+                          (
+                            (SynNode@1116 515 "``" 16 16 -1 @1115 0 0
+                              ())))
+                        (SynNode@1117 516 "VP" 17 30 -1 @1109 2 0
+                          (
+                            (SynNode@1118 517 "MD" 17 17 -1 @1117 1 0
+                              (
+                                (SynNode@1119 518 "shall" 17 17 -1 @1118 0 0
+                                  ())))
+                            (SynNode@1120 519 "VP" 18 30 -1 @1117 2 0
+                              (
+                                (SynNode@1121 520 "VB" 18 18 -1 @1120 1 0
+                                  (
+                                    (SynNode@1122 521 "have" 18 18 -1 @1121 0 0
+                                      ())))
+                                (SynNode@1123 522 "VP" 19 30 -1 @1120 3 0
+                                  (
+                                    (SynNode@1124 523 "VBD" 19 19 -1 @1123 1 0
+                                      (
+                                        (SynNode@1125 524 "made" 19 19 -1 @1124 0 0
+                                          ())))
+                                    (SynNode@1126 525 "NPA" 20 23 8 @1123 4 3
+                                      (
+                                        (SynNode@1127 526 "DT" 20 20 -1 @1126 1 0
+                                          (
+                                            (SynNode@1128 527 "the" 20 20 -1 @1127 0 0
+                                              ())))
+                                        (SynNode@1129 528 "RBS" 21 21 -1 @1126 1 0
+                                          (
+                                            (SynNode@1130 529 "most" 21 21 -1 @1129 0 0
+                                              ())))
+                                        (SynNode@1131 530 "JJ" 22 22 -1 @1126 1 0
+                                          (
+                                            (SynNode@1132 531 "important" 22 22 -1 @1131 0 0
+                                              ())))
+                                        (SynNode@1133 532 "NN" 23 23 -1 @1126 1 0
+                                          (
+                                            (SynNode@1134 533 "discovery" 23 23 -1 @1133 0 0
+                                              ())))))
+                                    (SynNode@1135 534 "PP" 24 30 -1 @1123 2 0
+                                      (
+                                        (SynNode@1136 535 "IN" 24 24 -1 @1135 1 0
+                                          (
+                                            (SynNode@1137 536 "within" 24 24 -1 @1136 0 0
+                                              ())))
+                                        (SynNode@1138 537 "NP" 25 30 9 @1135 2 0
+                                          (
+                                            (SynNode@1139 538 "NPA" 25 26 10 @1138 2 1
+                                              (
+                                                (SynNode@1140 539 "DT" 25 25 -1 @1139 1 0
+                                                  (
+                                                    (SynNode@1141 540 "the" 25 25 -1 @1140 0 0
+                                                      ())))
+                                                (SynNode@1142 541 "NN" 26 26 -1 @1139 1 0
+                                                  (
+                                                    (SynNode@1143 542 "field" 26 26 -1 @1142 0 0
+                                                      ())))))
+                                            (SynNode@1144 543 "PP" 27 30 -1 @1138 2 0
+                                              (
+                                                (SynNode@1145 544 "IN" 27 27 -1 @1144 1 0
+                                                  (
+                                                    (SynNode@1146 545 "of" 27 27 -1 @1145 0 0
+                                                      ())))
+                                                (SynNode@1147 546 "NP" 28 30 11 @1144 3 0
+                                                  (
+                                                    (SynNode@1148 547 "NPA" 28 28 12 @1147 1 0
+                                                      (
+                                                        (SynNode@1149 548 "NN" 28 28 -1 @1148 1 0
+                                                          (
+                                                            (SynNode@1150 549 "physiology" 28 28 -1 @1149 0 0
+                                                              ())))))
+                                                    (SynNode@1151 550 "CC" 29 29 -1 @1147 1 0
+                                                      (
+                                                        (SynNode@1152 551 "or" 29 29 -1 @1151 0 0
+                                                          ())))
+                                                    (SynNode@1153 552 "NPA" 30 30 13 @1147 1 0
+                                                      (
+                                                        (SynNode@1154 553 "NN" 30 30 -1 @1153 1 0
+                                                          (
+                                                            (SynNode@1155 554 "medicine" 30 30 -1 @1154 0 0
+                                                              ())))))))))))))))))))))))
+                (SynNode@1156 555 "." 31 31 -1 @1067 1 0
+                  (
+                    (SynNode@1157 556 "." 31 31 -1 @1156 0 0
+                      ())))
+                (SynNode@1158 557 "''" 32 32 -1 @1067 1 0
+                  (
+                    (SynNode@1159 558 "''" 32 32 -1 @1158 0 0
+                      ()))))))
+          6
+          (MentionSet@1052 0.000000 10.000000 @1067 3 14
+            (MentionSet::_mentions
+              (Mention@1053 300 5 "PER" "UNDET" 0 "UNDET" "UNDET" @1068 @1052 -1 1 -1 -1 -1)
+              (Mention@1054 301 1 "PER" "UNDET" 0 "UNDET" "UNDET" @1163 @1052 0 -1 2 -1 -1)
+              (Mention@1055 302 3 "PER" "UNDET" 0 "UNDET" "UNDET" @1076 @1052 0 -1 -1 -1 -1)
+              (Mention@1056 303 0 "PER" "UNDET" 0 "UNDET" "UNDET" @1077 @1052 -1 -1 -1 -1 -1)
+              (Mention@1057 304 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @1085 @1052 -1 -1 -1 -1 -1)
+              (Mention@1058 305 2 "PER" "UNDET" 0 "UNDET" "UNDET" @1089 @1052 -1 -1 -1 -1 -1)
+              (Mention@1059 306 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @1096 @1052 -1 -1 -1 -1 -1)
+              (Mention@1060 307 3 "PER" "UNDET" 0 "UNDET" "UNDET" @1110 @1052 -1 -1 -1 -1 -1)
+              (Mention@1061 308 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @1126 @1052 -1 -1 -1 -1 -1)
+              (Mention@1062 309 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @1138 @1052 -1 -1 -1 -1 -1)
+              (Mention@1063 310 0 "OTH" "UNDET" 0 "UNDET" "UNDET" @1139 @1052 -1 -1 -1 -1 -1)
+              (Mention@1064 311 6 "OTH" "UNDET" 0 "UNDET" "UNDET" @1147 @1052 -1 12 -1 -1 -1)
+              (Mention@1065 312 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @1148 @1052 11 -1 13 -1 -1)
+              (Mention@1066 313 3 "OTH" "UNDET" 0 "UNDET" "UNDET" @1153 @1052 11 -1 -1 -1 -1)))
+          7
+          (PropositionSet@1160 15
+            (PropositionSet::_props
+              (Proposition@1161 600 7 @0 @0 @0 @0 @0 2
+                (Proposition::_args@1161
+                  (Argument@1162 0 "<ref>" 1)
+                  (Argument@1164 2 "<null-symbol>" @1163)))
+              (Proposition@1165 602 3 @1080 @0 @0 @0 @0 2
+                (Proposition::_args@1165
+                  (Argument@1166 0 "<ref>" 2)
+                  (Argument@1167 0 "of" 4)))
+              (Proposition@1168 601 3 @1086 @0 @0 @0 @0 1
+                (Proposition::_args@1168
+                  (Argument@1169 0 "<ref>" 4)))
+              (Proposition@1170 603 8 @1089 @0 @0 @0 @0 1
+                (Proposition::_args@1170
+                  (Argument@1171 0 "<ref>" 5)))
+              (Proposition@1172 605 0 @1094 @0 @0 @0 @0 2
+                (Proposition::_args@1172
+                  (Argument@1173 0 "<sub>" 5)
+                  (Argument@1174 0 "<obj>" 6)))
+              (Proposition@1175 604 3 @1099 @0 @0 @0 @0 1
+                (Proposition::_args@1175
+                  (Argument@1176 0 "<ref>" 6)))
+              (Proposition@1177 614 0 @1107 @0 @0 @0 @0 2
+                (Proposition::_args@1177
+                  (Argument@1178 0 "<sub>" 1)
+                  (Argument@1180 1 "<obj>" @1183)))
+              (Proposition@1181 606 3 @1113 @0 @0 @0 @0 1
+                (Proposition::_args@1181
+                  (Argument@1182 0 "<ref>" 7)))
+              (Proposition@1183 613 0 @1124 @0 @0 @0 @1118 3
+                (Proposition::_args@1183
+                  (Argument@1184 0 "<sub>" 7)
+                  (Argument@1185 0 "<obj>" 8)
+                  (Argument@1186 0 "within" 9)))
+              (Proposition@1187 607 2 @1131 @0 @0 @0 @0 1
+                (Proposition::_args@1187
+                  (Argument@1188 0 "<ref>" 8)))
+              (Proposition@1189 608 3 @1133 @0 @0 @0 @0 1
+                (Proposition::_args@1189
+                  (Argument@1190 0 "<ref>" 8)))
+              (Proposition@1191 612 3 @1142 @0 @0 @0 @0 2
+                (Proposition::_args@1191
+                  (Argument@1192 0 "<ref>" 9)
+                  (Argument@1193 0 "of" 11)))
+              (Proposition@1194 611 6 @0 @0 @0 @0 @0 3
+                (Proposition::_args@1194
+                  (Argument@1195 0 "<ref>" 11)
+                  (Argument@1196 0 "<member>" 12)
+                  (Argument@1197 0 "<member>" 13)))
+              (Proposition@1198 609 3 @1149 @0 @0 @0 @0 1
+                (Proposition::_args@1198
+                  (Argument@1199 0 "<ref>" 12)))
+              (Proposition@1200 610 3 @1154 @0 @0 @0 @0 1
+                (Proposition::_args@1200
+                  (Argument@1201 0 "<ref>" 13))))
+            600)
+          8
+          (EntitySet@1202 4 6255336.000000 9
+            (EntitySet::_entities
+              (Entity@1203 0 "GPE" 1
+                (Entity::mentions 1))
+              (Entity@1204 1 "PER" 3
+                (Entity::mentions 2 18 100))
+              (Entity@1205 2 "PER" 1
+                (Entity::mentions 3))
+              (Entity@1206 3 "ORG" 1
+                (Entity::mentions 14))
+              (Entity@1207 4 "PER" 1
+                (Entity::mentions 19))
+              (Entity@1208 5 "ORG" 2
+                (Entity::mentions 110 114))
+              (Entity@1209 6 "PER" 2
+                (Entity::mentions 107 116))
+              (Entity@1210 7 "PER" 1
+                (Entity::mentions 106))
+              (Entity@1211 8 "PER" 5
+                (Entity::mentions 301 300 302 307 305))))
+          9
+          (RelMentionSet@1212 0
+            (RelMentionSet::_relations))
+          10
+          (EventMentionSet@1213 0
+            (EventMentionSet::_ementions)))))
+    1
+    (EntitySet@2 4 6255336.000000 9
+      (EntitySet::_entities
+        (Entity@3 0 "GPE" 1
+          (Entity::mentions 1))
+        (Entity@4 1 "PER" 3
+          (Entity::mentions 2 18 100))
+        (Entity@5 2 "PER" 1
+          (Entity::mentions 3))
+        (Entity@6 3 "ORG" 1
+          (Entity::mentions 14))
+        (Entity@7 4 "PER" 1
+          (Entity::mentions 19))
+        (Entity@8 5 "ORG" 2
+          (Entity::mentions 110 114))
+        (Entity@9 6 "PER" 2
+          (Entity::mentions 107 116))
+        (Entity@10 7 "PER" 1
+          (Entity::mentions 106))
+        (Entity@11 8 "PER" 5
+          (Entity::mentions 301 300 302 307 305))))
+    1
+    (RelationSet@12 0
+      (RelationSet::_relations))
+    1
+    (EventSet@13 0
+      (EventSet::_events))
+    1
+    (RelMentionSet@14 0
+      (RelMentionSet::_relations))
+    1
+    (ValueSet@15 3
+      (ValueSet::_values
+        (Value@16 0 "TIMEX2.TIME" "2004" ":NULL" ":NULL" ":NULL" ":NULL" ":NULL" @92)
+        (Value@17 1 "Numeric.Money" ":NULL" ":NULL" ":NULL" ":NULL" ":NULL" ":NULL" @440)
+        (Value@18 2 "Numeric.Money" ":NULL" ":NULL" ":NULL" ":NULL" ":NULL" ":NULL" @441)))
+    1
+    (ValueMentionSet@19 0
+      (ValueMentionSet::_values)))
+)

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE BYBLOS_PIPELINE SYSTEM "server_byblos.dtd">
+<BYBLOS_PIPELINE>
+ 
+  <!-- Implements a server pipeline for all-in-one Modular Serif -->
+
+  <!-- Change ***PATH*** to your base directory -->
+  <!-- Change ***DATA*** to your Serif data directory -->
+  <!-- Change ***BUILD*** to your Serif build directory -->
+  <!-- Change ***REGRESSION*** to your regression data directory -->
+  <!-- Change ***SCORE*** to your scoring script directory -->
+
+  <VARIABLE name = "BASE_DIR"         value = "***PATH***" />
+  <VARIABLE name = "BUILD_DIR"        value=  "***BUILD***"/> 
+  <VARIABLE name = "serif_data"       value=  "***DATA***" />
+  <VARIABLE name = "serif_regression" value = "***REGRESSION**" />
+  <VARIABLE name = "serif_score"      value = "***SCORE***" />
+
+  <VARIABLE name = "TEMPLATE_DIR"     value = "+BASE_DIR+/templates" />
+  <VARIABLE name = "TEMPLATE"         value = "all.speed.best-arabic.pipeline.par" />
+  <VARIABLE name = "SB_LOG_DIR"       value = "+BASE_DIR+/log" />
+  <VARIABLE name = "log_file"         value = "+BASE_DIR+/pipeline.log" />
+  <VARIABLE name = "NUM_JOBS_RESTART" value = "1000" />
+ 
+  <VARIABLE name = "server-mode"      value = "true" />
+
+  <PIPELINE_LOGFILE path = "+log_file+" />
+  <PIPELINE_SEQUENCE>
+ 
+    <SERVER_COMMAND binary    = "+BUILD_DIR+/ModularizedSerifArabic/LinuxModularizedSerifArabic"
+                    template  = "+TEMPLATE_DIR+/+TEMPLATE+"
+                    etemplate = "+BASE_DIR+/+ETEMPLATE_DIR+/+TEMPLATE+">
+                <PARAM name="batch_file"    value="+BASE_DIR+/+WORKING_DIR+/+INPUT_BASENAME+.source_files" />
+                <PARAM name="expt_dir"      value="+BASE_DIR+/+WORKING_DIR+" />
+                <PARAM name="batch_name"    value="+INPUT_BASENAME+" />
+                <PARAM name="CACHE_TYPE"    value="simple" />
+                <PARAM name="CACHE_ENTRIES" value="1000" />
+        </SERVER_COMMAND>
+ 
+  </PIPELINE_SEQUENCE>
+</BYBLOS_PIPELINE>

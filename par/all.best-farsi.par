@@ -1,0 +1,81 @@
+#######################################################################
+#                                                                     #
+# all.best_farsi.par:                                                 #
+#   This is a Serif parameter file designed to run our current        #
+#   best Farsi models                                                 #
+#                                                                     #
+#######################################################################
+
+parallel: +parallel+
+serif_data: +serif_data+
+
+######### Experiment Information ############################
+
+batch_file.prefix: +batch_file.prefix+/
+batch_file.list:   +batch_file.list+
+
+# Location of all output:
+experiment_dir.prefix: +expt_dir.prefix+/
+experiment_dir.list: +expt_dir.list+
+
+######### Session Information ################################
+
+start_stage: +start_stage+
+end_stage: values
+
+ignore_errors: true
+dump_theories: false
+
+primary_parse: full_parse
+use_sentence_level_relation_finding: false
+use_sentence_level_event_finding: false
+
+######### Global Configuration Parameters ####################
+
+token_branch: 1
+pos_branch:   1
+name_branch:  1
+nested_name_branch: 1
+value_branch: 1
+beam_width:   1
+
+entity_type_set:    %serif_data%/ace/ace_2004_entity_types.txt
+value_type_set:     %serif_data%/ace/ace_2005_value_types.txt
+
+######### Module-specific params #############################
+modules: NONE
+
+# ----- Document Reader -----
+
+doc_reader_regions_to_process: TEXT,TURN,SPEAKER,POSTER,POSTDATE,SUBJECT
+doc_reader_datetime_tags:      DATE_TIME,DATETIME
+doc_reader_region_breaks:      TURN,P,QUOTE
+
+downcase_all_uppercase_docs:   true
+
+# ----- Sentence Breaker -----
+
+# ----- Tokenizer -----
+
+tokenizer_split_chars:  %serif_data%/farsi/tokenization/split-chars.data
+
+# ----- Names/IdentiFinder -----
+
+name_finder:            pidf
+
+pidf_model_file:        %serif_data%/farsi/names/pidf/PIdF-Train-All-Farsi-all.weights
+
+pidf_features_file:     %serif_data%/unspec/names/pidf/name-pidf.features
+pidf_tag_set_file:      %serif_data%/unspec/names/pidf/name-pidf.tags
+pidf_interleave_tags:   false
+pidf_learn_transitions: false
+pidf_use_clusters:      false
+
+# ----- Values -----
+
+do_values_stage:            true
+value_finder_type:          rule
+
+# ----- Output -----
+
+output_format: SerifXML

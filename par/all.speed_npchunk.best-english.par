@@ -1,0 +1,22 @@
+########################################################################
+# 08/29/11, Liz Boschee                                                #
+#                                                                      #
+# all.speed_npchunk.best_english.par:                                  #
+#   This is a Serif parameter file designed to run our current         #
+#   fast models, but with np chunks isntead of full parses             #
+#                                                                      #
+########################################################################
+
+# External variables (must be defined first)
+parallel:           +parallel+
+serif_data:         +serif_data+
+serif_score:        +serif_score+
+start_stage:        +start_stage+
+end_stage:          +end_stage+
+experiment_dir:     +expt_dir+
+batch_file:         +batch_file+
+state_saver_stages: +state_saver_stages+
+
+INCLUDE +par_dir+/master.english.par
+INCLUDE +par_dir+/master.english-speed.par
+INCLUDE +par_dir+/master.english-npchunk.par

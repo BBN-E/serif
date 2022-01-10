@@ -1,0 +1,365 @@
+########################################################################
+# 08/29/11, Liz Boschee                                                #
+#                                                                      #
+# master.arabic.par:                                                   #
+#   This is a Serif parameter file designed to run our current         #
+#   BEST system in Arabic.                                             #
+#                                                                      #
+#   This should always be the first include in an Arabic parameter     #
+#   file.                                                              #
+#                                                                      #
+########################################################################
+
+ignore_errors: true
+dump_theories: false
+
+##############################################################
+########## Global Configuration Parameters ###################
+##############################################################
+######### Branching Factors for each stage ##################
+# be careful using these! 
+# too much branching will devour resources
+token_branch: 1
+name_branch: 1
+nested_name_branch: 1
+parse_branch: 1
+desc_branch: 1
+# all linking branches as one
+link_branch: 1
+value_branch: 1
+pos_branch: 1
+npchunk_branch: 1
+
+# global beam width - to catch all branches, it should be 
+# the product of the branching factors. To prune,
+# make it something less
+beam_width: 1
+
+# specific stage beam width -
+# override the global beam width for pruning after
+# a specific stage
+# tokens_beam_width: 
+# names_beam_width: 
+# parse_beam_width: 
+# mentions_beam_width:
+# props_beam_width:
+# entities_beam_width:
+# relations_beam_width:
+
+# entities
+entity_type_set:    %serif_data%/ace/ace_2004_entity_types.txt
+value_type_set:     %serif_data%/ace/ace_2005_value_types.txt
+
+# Word Classes -- output of bigram word cluster, used in perceptron models
+word_cluster_bits_file: %serif_data%/arabic/clusters/cl2_tdt4_wl.hBits
+
+# Output memory usage data in the session log:
+check_memory: false
+
+##############################################################
+############# Module Specific Parameters #####################
+##############################################################
+modules: Arabic
+
+################################
+######       Part 1      #######
+################################
+# ---------  Document Reader  -----------
+
+doc_reader_calculate_edt_offsets: false
+doc_reader_offsets_start_at_first_tag: true
+downcase_all_uppercase_docs: false
+doc_reader_regions_to_process: TEXT,POST,POSTER,POSTDATE
+
+# ---------  Sentence Breaker  ----------
+
+#this splits sentences longer than 100 words in half arbitrarily (to speed up parsing)
+break_long_sentences: true
+break_long_sentences_heuristic_rule: true
+
+# ------------  Tokenizer  -------------
+
+tokenizer_subst: %serif_data%/arabic/tokenization/token-subst.data
+
+# ----------  Morph Analysis  ----------
+#this is only for arabic, using a dictionary to morphology of words
+#BW dictionary that was updated with names
+BWMorphDict: %serif_data%/arabic/morphology/serif-dict-all.txt
+BWRuleDict:  %serif_data%/arabic/morphology/ruledict.txt
+
+reset_dictionary: false
+
+# ----------  MorphSelection  ---------
+
+#this is only for arabic, choose the best morphology sequence for a sentence, 
+#detatching clitics using a bigram model (the parser can be used to do this)
+
+do_bigram_morph_selection: true
+MorphModel: %serif_data%/arabic/morphology/morph_model_from_text8
+
+# ----------  Name Finding  -----------
+
+# There are now 2 name_finders: 
+#   'idf': The traditional (generative) IdentiFinder
+#   'pidf': The perceptron-IdentiFinder, which uses word cluster info
+# If you select pidf, make sure a word-cluster-bits-file is specified
+# above.
+name_finder: pidf
+
+# idf parameters
+idf_model:     %serif_data%/arabic/names/idf/idf-ACE2004
+idf_list_file: %serif_data%/arabic/names/lists/lists.txt
+
+# true if separate w-b-l clitics in names
+idf_separate_all_clitics: false
+
+# pidf parameters
+pidf_interleave_tags:   true
+pidf_learn_transitions: false
+pidf_features_file:     %serif_data%/arabic/names/pidf/ace2007-with-lists.features
+pidf_tag_set_file:      %serif_data%/arabic/names/pidf/7Types-names.txt
+
+pidf_model_file: %serif_data%/arabic/names/pidf/ace2007-names-excl_nothing.p1
+
+################################
+######       Part 2      #######
+################################
+# ----------   Values   ----------
+
+values_features_file: %serif_data%/arabic/values/pidf/default.features
+values_tag_set_file:  %serif_data%/arabic/values/pidf/default.tags
+values_model_file:    %serif_data%/arabic/values/pidf/model-all
+
+# ----------  Parser  ------------
+
+parser_model:     %serif_data%/arabic/parser/atb_1_2_3.30
+bigrams:          %serif_data%/arabic/parser/parser-bigrams
+parser_frag_prob: 0
+#true if parser is working on data for which clitics have been separated
+use_standard_parser: true
+
+probs_cache_type: simple
+probs_cache_max_k_entries: 1000
+
+primary_parse: npchunk_parse
+
+# ---------  NPChunking  --------
+
+#if do-np-chunk is true, be sure other pnpchunk and word-class params are in file
+do_np_chunk: true
+pnpchunk_features_file: %serif_data%/arabic/np-chunks/npchunk_features.txt
+pnpchunk_tag_set_file:  %serif_data%/arabic/np-chunks/np_tags.txt
+pnpchunk_model_file:    %serif_data%/arabic/np-chunks/2005.cl2_tdt4_wl-npchunk
+
+################################
+######       Part 3      #######
+################################
+
+# -------  Descriptor Classification  --------
+
+desc_classify_model_type: P1
+do_desc_recognition: true
+
+## P1
+p1_desc_use_propositions:  false 
+p1_desc_use_wordnet:       false
+p1_desc_features_file:	   %serif_data%/arabic/nominals/p1/ACE2005-Features.txt
+p1_desc_model_file:        %serif_data%/arabic/nominals/p1/desc-classify.august2011.excl-nothing.weights.p1
+
+pdesc_rare_hw_list:          %serif_data%/arabic/nominals/p1/rare_hws.txt
+pdesc_window_gram_stopwords: %serif_data%/arabic/nominals/p1/windowgram.stopwords.txt
+
+## PM (currently not used)
+p1_desc_tag_set_file:  %serif_data%/arabic/nominals/pm/desc.tags.txt
+desc_classify_model:   %serif_data%/arabic/nominals/pm/ar_desc-class
+
+## translated list of nationalities that may be people or GPEs
+nationality_likely_list:  %serif_data%/arabic/misc/all_nationalities.txt
+nationality_certain_list: %serif_data%/arabic/misc/nationalities-certain.txt
+nat_desc_are_names:	  true
+# if true 'likely nationalities' can be come PER, if false only 'certain-nationalities' can become PER
+do_nat_conversion: false
+
+# try to find a partitive mention
+find_partitive_mentions: false
+
+## perceptron descriptor settings (currently not in use)
+use_pidf_desc: false
+pdesc_features_file: %serif_data%/arabic/nominals/pidf/pidf-allbi.txt
+pdesc_tag_set_file:  %serif_data%/arabic/nominals/pidf/7types-names.txt
+pdesc_model_file:    %serif_data%/arabic/nominals/pidf/desc-cl2_tdt4_wl-allbi
+#shrink descriptors to just a head word for alignment
+do_edt_findhw: true
+
+## subtypes 
+entity_subtype_set: %serif_data%/ace/entity-subtypes-2005.txt
+desc_head_subtypes: %serif_data%/arabic/subtypes/2005.desc_headword.all.txt
+name_word_subtypes: %serif_data%/arabic/subtypes/name-word-mappings.2005.txt
+full_name_subtypes: %serif_data%/arabic/subtypes/2005.full_names.all.txt
+
+#--------    Mentonymy    ---------
+
+metonymy_dir: %serif_data%/arabic/metonymy
+use_gpe_roles: true
+
+#----------------------------------------
+#--------    Mention Linking    ---------
+#----------------------------------------
+
+entity_linking_mode: SENTENCE
+
+create_partitive_entities: false
+#word list for partitives, collected from ACE2004 training, translated from English words, and reviewed by Rasha
+partitive_headword_list: %serif_data%/arabic/misc/single_word_partitives.txt
+
+do_strategic_linking: false
+unify_appositives: false
+
+# ----------  Name Linking  -----------
+
+name_link_mode: stat
+
+use_simple_rule_namelink: false
+
+#weights for the name linker.
+#NOTE: USING ENGLISH NEW-OLD!
+namelink_newold_model_file: %serif_data%/arabic/coref/names/stat/newoldmodel
+specific_unseen_weights:    %serif_data%/arabic/coref/names/stat/specificUnseenWeights
+generic_unseen_weights:     %serif_data%/arabic/coref/names/stat/newmodel.lambdas
+generic_model_file:         %serif_data%/arabic/coref/names/stat/newmodel.uni
+abbrev_maker_file:          %serif_data%/arabic/coref/names/stat/abbrevs.txt
+
+# -------  Descriptor Linking  --------
+
+desc_link_mode: DT
+
+## P1_RANKING
+dt_coref_model_type:        P1_RANKING
+dt_coref_tag_set_file:      %serif_data%/arabic/coref/nominals/p1/pdesclink_tags.txt
+dt_coref_features_file:     %serif_data%/arabic/coref/nominals/p1/ace2007.desc2.features
+dt_coref_model_file:        %serif_data%/arabic/coref/nominals/p1/dt-desc-coref.august2011.excl-nothing.weights
+dt_coref_rank_overgen_threshold: -150000
+
+# -------  Pronoun Linking  --------
+
+pronoun_link_mode: PM
+
+## turn on EDT pronoun linking
+do_pron_link:	  true
+discard_pronouns: true
+
+## name gender lists for pronoun linking
+name_gender: %serif_data%/arabic/misc/gender-number
+
+# ----------  Relation Finder  ---------
+
+## This will actually run P1 + MAXENT
+relation_model_type: P1
+
+## relation arguments to be reversed (none, model, rule, both)
+reverse_relations:  rule
+
+use_sentence_level_relation_finding: false
+ignore_relations_with_matching_heads: false
+merge_rel_mentions_across_type: false
+p1_relation_validation_str: 2005
+p1_relation_overgen_percentage: 0
+relation_mention_dist_cutoff: 3
+allow_relations_within_distance: 20
+
+relation_features_file:      %serif_data%/arabic/relations/p1/ACE2005-features.txt
+relation_tag_set_file:       %serif_data%/arabic/relations/relation.ace2005.tags
+exec_head_file:              %serif_data%/arabic/relations/exec-hits.txt
+staff_head_file:             %serif_data%/arabic/relations/staff-hits.txt
+
+relation_model_file:        %serif_data%/arabic/relations/p1/relation-p1.august2011.excl-nothing.weights
+maxent_relation_model_file: %serif_data%/arabic/relations/maxent/relation-maxent.august2011.excl-nothing.weights
+
+relation_finder_use_alt_models: true
+alternative_relation_model_file: %serif_data%/arabic/relations/alt-models/relation-alt-p1.august2011.txt
+
+# ------------  Events  ------------
+
+# disable event model
+event_model_type: NONE
+event_linking_style: NONE
+use_sentence_level_event_finding: false
+allow_events_to_subsume_relations: false
+
+# ---- Clutter Filter ----
+
+filter_clutter:                                               true
+filter_clutter_use_ace2008eval_filter:		              true
+ACE2008_clutter_keep_relation_with_multiple_relmentions:      true
+
+filter_clutter_filter_WEA:                                    true
+filter_clutter_filter_VEH:                                    true
+
+# Filtering Relations
+ACE2008_clutter_filter_PHYS_Located_Relations:                                false
+ACE2008_clutter_filter_PHYS_Near_Relations:                                   false
+ACE2008_clutter_filter_PART_WHOLE_Geographical_Relations:                     false
+ACE2008_clutter_filter_PART_WHOLE_Subsidiary_Relations:                       false
+ACE2008_clutter_filter_PART_WHOLE_Artifact_Relations:                         false
+ACE2008_clutter_filter_PER_SOC_Business_Relations:                            false
+ACE2008_clutter_filter_PER_SOC_Family_Relations:                              false
+ACE2008_clutter_filter_PER_SOC_Lasting_Personal_Relations:                    false
+ACE2008_clutter_filter_ORG_AFF_Employment_Relations:                          false
+ACE2008_clutter_filter_ORG_AFF_Ownership_Relations:                           false
+ACE2008_clutter_filter_ORG_AFF_Founder_Relations:                             false
+ACE2008_clutter_filter_ORG_AFF_Student_Alum_Relations:                        false
+ACE2008_clutter_filter_ORG_AFF_Sports_Affiliation_Relations:                  false
+ACE2008_clutter_filter_ORG_AFF_Investor_Shareholder_Relations:                false
+ACE2008_clutter_filter_ORG_AFF_Membership_Relations:                          false
+ACE2008_clutter_filter_ART_User_Owner_Inventor_Manufacturer_Relations:        false
+ACE2008_clutter_filter_GEN_AFF_Citizen_Resident_Religion_Ethnicity_Relations: false
+ACE2008_clutter_filter_GEN_AFF_Org_Location_Relations:                        false
+
+ACE2008_clutter_remove_relations_with_pron_lvl_entity:        false
+ACE2008_clutter_remove_relations_with_2_pron_lvl_entities:    false
+ACE2008_clutter_remove_relations_with_pronoun:                false
+ACE2008_clutter_remove_relations_with_unsure_nominal:         false
+#ACE2008_clutter_remove_relations_with_name_level_pronoun:    false
+ACE2008_clutter_remove_relations_with_desc_level_pronoun:     false
+ACE2008_clutter_remove_relations_with_pron_and_desc:          false
+
+ACE2008_clutter_remove_relations_with_1P_pronoun:             false
+ACE2008_clutter_remove_relations_with_2P_pronoun:             false
+ACE2008_clutter_remove_relations_with_3P_pronoun:             false
+ACE2008_clutter_remove_relations_with_LocTypePronoun:         false
+
+ACE2008_clutter_remove_desc_level_entity:                     false
+ACE2008_clutter_remove_2_desc_level_entities:                 false
+
+ACE2008_clutter_remove_relations_with_PER_pronoun:            false
+ACE2008_clutter_remove_relations_with_PER_descriptor:         false
+ACE2008_clutter_remove_relations_with_LOC_pronoun:            false
+ACE2008_clutter_remove_relations_with_LOC_descriptor:         false
+ACE2008_clutter_remove_relations_with_GPE_pronoun:            false
+ACE2008_clutter_remove_relations_with_GPE_descriptor:         false
+ACE2008_clutter_remove_relations_with_ORG_pronoun:            false
+ACE2008_clutter_remove_relations_with_ORG_descriptor:         false
+ACE2008_clutter_remove_relations_with_FAC_pronoun:            false
+ACE2008_clutter_remove_relations_with_FAC_descriptor:         false
+
+ACE2008_clutter_remove_relations_with_desc_GPE_and_ORG:       false
+
+# Entity filter options
+ACE2008_clutter_remove_1_mention_entities:                    false
+ACE2008_clutter_remove_pronoun_lvl_entities:                  false
+ACE2008_clutter_remove_1_desc_lvl_entities:                   false
+
+# ------------  Output  ------------
+
+output_format: APF7,SERIFXML
+
+## try to produce premods in the apf
+do_premod_apf:	false
+
+# ------------  Scoring  ------------
+
+# this scorer runs all the scoring scrips (2005, 2007 & 2008)
+score_script: %serif_score%/ace-all-do-quick-score-v01.pl
+
+
+

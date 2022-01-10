@@ -1,0 +1,29 @@
+//#########################################################################
+//# Copyright (c) 2010 by BBNT Solutions LLC                              #
+//# All Rights Reserved.                                                  #
+//#                                                                       #
+//# Generic/common/BoostLibrariesFound.h.in                               #
+//#                                                                       #
+//# This file is dynamically instantiated by CMake.                       #
+//#                                                                       #
+//# It indicates which boost libraries are available.                     #
+//#                                                                       #
+//# The resulting file is put in:                                         #
+//# $binary_dir/dynamic_includes/common/BoostLibrariesFound.h             #
+//#########################################################################
+
+#ifndef BOOST_LIBRARIES_FOUND_H
+#define BOOST_LIBRARIES_FOUND_H
+
+#cmakedefine Boost_REGEX_FOUND
+#cmakedefine Boost_DATE_FOUND
+#cmakedefine Boost_TIME_FOUND
+#cmakedefine Boost_FILESYSTEM_FOUND
+#cmakedefine Boost_IOSTREAMS_FOUND
+#cmakedefine Boost_SERIALIZATION_FOUND
+#cmakedefine Boost_SYSTEM_FOUND
+#cmakedefine Boost_TEST_FOUND
+#cmakedefine Boost_THREAD_FOUND
+#cmakedefine Boost_PROGRAM_OPTIONS_FOUND
+
+#endif

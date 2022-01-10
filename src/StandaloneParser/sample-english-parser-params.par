@@ -1,0 +1,21 @@
+
+serif_data: \\raid68\u17\serif\data
+
+parser_model:  %serif_data%\english\parser\full-with-complete-dates.50
+
+inventory: %serif_data%\english\parser\parser-desc-inventory
+bigrams: %serif_data%\english\parser\parser-bigrams
+
+parser_frag_prob: 0
+
+infile: sample-parser-input.txt
+outfile: sample-parser-output.txt
+logfile: parser.log
+
+language_module:	English
+
+print_confidence: false
+print_score: true
+
+entity_type_set:  %serif_data%\ace\ace_2004_entity_types.txt
+word_net_dictionary_path:  %serif_data%\english\Software\WN16\dict

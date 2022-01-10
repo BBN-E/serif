@@ -1,0 +1,19 @@
+//#########################################################################
+//# Copyright (c) 2007 by BBNT Solutions LLC                              #
+//# All Rights Reserved.                                                  #
+//#                                                                       #
+//# Generic/common/ProfileDefinition.h.in                                 #
+//#                                                                       #
+//# This file is dynamically instantiated by CMake.                       #
+//# The resulting file is put in:                                         #
+//# $binary_dir/dynamic_includes/common/ProfileDefinition.h               #
+//#########################################################################
+
+#ifndef BOOST_LIBRARIES_FOUND_H
+#define BOOST_LIBRARIES_FOUND_H
+
+#cmakedefine Boost_REGEX_FOUND
+#cmakedefine Boost_REGEX_FOUND
+#cmakedefine Boost_REGEX_FOUND
+
+#endif

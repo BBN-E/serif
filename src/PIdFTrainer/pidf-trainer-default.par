@@ -1,0 +1,47 @@
+# Default PIdF/QuickLearn trainer parameter file
+
+# Output mode: 'verbose' for detailed progress; 'taciturn' for minimal
+# progress (for running in batch queue).
+pidf-trainer-output-mode: verbose
+
+# This tells the trainer to add features arising from bad decoding
+# guesses, even if they do not occur in the training data. This results
+# is a larger model, and seems to yield better performance.
+pidf-trainer-add-hyp-features: true
+
+# If this is true, the feature table is seeded by an initial pass
+# through the training data. This must be set to 'true' if
+# add-hyp-features is false; if add-hyp-features is true, then it seems
+# to have little effect on performance.
+pidf-trainer-seed-features: true
+
+# The desired location of the resulting model
+pidf-model-file: <your-desired-model-output-file>.weights
+
+# Number of training cycles. Higher values should improve performance,
+# but the marginal performance gain of an extra epoch approaches zero
+# quickly, and training for too many epochs may even harm performance.
+# 5 is the usual value; going up to 7 or 8 has been beneficial in some
+# cases.
+pidf-trainer-epochs: 5
+
+# Number of sentences between adding current weight table to running
+# average. With a value of 1, training can be very slow; with higher
+# values, there is a danger of performance degradation. 20 has worked
+# well, but if you're really nervous, set it to 15.
+pidf-trainer-weightsum-granularity: 20
+
+
+# The feature name list:
+pidf-features-file: //traid01/projects/Serif/data/pidf/default.features
+
+# The tag set file:
+pidf-tag-set-file: //traid01/projects/Serif/data/pidf/default.tags
+
+# idf-style training file:
+pidf-training-file: <your-idf-training-file>.sexp
+
+
+# If you use any word cluster features (most models do), then the word
+# clusterer bits file must be specified:
+word-cluster-bits-file: //traid01/Projects/DiscriminativeTagger/LanguageData/CSRWSJ/csr-wsj.hBits

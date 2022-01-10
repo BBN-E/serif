@@ -1,0 +1,41 @@
+########################################################################
+# 11/21/13, Elizabeth Boschee                                          #
+#                                                                      #
+# regtest.icews.xmltext.par                                            #
+#                                                                      #
+# This parameter file runs the classic ICEWS configuration, reading    #
+# ICEWSXml-style files.                                                #
+#                                                                      #
+########################################################################
+
+parallel:           +parallel+
+state_saver_stages: NONE
+serif_score:        NONE
+experiment_dir.prefix: +expt_dir+/
+experiment_dir.list: icews1 icews2 icews3 icews4 icews5 icews6 icews7 icews8 icews9 icews10 icews11 icews12
+batch_file.prefix: +serif_regression+/icews_2007_1k+os_suffix+/
+batch_file.list: icews1 icews2 icews3 icews4 icews5 icews6 icews7 icews8 icews9 icews10 icews11 icews12
+
+
+serif_data:         +serif_data+
+start_stage:        +start_stage+
+#end_stage:          +end_stage+
+end_stage:          output
+
+## we need to avoid the invokeScoreScript that runs if we go to the end
+
+icews_lib_dir:      +icews_lib_dir+
+
+INCLUDE +par_dir+/master.english.par
+INCLUDE +par_dir+/master.icews.english.par
+INCLUDE +par_dir+/icews.english.xmltext.par
+
+OVERRIDE icews_read_stories_from_database: false
+OVERRIDE output_format: SERIFXML
+
+# Sqlite output (for local coding)
+OVERRIDE icews_save_events_to_database_table: serif_events
+OVERRIDE icews_output_db:    sqlite://%experiment_dir%/icews-output.sqlite?create
+
+# Only used when creating deliverable
+license_file: %serif_data%/unspec/misc/ICEWS.lic

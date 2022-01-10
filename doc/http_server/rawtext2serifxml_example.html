@@ -1,0 +1,124 @@
+<html>
+<head>
+  <title>Serif HTTP Server: rawtext2serifxml Example</title>
+  <link rel="stylesheet" type="text/css" href="serif.css">
+</head>
+<body>
+<div class="body">
+
+<h1>Example Session: rawtext2serifxml</h1>
+
+<pre class="example-request">
+<div class="http-example-label">Client Request</div>
+POST rawtext2serifxml HTTP/1.0
+content-length: 41
+
+I saw a man on the hill with a telescope.
+</pre>
+<pre class="example-response">
+<div class="http-example-label">Server Response</div>
+HTTP/1.0 200 OK
+Content-length: 5431
+
+&lt;?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+&lt;SerifXML version="18">
+
+  &lt;Document docid="20101116094825-0" id="a1" is_downcased="FALSE" language="English" source_type="UNKNOWN">
+    &lt;OriginalText char_offsets="0:40" edt_offsets="0:40" id="a2">
+      &lt;Contents>I saw a man on the hill with a telescope.&lt;/Contents>
+    &lt;/OriginalText>
+    &lt;Regions>
+      &lt;Region char_offsets="0:40" edt_offsets="0:40" id="a3" is_receiver="FALSE" is_speaker="FALSE" tag="TEXT"/>
+    &lt;/Regions>
+    &lt;Segments/>
+    &lt;Metadata/>
+    &lt;Sentences>
+      &lt;Sentence char_offsets="0:40" edt_offsets="0:40" id="a4" is_annotated="TRUE" region_id="a3">
+        &lt;TokenSequence id="a5" score="0">
+          &lt;Token char_offsets="0:0" edt_offsets="0:0" id="a6">I&lt;/Token>
+          &lt;Token char_offsets="2:4" edt_offsets="2:4" id="a7">saw&lt;/Token>
+          &lt;Token char_offsets="6:6" edt_offsets="6:6" id="a8">a&lt;/Token>
+          &lt;Token char_offsets="8:10" edt_offsets="8:10" id="a9">man&lt;/Token>
+          &lt;Token char_offsets="12:13" edt_offsets="12:13" id="a10">on&lt;/Token>
+          &lt;Token char_offsets="15:17" edt_offsets="15:17" id="a11">the&lt;/Token>
+          &lt;Token char_offsets="19:22" edt_offsets="19:22" id="a12">hill&lt;/Token>
+          &lt;Token char_offsets="24:27" edt_offsets="24:27" id="a13">with&lt;/Token>
+          &lt;Token char_offsets="29:29" edt_offsets="29:29" id="a14">a&lt;/Token>
+          &lt;Token char_offsets="31:39" edt_offsets="31:39" id="a15">telescope&lt;/Token>
+          &lt;Token char_offsets="40:40" edt_offsets="40:40" id="a16">.&lt;/Token>
+        &lt;/TokenSequence>
+        &lt;PartOfSpeechSequence id="a17" score="0" token_sequence_id="a5"/>
+        &lt;NameTheory id="a18" score="0" token_sequence_id="a5"/>
+        &lt;ValueMentionSet id="a19" score="0" token_sequence_id="a5"/>
+        &lt;Parse id="a20" score="-47.7131462" token_sequence_id="a5">
+          &lt;TreebankString node_id_method="DFS">
+           (S^ (NPA (PRP^ i)) (VP^ (VBD^ saw) (NPA (DT a) (NN^ man)) 
+           (PP (IN^ on) (NP (NPA^ (DT the) (NN^ hill)) (PP (IN^ with) 
+           (NPA (DT a) (NN^ telescope)))))) (. .))&lt;/TreebankString>
+        &lt;/Parse>
+        &lt;MentionSet desc_score="4" id="a21" name_score="0" parse_id="a20">
+          &lt;Mention entity_subtype="UNDET" entity_type="PER" id="a22" intended_type="UNDET" 
+                is_metonymy="FALSE" mention_type="pron" role_type="UNDET" syn_node_id="a20.1"/>
+          &lt;Mention entity_subtype="UNDET" entity_type="PER" id="a23" intended_type="UNDET" 
+                is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a20.2"/>
+          &lt;Mention entity_subtype="UNDET" entity_type="PER" id="a24" intended_type="UNDET" 
+                is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a20.7"/>
+          &lt;Mention entity_subtype="Land-Region-Natural" entity_type="LOC" id="a25" intended_type="UNDET" 
+                is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a20.15"/>
+          &lt;Mention entity_subtype="UNDET" entity_type="OTH" id="a26" intended_type="UNDET" 
+                is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a20.16"/>
+          &lt;Mention entity_subtype="UNDET" entity_type="OTH" id="a27" intended_type="UNDET" 
+                is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a20.24"/>
+        &lt;/MentionSet>
+        &lt;PropositionSet id="a28" mention_set_id="a21">
+          &lt;Proposition head_id="a20.1" id="a29" type="pronoun">
+            &lt;Argument mention_id="a22" role="&lt;ref>"/>
+          &lt;/Proposition>
+          &lt;Proposition head_id="a20.10" id="a31" type="noun">
+            &lt;Argument mention_id="a24" role="&lt;ref>"/>
+          &lt;/Proposition>
+          &lt;Proposition head_id="a20.27" id="a33" type="noun">
+            &lt;Argument mention_id="a27" role="&lt;ref>"/>
+          &lt;/Proposition>
+          &lt;Proposition head_id="a20.19" id="a32" type="noun">
+            &lt;Argument mention_id="a25" role="&lt;ref>"/>
+            &lt;Argument mention_id="a27" role="with"/>
+          &lt;/Proposition>
+          &lt;Proposition head_id="a20.5" id="a30" type="verb">
+            &lt;Argument mention_id="a22" role="&lt;sub>"/>
+            &lt;Argument mention_id="a24" role="&lt;obj>"/>
+            &lt;Argument mention_id="a25" role="on"/>
+          &lt;/Proposition>
+        &lt;/PropositionSet>
+        &lt;RelMentionSet id="a34" score="0.233999997">
+          &lt;RelMention id="a35" left_mention_id="a24" modality="Asserted" right_mention_id="a25" 
+                score="0.233999997" tense="Unspecified" type="PHYS.Located"/>
+        &lt;/RelMentionSet>
+        &lt;EventMentionSet id="a36" score="0"/>
+        &lt;SentenceTheory event_mention_set_id="a36" id="a37" mention_set_id="a21" name_theory_id="a18" 
+                parse_id="a20" part_of_speech_sequence_id="a17" primary_parse="full_parse" proposition_set_id="a28" 
+                rel_mention_set_id="a34" token_sequence_id="a5" value_mention_set_id="a19"/>
+      &lt;/Sentence>
+    &lt;/Sentences>
+    &lt;EntitySet id="a38" score="-384221">
+      &lt;Entity entity_type="PER" id="a39" is_generic="FALSE" mention_ids="a24"/>
+      &lt;Entity entity_type="LOC" id="a40" is_generic="FALSE" mention_ids="a25"/>
+      &lt;Entity entity_type="PER" id="a41" is_generic="TRUE" mention_ids="a22"/>
+    &lt;/EntitySet>
+    &lt;ValueSet id="a42"/>
+    &lt;RelationSet id="a43">
+      &lt;Relation id="a44" left_entity_id="a39" modality="Asserted" rel_mention_ids="a35" 
+                right_entity_id="a40" tense="Unspecified" type="PHYS.Located"/>
+    &lt;/RelationSet>
+    &lt;EventSet id="a45"/>
+    &lt;ValueMentionSet id="a46" score="0"/>
+    &lt;RelMentionSet id="a47" score="0"/>
+    &lt;Lexicon/>
+  &lt;/Document>
+
+&lt;/SerifXML>
+</pre>
+
+</div>
+</body>
+</html>

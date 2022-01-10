@@ -1,0 +1,18 @@
+########################################################################
+# icews.english.xmltext.par                                            #
+#                                                                      #
+# This parameter file specifies parameters for reading the special     #
+# format of files that come from the ICEWS program.                    #
+#                                                                      #
+# It does not stand alone and is intended to be imported after any     #
+# master parameter files.                                              #
+#                                                                      #
+########################################################################
+
+# Overrides for processing ICEWS_XMLText files
+source_format: ICEWS_XMLText
+OVERRIDE use_icews_sentence_numbers: true
+OVERRIDE doc_reader_region_breaks: sentence
+OVERRIDE doc_reader_regions_to_process: sentence
+OVERRIDE sentence_breaker_dateline_mode: very_aggressive
+OVERRIDE en_sentence_breaker_max_whitespace: 60

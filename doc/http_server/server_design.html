@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<html>
+<head>
+  <title>Serif HTTP Server: Design</title>
+  <link rel="stylesheet" type="text/css" href="serif.css">
+</head>
+<body>
+<div class="body">
+<h1>Serif HTTP Server Design</h1>
+
+<p>The Serif HTTP server uses a multi-threaded design to ensure that
+ client requests can be responded to in a timely manner, even while
+ SERIF is busy processing a document.  In particular, the Serif server
+ uses two threads:</p>
+
+<ul>
+  <li> The <b>Server Thread</b> is responsible for accepting and
+    handling connections from clients.  It is also responsible for
+    initiating connections with remote servers when necessary (e.g.,
+    to download the contents of a document from a remote server).</li>
+  <li> The <b>Serif Thread</b> is responsible for all interactions
+    with core Serif modules.  In particular, it is responsible for
+    processing documents using Serif's <code>DocumentDriver</code>.</li>
+</ul>
+
+<p> Communication between these two threads is mediated using a singleton
+<a href="#SerifWorkQueue"><code>SerifWorkQueue</code></a> object.
+Note that the server itself is not multithreaded -- thus, the we only
+need to worry about concurrency issues such as locking when
+considering the interface between the two threads (i.e., in
+the <code>SerifWorkQueue</code>).</p>
+
+<h2> The Server Thread </h2>
+<div class="section">
+<p>The <a href="#SerifHTTPServer"><code>SerifHTTPServer</code></a>
+class is the main driver for the server thread.  This class is
+responsible for listening for connections on a specified port, and
+creating an <code>IncomingHTTPConnection</code> object to handle each
+new connection.  All server communication is performed using
+Asynchronous IO.  This means that all IO commands (including accepting
+a new connection) are done by registering callbacks, which are called
+when the command completes.  See the documentation for boost::asio for
+more information. </p>
+
+<p>The <code>IncomingHTTPConnection</code> class is responsible for
+handling a single connection from a client.  In particular, it reads
+the client's HTTP request message, performs any appropriate actions,
+and sends an HTTP response message back to the client.  In some cases,
+the client's request may refer to an external resource, such as a
+document that is located on a remote server.  In those cases, the 
+<code>IncomingHTTPConnection</code> creates one or more 
+<code>OutgoingHTTPConnection</code> objects, which are responsible for
+connecting to a remote server and downloading a resource.</p>
+
+<p>Both
+<code>IncomingHTTPConnection</code> and
+<code>OutgoingHTTPConnection</code> share a common base class, 
+<code>HTTPConnection</code>, which stores the socket object used to
+communicate with the client or remote server.  In addition,
+the <code>HTTPConnection</code> base class is responsible for parsing
+HTTP request messages from clients and HTTP response messages from
+remote server (these two message types have very similar
+structures).</p>
+
+<p>When an <code>IncomingHTTPConnection</code> needs to use Serif to
+process a document, it does so by creating
+a <code>ProcessDocumentTask</code>, and handing it off to the
+singleton <a href="#SerifWorkQueue"><code>SerifWorkQueue</code></a>.
+Each <code>ProcessDocumentTask</code> consists of an
+<code>XMLSerializedDocTheory</code>, a range of processing stages that
+should be run, and a pointer back to
+the <code>IncomingHTTPConnection</code> that requested the task.  Once
+the work queue has finished processing the document (in the Serif
+Thread), it uses the server's asyncronous io handler to send a message
+back to the <code>IncomingHTTPConnection</code> (in the Server
+Thread), which can then respond to the client.
+
+<div class="figure">
+<div class="figure-image">
+<img src="server_thread_class_diagram.png"/>
+</div>
+<p class="caption"><b>Figure 1:</b> A class diagram showing the
+basic classes used by the Server Thread.  A single SerifHTTPServer
+owns zero or more IncomingHTTPConnection.  Each IncomingHTTPConnection
+can create zero or more OutgoingHTTPConnections (to download remote
+resources); and zero or more ProcessDocumentTasks (to process
+documents using the Serif DocumentDriver).</p>
+</div>
+
+<p> All code that runs in the server thread should be careful to not
+directly access any core SERIF functionality, <i>including global
+parameters</i>.  In general, the modules that implement the server
+thread should never import any SERIF code that is outside of the
+<code>SerifHTTPServer</code> project; and the ame is true for the
+header files of modules implementing the serif thread. However, a few
+exceptions are made for modules that are known to be safe to use from
+multiple threads:</p>
+
+<ul>
+  <li> <code>Generic/common/leak_detection.h</code> </li>
+  <li> <code>Generic/common/InternalInconsistencyException.h</code> </li>
+  <li> <code>Generic/state/XMLStrings.h</code> </li>
+  <li> <code>Generic/state/OutputUtil.h</code> (<i>except
+     for <code>OutputUtil::convertToChar()</code>, which is <b>not</b>
+     thread-safe.</i>)</li>
+</ul>
+
+<a name="SerifHTTPServer"/><h3><code>SerifHTTPServer</code></h3>
+
+<p>The server thread is controlled by a
+single <code>SerifHTTPServer</code> object.  When
+the <code>SerifHTTPServer</code> is created, it creates a new
+asyncronous IO handler (<code>boost::asio::io_service</code>) to act
+as the main driver and handle all IO communications.  It then creates
+an <code>IncomingHTTPConnection</code> (not connected to any client),
+and tells the <code>io_service</code> to listen for connections on the
+incoming port.</p>
+
+<p>The method <code>SerifHTTPServer::run()</code> is then called,
+which makes a blocking call to <code>io_service::run()</code>.  This
+method will not return until the server is shut down.</p>
+
+<p>When a client connects to the server, the <code>io_service</code>
+calls <code>SerifHTTPServer::handle_accept</code>, which tells its
+<code>IncomingHTTPConnection</code> to start processing the client.
+The <code>SerifHTTPServer</code> also creates a
+new <code>IncomingHTTPConnection</code> to be ready to process the
+next client that connects.</p>
+
+<p>Finally, the server keeps a list of weak pointers to
+the <code>IncomingConnection</code>s that it has connected with
+clients.  This list can be used to close all connections if the server
+recieves a shut-down request.</code></p>
+
+<a name="HTTPConnection"/><h3><code>HTTPConnection</code></h3>
+
+<p><code>HTTPConnection</code> is an abstract base class for both 
+<code>IncomingHTTPConnection</code>
+and <code>OutgoingHTTPConnection</code>.  
+An <code>HTTPConnection</code> object is responsible for handling
+a single HTTP connection from a client (incoming) or to remote server
+(outgoing).  The <code>HTTPConnection</code> class wraps a single
+Boost <code>tcp::socket</code> object, which it uses to communicate with the client
+or remote server.  The socket is initially closed -- it is the
+responsibility of the subclass to connect it with either a client (for
+incoming connections) or a remote sever (for outgoing
+connections). </p>
+
+<p><code>HTTPConnection</code> objects must always be stored
+using <code>boost::shared_ptr</code>.  This lets us ensure that the
+<code>HTTPConnection</code> object will still exist when any callbacks
+registered with <code>io_service</code> are called (since
+the <code>io_service</code> itself will have a copy of the shared
+pointer to the connection).
+The <code>boost::enable_shared_from_this</code> base class is used to
+allow the <code>HTTPConnection</code> to get access to its own shared
+pointer.</p>
+
+<p>In addition to holding the socket associated with the conneciton,
+the <code>HTTPConnection</code> base class also handles the reading
+and parsing of HTTP messages (request messages for incoming
+connections, and response messages for outgoing connections).  The
+protected method <code>HTTPConnection::readMessage()</code> starts
+reading the message (asynchronously), and will call the abstract
+virtual method <code>HTTPConnection::handleMessage()</code> when the
+message has been read and parsed.  If any error occurs while reading
+or parsing the message, it will
+call <code>HTTPConnection::handleReadErrorMessge</code> instead. </p>
+
+<a name="IncomingHTTPConnection"/><h3><code>IncomingHTTPConnection</code></h3>
+
+<p>Each <code>IncomingHTTPConnection</code> object is responsible for
+handling a single HTTP connection from a client.  It is created by
+the <code>SerifHTTPServer</code>, which will
+call <code>IncomingHTTPConnection::start()</code> once a client
+connects.  It then reads the request message (using the base class
+method <code>HTTPConnection::readMessage()</code>), and responds
+as appropriate to the given request:
+
+<div class="indented">
+  <p><b><code>POST SerifXMLRequest</code></b>: Process the given
+    XML-formatted request message.  The contents of the request should
+    be a single <code>&lt;SerifXMLRequest&gt;</code> document,
+    containing a single command element.  (In the future, we may
+    support <code>&lt;SerifXMLRequest&gt;</code>s that contain
+    multiple commands).  Currently, a single command is defined:</p>
+
+  <div class="indented">
+    <p><b><code>&lt;ProcessDocument&gt;</code></b>: Use SERIF to process a
+      document, whose contents can be specified either inline or using
+      an <code>href</code> to an external URL.  Currently, the server
+      supports file URLs (<code>file://<i>abspath</i></code>) and HTTP
+      URLs (<code>http://<i>server</i>/<i>path</i></code>).  In the
+      future, we might add support for other URL types (e.g.  to read
+      documents from a cloud data source).</p>
+  </div>
+  
+  <p>If the <code>IncomingHTTPConnection</code> needs to download one
+  or more files before it can fulfill the request (e.g., to get the
+  contents of a document from a remote source), then it creates one or
+  more <code>OutgoingHTTPConnection</code>s to download those
+  resources.  The <code>IncomingHTTPConnection</code> keeps a list of
+  all active outgoing connections.  When each outgoing connection is
+  completed, it is removed from this list.  Once there are no more
+  outgoing connections, the <code>IncomingHTTPConnection</code>
+  proceeds to perform the requested task.</p>
+
+  <p>In order to perform the <code>&lt;ProcessDocument&gt;</code>
+  task, the <code>IncomingHTTPConnection</code> creates
+  a <code>ProcessDocumentTask</code> object, which stores a document
+  to process along with a range of SERIF stages that should be run.
+  This task object is then added to the
+  singleton <code>SerifWorkQueue</code>, using the thread-safe
+  method <code>SerifWorkQueue::addTask()</code>.  Once the work queue
+  performs the task (in the Serif Thread), it will send back a
+  response via
+  the <code>SerifHTTPServer</code>'s <code>io_service</code>.  When
+  the <code>IncomingHTTPConnection</code> receives this response from
+  the serif thread, it relays it back to the client, and finally
+  closes the connection.</p>
+</div>
+
+<div class="indented">
+  <p><b><code>POST sgm2apf</code></b>: Process the given SGM document
+  from start to finish, and return the resulting APF file.  The
+  contents of the request document should be the SGM document itself.
+  This is a convenience method that makes it simpler to run the system
+  end-to-end and get back an APF annotation file, without having to
+  wrap the document in any way.  The <code>POST sgm2apf</code> request
+  is handled similarly to how the <code>&lt;ProcessDocument&gt;</code>
+  XML command is handled.</p>
+</div>
+
+<div class="indented">
+  <p><b><code>GET <i>path</i></code></b>: If the server documentation
+  root directory parameter (<code>server_docs_root</code>) is defined,
+  then append the given path to the root
+  directory <code>server_docs_root</code>, and if the resulting path
+  corresponds with a file, then return the contents of that file.
+  This allows the Serif HTTP server to be self-documenting.</p>
+</div>
+
+<a name="OutgoingHTTPConnection"/><h3><code>OutgoingHTTPConnection</code></h3>
+
+<p>The <code>OutgoingHTTPConnection</code> class is responsible for
+sending a message to a remote server, and returning the response.  Its
+constructor takes a server, an HTTP request message that should be
+sent to that server, and
+a <code>OutgoingHTTPConnection::ResponseHandler</code> object
+containing two callbacks: one to handle the response from a successful
+connection, and the other to handle an error message.  Currently, if
+the remote server responds with any status code other
+than <code>200</code> (<code>OK</code>), then
+the <code>OutgoingHTTPConnection</code> will treat it as an error.  In
+particular, redirections (status code 3xx) are not supported.</p>
+
+</div> <!-- The Server Thread -->
+
+<h2> The Serif Thread </h2>
+<div class="section">
+
+<p>The Serif Thread is responsible for performing all tasks that use
+SERIF's core code.  It is necessary to run all Serif-dependant tasks
+in a single thread, because Serif's code base is not thread-safe.
+This is why it is important that the Server Thread never perform any
+Serif-related tasks -- they might interfere with operations performed
+by the Serif Thread.</p>
+
+<a name="SerifWorkQueue"/><h3><code>SerifWorkQueue</code></h3>
+
+<p>The <code>SerifWorkQueue</code>
+class is the main driver for the serif thread.  It is a singleton
+class -- i.e., it has a single instance, which is created the first
+time <code>SerifWorkQueue::getSingletonWorkQueue()</code> is called.
+Subsequent calls
+to <code>SerifWorkQueue::getSingletonWorkQueue()</code> return that
+same instance. </p>
+
+<p> The <code>SerifWorkQueue</code> contains a list
+of <code>SerifWorkQueue::Task</code> objects, each encoding a single
+task that should be performed using Serif.  New tasks can be added to
+the queue using <code>SerifWorkQueue::addTask</code>; and tasks can be
+popped off the queue using <code>SerifWorkQueue::getNextTask()</code>.
+Both of these methods (as well as all of <code>SerifWorkQueue</code>'s
+public methods) are thread-safe.
+
+<p> The <code>SerifWorkQueue</code> also owns a
+single <code>DocumentDriver</code>, which it uses to run Serif.  The
+reason that it uses a single <code>DocumentDriver</code> (rather than
+creating a new one for each task that needs one) is that this allows
+it to avoid reloading Serif's modules each time it needs to perform
+some task.</p>
+
+<p> The <code>SerifWorkQueue</code> starts a new thread as soon as it
+is created, running the method <code>SerifWorkQueue::run()</code>.
+This method simply waits for a task to be added to the queue, and then
+runs it.  It runs a single task at a time.  The <code>run()</code>
+method never returns. </p>
+
+<p> <code>SerifWorkQueue</code> ensures thread-safety using a single
+<code>boost::mutex</code>, which is locked inside all critical
+sections.  Any public method should be considered a critical section. </p>
+
+<a name="SerifWorkQueue"/><h3><code>SerifWorkQueue::Task</code></h3>
+
+<p> The abstract base class <code>SerifWorkQueue::Task</code> is used
+to define the interface for tasks.  Each <code>Task</code> object
+defines a <code>run()</code> method, which takes a pointer to the
+singleton <code>SerifWorkQueue</code>'s <code>DocumentDriver</code>,
+and does whatever work it needs to do.  When it is done, it can
+respond to the client using the protected
+methods <code>Task::sendResponse()</code>
+and <code>Task::reportError</code>.  Both of these methods use the
+Server Thread's <code>io_service</code> to send a message to
+the <code>IncomingHTTPConnection</code> that created
+the <code>Task</code>. </p>
+
+<a name="SerifWorkQueue"/><h3><code>ProcessDocumentTask</code></h3>
+
+<p> <code>ProcessDocumentTask</code> is the <code>Task</code> class
+used to handle <code>&lt;ProcessDocument&gt;</code> requests from the
+client.  Its <code>run()</code> method deserializes the incoming
+document, uses the <code>DocumentDriver</code> to process the
+document, and sends the result back to the
+client.  <code>ProcessDocumentTask</code> uses a set of options, which
+are read from the &lt;ProcessDocument&gt; element, to determine
+exactly what stages it should run and how it should serialize the
+result.</p>
+
+</div> <!-- The Serif Thread -->
+
+<h2> Control Flow Example </h2>
+<div class="section">
+
+<p> The following diagram gives an example of how control flows during
+a typical run of the server.  The Server Thread is shown in green, and
+the Serif Thread is shown in red.
+
+<div class="figure">
+<div class="figure-image">
+<img src="server_control_flow_example.png"/>
+</div>
+<p class="caption"><b>Figure 2:</b> Control Flow Example.  The green
+line shows the control flow for the Server Thread; and the red line
+shows the control flow for the Serif Thread.  Once the 
+<code>SerifHTTPServer</code> has created an <code>io_service</code>
+and an initial (unconnected) <code>IncomingHTTPConnection</code>, it
+lets the <code>io_service</code> know that it should accept
+connections on the <code>IncomingHTTPConnection</code>'s socket (with
+the call to <code>async_accept()</code>).  It then hands control over
+to the <code>io_service</code> object (with the call
+to <code>run()</code>).  Once a client connects,
+the <code>io_service</code> calls the
+server's <code>handleAccept()</code> method, which lets
+the <code>IncomingHTTPConnection</code> know it should start
+processing.  The <code>IncomingHTTPConnection</code> lets
+the <code>io_service</code> know it wants to read from the socket, and
+then returns.  Once the client writes their request message,
+the <code>ioservice</code> calls
+the <code>IncomingHTTPConnection</code>'s <code>handleRead()</code>
+method.  (<code>handleRead()</code> will be called repeatedly until
+the entire request message is delivered.)  Once the request is
+available, the <code>IncomingHTTPConnection</code> uses it to create
+an appropriate <code>ProcessDocumentTask</code> object.  It hands this
+object over to the <code>SerifWorkQueue</code>
+(using <code>addTask()</code>), and returns back to
+the <code>io_service</code>.  (Note that the <code>io_service</code>
+can process additional incoming connections while the Serif Thread
+works on the task.)  Once the task is complete, it makes a call
+to <code>io_service::post()</code>, containing the response message.
+The <code>io_service</code> then relays that message back to the
+originating <code>IncomingHTTPConnection</code>, which uses
+asyncronous calls to send a response back to the client.  Once
+the <code>io_service</code> has finished sending the response from
+the <code>IncomingHTTPConnection</code>, it
+calls <code>IncomingHTTPConnection::handleWrite()</code>, which closes the connection and returns.</p>
+</div>
+
+</div> <!-- Control Flow -->
+
+</div> <!-- body -->
+</body>
+</html>

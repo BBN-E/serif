@@ -1,0 +1,1180 @@
+<!-- #####################################################################
+     #                     SerifXML DTD, Version 0.9                     #
+     ##################################################################### -->
+
+<!-- #####################################################################
+     # 1. Entity Definitions 
+     ##################################################################### -->
+
+<!-- This section defines entities that are used by the DTD to
+     represent attribute value types (eg %boolean;) and standard
+     collections of attributes (eg %offsets.att;). -->
+
+<!-- ______________________ Attribute Value Types ________________________
+
+     These entities are meant to document the type of value expected
+     for various attributes.  In some cases (eg %number;), value types
+     serve as documentation, but can not be checked by the DTD because
+     of the limitations of DTDs. -->
+
+<!-- Basic types: -->
+<!ENTITY % number                        "CDATA">
+<!ENTITY % boolean                       "(TRUE|FALSE)">
+
+<!-- Pointers to annotation layers -->
+<!ENTITY % region_ref                    "IDREF">
+<!ENTITY % token_sequence_ref            "IDREF">
+<!ENTITY % part_of_speech_sequence_ref   "IDREF">
+<!ENTITY % name_theory_ref               "IDREF">
+<!ENTITY % nested_name_theory_ref        "IDREF">
+<!ENTITY % value_mention_set_ref         "IDREF">
+<!ENTITY % np_chunk_theory_ref           "IDREF">
+<!ENTITY % parse_ref                     "IDREF">
+<!ENTITY % dependency_parse_ref          "IDREF">
+<!ENTITY % mention_set_ref               "IDREF">
+<!ENTITY % proposition_set_ref           "IDREF">
+<!ENTITY % rel_mention_set_ref           "IDREF">
+<!ENTITY % event_mention_set_ref         "IDREF">
+<!ENTITY % actor_mention_set_ref         "IDREF">
+<!ENTITY % event_ref                     "IDREF">
+<!ENTITY % value_ref                     "IDREF">
+<!ENTITY % sentence_theory_ref           "IDREF">
+
+<!-- Pointers to annotation objects.  Note that %syn_node_ref; is
+     defined as CDATA, rather than IDREF, to allow for pointers to
+     automatically generated syntactic node identifiers.  See <Parse>
+     and <TreebankString> for more information about automatically
+     generated syntactic node ids.  -->
+<!ENTITY % token_ref                     "IDREF">
+<!ENTITY % name_ref                      "IDREF">
+<!ENTITY % syn_node_ref                  "CDATA">
+<!ENTITY % mention_ref                   "IDREF">
+<!ENTITY % valmention_ref                "IDREF">
+<!ENTITY % proposition_ref               "IDREF">
+<!ENTITY % entity_ref                    "IDREF">
+<!ENTITY % rel_mention_ref               "IDREF">
+
+<!-- Space-separated lists of pointers to annotation objects. -->
+<!ENTITY % mention_ref_list              "IDREFS">
+<!ENTITY % rel_mention_ref_list          "IDREFS">
+<!ENTITY % event_mention_ref_list        "IDREFS">
+<!ENTITY % lexical_entry_ref_list        "IDREFS">
+<!ENTITY % actor_mention_ref_list        "IDREFS">
+
+<!-- Space-separated lists of confidence numbers. -->
+<!ENTITY % confidences_list              "CDATA">
+
+<!-- Enumerated types. -->
+<!ENTITY % parse_type    "(full_parse|npchunk_parse)">
+<!ENTITY % mention_type  "(none|name|pron|desc|part|appo|list|nest)">
+<!ENTITY % pred_type     "(verb|copula|modifier|noun|poss|
+                           loc|set|name|pronoun|comp)">
+<!ENTITY % genericity    "(Specific|Generic)">
+<!ENTITY % polarity      "(Positive|Negative)">
+<!ENTITY % tense         "(Unspecified|Past|Present|Future)">
+<!ENTITY % icews_event_tense   "(neutral|current|historical|ongoing|unavailable)">
+<!ENTITY % modality      "(Asserted|Other)">
+
+<!-- ______________ %offsets.att; Attribute Entity _______________________
+
+     Several annotations specify their location using "offset"
+     pointers into the text of the original document.  This entity
+     defines the attributes used to record offsets.
+
+     Serif is capable of generating three basic offset types, based on
+     the text content of the document: byte offsets, character
+     offsets, and EDT offsets.  (EDT offsets are an offset format used
+     by ACE, which skips characters within XML tags, and treats
+     Windows-style newlines as a single character.)  Begin and end
+     offsets are zero-indexed, and both are inclusive (e.g., the
+     character offset range with begin offset of 0 and end offset of 3
+     specifies the first four characters in the document text).
+
+     When generating output files, Serif can be instructed to generate
+     any or all of these offset types.  Serif can also be instructed
+     to generate offsets using a either pair of attributes
+     ("start_XXX" and "end_XXX"), or a single attribute whose value
+     has the form "begin:end" ("XXX_offsets").  See the documentation
+     for the serialization options "offset_types" and
+     "condensed_offsets" for more information.
+
+     When reading input files, Serif requires that at least one of
+     these three offset types be present, since it is possible to
+     automatically convert between them (given the input document
+     text).  When converting from character offsets to byte offsets,
+     Serif assumes that the document is encoded using UTF-8.  The
+     offsets can be expressed using either a pair of attributes
+     ("start_XXX" and "end_XXX") or a single attribute
+     ("XXX_offsets").  -->
+<!ENTITY % offsets.att       "byte_offsets    CDATA    #IMPLIED
+                              char_offsets    CDATA    #IMPLIED
+                              edt_offsets     CDATA    #IMPLIED
+                              start_byte      %number; #IMPLIED
+                              end_byte        %number; #IMPLIED
+                              start_char      %number; #IMPLIED
+                              end_char        %number; #IMPLIED
+                              start_edt       %number; #IMPLIED
+                              end_edt         %number; #IMPLIED">
+<!ENTITY % poses.att         "start_pos       %number; #REQUIRED
+                              end_pos         %number; #REQUIRED">
+
+<!-- _______________ %times.att; Attribute Entity _______________________
+
+     For some documents, information may be available about the
+     mapping between characters and times.  This entity defines
+     the attributes used to express the span of times covered by
+     a given annotation.  -->
+<!ENTITY % times.att         "asr_times       CDATA    #IMPLIED
+                              start_time      %number; #IMPLIED
+                              end_time        %number; #IMPLIED">
+
+<!-- #####################################################################
+     # 2. Element Definitions
+     ##################################################################### -->
+
+<!-- Annotation elements are listed in the order in which they are
+     typically generated by Serif.  (Note, however, that Serif may
+     generate annotation layers in different orders, depending on the
+     configuration parameters used when running it.) -->
+
+<!-- _____________________ <SerifXML> Element ____________________________
+
+     Currently, Each SerifXML file can only contain a single document.  In
+     the future, we may extend this to allow for multiple documents (but
+     we would need to be careful not to allow XML identifier conflicts:
+     each id needs to be unique in the entire SerifXML file. -->
+<!ELEMENT SerifXML (Document)>
+<!ATTLIST SerifXML version    CDATA    #IMPLIED>
+
+<!-- ______________________ <Document> Element ___________________________
+
+     The <Document> element contains the raw text contents of a
+     document (or a URL pointing to the text contents), along with all
+     of Serif's annotations for that document.  The minimal document
+     includes a:
+
+         * A docid attribute (typically the filename).
+         * A language attribute, specifying what language the document is 
+           written in.
+         * An <OriginalText> child element, containing either the original
+           text or a pointer to the original text.
+
+     When Serif is run, it will generate additional elements and
+     attributes describing the informational contents of the document:
+
+         * The <DateTime> element contains the date/time substring from
+           the document's headline (if appropriate - e.g., for newswire).
+
+         * The <Regions> element identifies substrings of the document
+           that should be processed.  
+
+         * The <Metadata> element records extra information about specific
+           spans in the source document.  
+
+         * The <Sentences> element identifies the locations of sentences
+           in the document; and contains annotations for each sentence.
+
+         * The <EntitySet>, <ValueSet>, <RelationSet>, and <EventSet>
+           identify document-level entities/values/relations/events
+           that were found SERIF.  Each of these objects contains a
+           list of pointers to specific mentions.
+
+         * The <UTCoref> element is currently undocumented.
+
+         * The "source_type" attribute identifies what the genre of
+           the document.  In ACE SGM documents, its value is extracted
+           from the <DOCTYPE> element's "SOURCE" attribute or
+           the <DOC> element's "genre" attribute.
+
+         * The "is_downcased" attribute will be set to true if the 
+           entire document has been case-normalized to lower case.
+           This is done for documents that do not have any case 
+           information (e.g., when processing the output of a speech
+           recognition system).
+     -->
+<!ELEMENT Document     (OriginalText, (DateTime|Regions|Segments|
+                        Metadata|Sentences|EntitySet|ValueSet| 
+                        RelationSet|EventSet|UTCoref?|ValueMentionSet| 
+                        RelMentionSet|ActorEntitySet|DocumentActorInfo|
+                        FactSet|ActorMentionSet|ICEWSEventMentionSet| 
+                        FlexibleEventMentionSet|Lexicon)*)>
+<!ATTLIST Document     id              ID             #IMPLIED
+                       docid           CDATA          #REQUIRED
+                       language        CDATA          #REQUIRED
+                       source_type     CDATA          "UNKNOWN"
+                       is_downcased    %boolean;      "FALSE"
+                       document_time_start CDATA      #IMPLIED
+                       document_time_end   CDATA      #IMPLIED>
+
+<!-- ____________________ <OriginalText> Element _________________________
+
+     The <OriginalText> element supplies the original (unmodified)
+     contents of the document.  The contents may either be listed
+     inline, using a child <Contents> element, or identified by URL,
+     using the "href" attribute.  
+
+     The command-line version of Serif supports "file://abspath" URLs.
+     The server version supports both "file://abspath" and
+     "http://server/path" URLs.
+
+     SERIF currently requires that all external files be encoded using
+     UTF-8. -->
+<!ELEMENT OriginalText  (Contents?,OffsetSpan*)>
+<!ATTLIST OriginalText  id              ID             #IMPLIED
+                        href            CDATA          #IMPLIED
+                        %offsets.att; %times.att;>
+<!ELEMENT Contents (#PCDATA)>
+<!ELEMENT OffsetSpan    EMPTY>
+<!ATTLIST OffsetSpan    %offsets.att; %times.att; %poses.att;>
+
+<!-- ______________________ <Regions> Element ____________________________
+
+     Regions identify substrings within the document that we process.
+     E.g., for broadcast news, each speaker's turn will be a separate
+     region.  Regions are identified during the "zoning" stage. 
+
+     The "tag" attribute identifies what kind of region this is.  For
+     ACE SGM documents, the "tag" attribute comes from the XML tag of the
+     element containing this region.  
+
+     The "is_speaker" and "is_receiver" attributes are used to identify
+     two participants in a dialogue.  (SERIF does not currently have
+     explicit support for multi-party dialogue.) -->
+<!ELEMENT Regions       (Region*)>
+<!ELEMENT Region        (Contents?,OffsetSpan*)>
+<!ATTLIST Region        id              ID             #IMPLIED
+                        tag             CDATA          ""
+                        is_speaker      %boolean;      "FALSE"
+                        is_receiver     %boolean;      "FALSE"
+                        %offsets.att; %times.att;>
+						
+<!-- ______________________ <Zones> Element ____________________________
+
+     Zones identify nested structure of the document that we process. 
+	 The Zones contains one Zoning. The Zoning contains one ore more zones.
+	 Each zone can also have zero or more nested zones.
+     E.g., for discussion forum data, each post and quote is one zone. A 
+	 quote can nest in a post or another quote.
+
+     The "type" attribute identifies what kind of zone this is.   There are
+     no predefined Zone types; interpretation is up to particular applications.
+
+     Each zone can have zero or more LocatedZoneAttributes which store 
+        map metadata keys for the Zone to LocatedStrings.
+	 Each zone may also have an author and datetime which will be used
+         in pronoun, name, and date/time resolution if available.
+	 -->
+<!ELEMENT Zones       (Zoning)>
+<!ELEMENT Zoning      (Zone+)>
+<!ELEMENT Zone        (LocatedZoneAttribute*, author?, datetime?, Zone*, Contents?,OffsetSpan*)>
+<!ATTLIST Zone        id               ID             #IMPLIED
+                      type             CDATA          #REQUIRED
+                      %offsets.att;>		
+<!ATTLIST LocatedZoneAttribute     	  name               CDATA               #REQUIRED 
+									  %offsets.att;>
+<!ATTLIST author     	 %offsets.att;>	
+<!ATTLIST datetime     	 %offsets.att;>		
+								  
+<!-- ______________________ <DateTime> Element ___________________________
+
+     The location of the date/time substring from the document's
+     headline (eg for newswire).  For ACE SGM documents, this is the
+     contents of the <DATETIME> element. The <DateTime> element is
+     generated during the "zoning" stage. -->
+<!ELEMENT DateTime      (Contents?,OffsetSpan*)>
+<!ATTLIST DateTime      id              ID             #IMPLIED
+                        %offsets.att; %times.att;>
+
+<!-- ______________________ <DocumentActorInfo> Element __________________
+     Document-level actor information. -->
+<!ELEMENT DocumentActorInfo       (DefaultCountryActor)> 
+<!ATTLIST DocumentActorInfo     id           ID          #IMPLIED>
+
+<!-- ______________________ <DefaultCountryActor> Element ________________
+
+     The actor id of the "default country for this document. -->
+<!ELEMENT DefaultCountryActor      EMPTY>
+<!ATTLIST DefaultCountryActor      actor_uid      %number;       #REQUIRED>
+
+<!-- ______________________ <Metadata> Element ___________________________
+
+     A list of Spans, each of which define some property or properties
+     for a substring of the original text.  Typically, this
+     information is extracted from the XML structure of the source
+     document (if it is an ACE SGM document).  Metadata spans are
+     created during the "zoning" stage.
+
+     **Note: the list of attributes may be incomplete.** -->
+<!ELEMENT Metadata      (Span*)>
+<!ELEMENT Span          EMPTY>
+<!ATTLIST Span          id                         ID             #IMPLIED
+                        span_type                  CDATA          #REQUIRED
+                        region_type                CDATA          #IMPLIED
+                        idf_type                   CDATA          #IMPLIED
+                        idf_role                   CDATA          #IMPLIED
+                        original_sentence_index    %number;       #IMPLIED
+                        %offsets.att; %times.att;>
+
+<!-- ______________________ <Sentences> Element __________________________
+
+     Each <Sentence> element identifies the location of a single
+     sentence in the document; and contains Serif's sentence-level
+     annotations for that sentence.  <Sentence> elements are initially
+     created by Serif's "sent-break" processing stage; and its child
+     annotation elements are created in each of the following processing
+     stages: "tokens", "part-of-speech", "names", "values", "parse", 
+     "npchunk", "mentions", "props", "metonymy", "events", "relations".
+     (Note: the order in which these stages may vary depending on the
+     configuration parameters used to run SERIF.)
+
+     Each <Sentence> element minimally consists of:
+
+         * Offset attributes, identifying the location of the sentence
+           in the source document.
+
+         * A region identifier, identifying which region the sentence
+           originates from.  ([XX] This attribute may become optional
+           in the future, since it should be possible to reconstruct
+           it automatically.)
+
+     Additionally, each <Sentence> element may contain zero or more
+     theories (i.e., possible values) for each annotation layer
+     (TokenSequence, PartOfSpeechSequence, NameTheory, etc).
+
+     One or more <SentenceTheory> children can be used to specify
+     which annotation layer theories form a complete (compatible)
+     sentence theory.  If no <SentenceTheory> child is specified, then
+     there should be at most one theory for each annotation layer; and
+     they will automically be combined to form a single sentence
+     theory.
+
+     The "primary_parse" attribute is only used if there is
+     no <SentenceTheory> child.  In that case, it is used to specify
+     which parse should be considered the primary parse for the
+     implicit sentence theory.
+
+     [XX] The "is_annotated" attribute is currently undocumented. -->
+<!ELEMENT Sentences       (Sentence*)>
+<!ELEMENT Sentence        (Contents?,OffsetSpan*, 
+                           (TokenSequence|PartOfSpeechSequence|
+                            NameTheory|NestedNameTheory|ValueMentionSet|
+                            NPChunkTheory|Parse|DependencyParse|MentionSet|
+                            PropositionSet|RelMentionSet|
+                            EventMentionSet|SentenceTheory|
+                            ActorMentionSet)*)>
+<!ATTLIST Sentence        id              ID             #IMPLIED
+                          region_id       %region_ref;   #REQUIRED
+                          is_annotated    %boolean;      "TRUE"
+                          primary_parse   %parse_type;   "full_parse"
+                          %offsets.att; %times.att;>
+
+
+<!-- ___________________ <SentenceTheory> Element ________________________
+
+     Each <SentenceTheory> element specifies a collection of sentence-
+     level annotation theories that form a complete (compatible)
+     sentence theory.  This is only required when using a beam search
+     that considers multiple annotation values during sentence
+     processing.  Each <SentenceTheory> consists of a collection of 
+     pointers to individual sentence-level annotation theories, along
+     with an attribute ("primary_parse") used to identify whether the
+     np chunk or the parse should be used as the basis for future 
+     processing. -->
+<!ELEMENT SentenceTheory  EMPTY>
+<!ATTLIST SentenceTheory  
+   id                          ID                            #IMPLIED
+   token_sequence_id           %token_sequence_ref;          #IMPLIED
+   part_of_speech_sequence_id  %part_of_speech_sequence_ref; #IMPLIED
+   name_theory_id              %name_theory_ref;             #IMPLIED
+   nested_name_theory_id       %nested_name_theory_ref;      #IMPLIED
+   value_mention_set_id        %value_mention_set_ref;       #IMPLIED
+   np_chunk_theory_id          %np_chunk_theory_ref;         #IMPLIED
+   parse_id                    %parse_ref;                   #IMPLIED
+   dependency_parse_id         %dependency_parse_ref;        #IMPLIED
+   mention_set_id              %mention_set_ref;             #IMPLIED
+   proposition_set_id          %proposition_set_ref;         #IMPLIED
+   rel_mention_set_id          %rel_mention_set_ref;         #IMPLIED
+   event_mention_set_id        %event_mention_set_ref;       #IMPLIED
+   actor_mention_set_id        %actor_mention_set_ref;       #IMPLIED
+   primary_parse               %parse_type;                 "full_parse">
+
+<!-- ___________________ <TokenSequence> Element _________________________
+
+     This annotation layer specifies the tokenization for a single
+     sentence - i.e., how it should be divided into words.  It is
+     generated during Serif's "tokens" processing stage.
+     A <TokenSequence> consists of an ordered sequence of <Token>
+     elements, along with an optional score attribute.  Each <Token>
+     element includes offset information that can be used to locate
+     the token in the original docuemnt, along with the token's text.
+
+     If the serialization option "implicit_tokens" is set to true,
+     then the string contents of a token will only be listed if it
+     differs from the substring of the original text that it
+     originated from.  (This can occur when Serif applies a variety of
+     normalization rules.)
+
+     [XX] Note: In Arabic, <Token> objects will include some extra
+     attributes, which are not yet documented. -->
+<!ELEMENT TokenSequence   (Token*)>
+<!ATTLIST TokenSequence   id                    ID            #IMPLIED
+                          score                 %number;      #IMPLIED>
+<!ELEMENT Token           (#PCDATA)>
+<!ATTLIST Token           id                    ID            #IMPLIED
+                          lexical_entries       %lexical_entry_ref_list; 
+                                                              #IMPLIED
+                          original_token_index  %number;      #IMPLIED
+                          %offsets.att; %times.att;>
+
+<!-- ________________ <PartOfSpeechSequence> Element _____________________
+
+     This annotation layer specifies the part of speech for each word
+     in a sentence.  It is generated by Serif's "part-of-speech"
+     processing stage.  Each word's part of speech will be identified
+     by a single <POS> element, which uses a "token_id" attribute to
+     point to a token, and a "tag" attribute to identify that token's
+     most likely part-of-speech tag.
+
+     Depending on the configuration options used to run Serif, the
+     <POS> element may contain a "prob" element, specifying the
+     probability of the most likely part-of-speech tag.  Additionally
+     (depending on configuration options), one or more alternate
+     part-of-speech tag possibilities may be listed,
+     using <AlternatePOS> child elements.
+
+     The <PartOfSpeechSequence> element uses the "token_sequence_id"
+     attribute to identify which token sequence it is based upon. 
+     An optional "score" attributes indicates how likely it is that
+     the part-of-speech sequence is correct.
+
+     Note: In Serif's default English configuration, the
+     part-of-speech tagger is not actually run; instead, Serif uses
+     the part of speech tags generated by the parser.  In this case,
+     Serif will generate an empty <PartOfSpeechSequence> element. -->
+<!ELEMENT PartOfSpeechSequence (POS*)>
+<!ATTLIST PartOfSpeechSequence 
+                  id                  ID                     #IMPLIED
+                  score               %number;               #IMPLIED
+                  token_sequence_id   %token_sequence_ref;   #REQUIRED>
+<!ELEMENT POS (AlternatePOS*)>
+<!ATTLIST POS
+                  id                  ID                     #IMPLIED
+                  tag                 CDATA                  #IMPLIED
+                  prob                %number;               "1.0"
+                  token_id            %token_ref;            #REQUIRED>
+<!ELEMENT AlternatePOS EMPTY>
+<!ATTLIST AlternatePOS         
+                  tag                 CDATA                  #REQUIRED
+                  prob                %number;               #REQUIRED>
+
+<!-- _____________________ <NameTheory> Element __________________________
+
+     This sentence-level annotation layer specifies the proper names
+     that were found by SERIF's "names" processing stage.  Each proper
+     name is identified as a range of tokens (where both start_token
+     and end_token are inclusive), along with a basic entity type (e.g.,
+     "PER" for person).
+
+     The <NameTheory> element uses the "token_sequence_id" attribute
+     to identify which token sequence it is based upon.  An optional
+     "score" attributes indicates how likely it is that the entire
+     name theory is correct.
+
+     If the serialization option "include_name_transliterations"
+     option is set to true, then a "transliteration" attribute will be
+     generated for each name, containing an ASCII transliteration of
+     that name.
+
+     Note: Currently, the start_token and end_token attributes are
+     required.  If desired, we could add the option to specify names
+     using offsets, rather than token indexes.  -->
+<!ELEMENT NameTheory (Name*)>
+<!ATTLIST NameTheory
+                  id                  ID                     #IMPLIED
+                  score               %number;               #IMPLIED
+                  token_sequence_id   %token_sequence_ref;   #REQUIRED>
+<!ELEMENT Name    (#PCDATA)>
+<!ATTLIST Name    id                  ID                     #IMPLIED
+                  external_Id         CDATA                  #IMPLIED
+                  entity_type         CDATA                  #REQUIRED
+                  start_token         %token_ref;            #REQUIRED
+                  end_token           %token_ref;            #REQUIRED
+                  transliteration     CDATA                  #IMPLIED
+                  score               %number;               #IMPLIED
+                  %offsets.att; %times.att;>
+
+<!-- ____________________<NestedNameTheory> Element ______________________
+
+     This sentence-level annotation layer identifies proper names
+     nested within other proper names specified by the NameTheory (e.g.,
+     'Boston' in 'Boston Savings Bank'). Each nested name is identified 
+     as a range of tokens (where both start_token and end_token are 
+     inclusive), along with a basic entity type (e.g., "PER" for
+     person), and a parent name (the name it is nested within).
+
+     The <NestedNameTheory> element uses the "token_sequence_id" 
+     attribute to identify which token sequence it is based upon and 
+     the "name_theory_id" to identify which name theory it is based
+     upon.  An optional "score" attributes indicates how likely it is 
+     that the entire nested name theory is correct.
+
+     If the serialization option "include_name_transliterations"
+     option is set to true, then a "transliteration" attribute will be
+     generated for each name, containing an ASCII transliteration of
+     that name.-->
+<!ELEMENT NestedNameTheory (NestedName*)>
+<!ATTLIST NestedNameTheory
+                  id                  ID                     #IMPLIED
+                  score               %number;               #IMPLIED
+                  token_sequence_id   %token_sequence_ref;   #REQUIRED
+                  name_theory_id      %name_theory_ref;      #REQUIRED>
+<!ELEMENT NestedName    (#PCDATA)>
+<!ATTLIST NestedName    
+                  id                  ID                     #IMPLIED
+                  entity_type         CDATA                  #REQUIRED
+                  start_token         %token_ref;            #REQUIRED
+                  end_token           %token_ref;            #REQUIRED
+                  transliteration     CDATA                  #IMPLIED
+                  score               %number;               #IMPLIED
+                  parent              %name_ref;             #REQUIRED
+                  %offsets.att; %times.att;>
+
+
+<!-- ___________________ <ValueMentionSet> Element _______________________
+
+     This annotation layer specifies the values (such as percentages,
+     monetary values, phone numbers, time expressions, email
+     addresses, and URLs) that were found by SERIF's "values"
+     processing stage.  Each value is identified as a range of tokens
+     (where both start_token and end_token are inclusive), and
+     assigned a type (such as "TIMEX2.TIME"). -->
+<!ELEMENT ValueMentionSet (ValueMention*)>
+<!ATTLIST ValueMentionSet
+                  id                  ID                     #IMPLIED
+                  score               %number;               #IMPLIED
+                  token_sequence_id   %token_sequence_ref;   #IMPLIED>
+<!ELEMENT ValueMention (#PCDATA)>
+<!ATTLIST ValueMention
+                  id                  ID                     #IMPLIED
+                  external_Id         CDATA                  #IMPLIED
+                  start_token         %token_ref;            #REQUIRED
+                  end_token           %token_ref;            #REQUIRED
+                  value_type          CDATA                  #REQUIRED
+                  sent_no             CDATA                  #IMPLIED
+                  %offsets.att; %times.att;>
+
+<!-- ____________________ <NPChunkTheory> Element ________________________
+
+     This sentence-level annotation layer specifies the noun phrase
+     chunks that were found by SERIF's "npchunk" processing stage.
+     Each noun phrase chunk is identified as a range of tokens (where
+     both start_token and end_token are inclusive). -->
+<!ELEMENT NPChunkTheory (NPChunk*, Parse?)>
+<!ATTLIST NPChunkTheory
+                  id                  ID                     #IMPLIED
+                  score               %number;               #IMPLIED
+                  token_sequence_id   %token_sequence_ref;   #REQUIRED>
+<!ELEMENT NPChunk EMPTY>
+<!ATTLIST NPChunk
+                  id                  ID                     #IMPLIED
+                  start_token         %token_ref;            #REQUIRED
+                  end_token           %token_ref;            #REQUIRED
+                  %offsets.att; %times.att;>
+
+<!-- ________________________ <Parse> Element ____________________________
+
+    This sentence-level annotation layer records the syntactic tree
+    generated by SERIF's "parse" processing stage.  The tree can be
+    encoded in one of two ways: using nested <SynNode> XML elements,
+    or using a treebank-style parse string.  (Which encoding Serif
+    uses for its output is controlled by the "parse_encoding"
+    serialization option).
+
+    In the <SynNode> encoding, the parse contains a single
+    (root) <SynNode>, each of which contains zero or more
+    nested <SynNode>s.  The terminals in this tree of <SynNode>s
+    correspond with individual words; and the preterminals are used to
+    tag each word with its part-of-speech tag.  Nonterminals are used
+    to encode syntactic constituents.
+
+    In the more compact <TreebankString> encoding,
+    the <TreebankString> element contains a treebank-style parse
+    string, where constituents are indicated using parenthasized
+    expressions.  Head words are marked by appending the character "^"
+    to their constituent tag.  The following example shows how the
+    parse structure of a simple sentence is encoded:
+
+      <Parse id="parse-2" score="-38.4776649" token_sequence_id="6">
+        <TreebankString node_id_method="DFS">
+          (S^ (NPP (NNP^ joseph)) 
+              (VP^ (VBZ^ likes) (VP (VBN^ fried) (NPA (NN^ zucchinis)))) 
+              (. .))
+        </TreebankString>
+      </Parse>
+
+    In order to allow other elements to refer to individual
+    constituents in the parse tree, the syntactic nodes are
+    automatically assigned identifiers.  These identifiers have the
+    form: "<parse_id>-N", where "<parse_id>" is the identifier for the
+    <Parse> element; and "N" is a number.  If the <TreebankString>'s
+    "node_id_method" attribute is "DFS" (currently the only supported
+    value), then N is generated by a depth-first enumeration of the
+    syntactic nodes in the tree (including the token terminals).  For
+    example, in the above tree, the identifier for the root "S" node
+    is "parse-2-0"; and the identifier for the verb phrase node is
+    "parse-2-4". -->
+<!ELEMENT Parse   (SynNode|TreebankString)>
+<!ATTLIST Parse   id                  ID                     #IMPLIED
+                  score               %number;               #IMPLIED
+                  token_sequence_id   %token_sequence_ref;   #REQUIRED>
+<!ELEMENT SynNode (SynNode*)>
+<!ATTLIST SynNode id                  ID                     #IMPLIED
+                  tag                 CDATA                  #REQUIRED
+                  start_token         %token_ref;            #REQUIRED
+                  end_token           %token_ref;            #REQUIRED
+                  is_head             %boolean;              "FALSE">
+<!ELEMENT TreebankString (#PCDATA)>
+<!ATTLIST TreebankString node_id_method CDATA                #FIXED "DFS">
+
+<!-- ________________________ <DependencyParse> Element ____________________________
+    
+    A dependency parse consists of a tree of DepNodes.  Currently in development.
+    Each node in the tree is a token in the sentence, tags express the relation a
+    child node has to its parent.
+
+-->
+<!ELEMENT DependencyParse   (DepNode)>
+<!ATTLIST DependencyParse   id                  ID                     #IMPLIED
+                            score               %number;               #IMPLIED
+                            token_sequence_id   %token_sequence_ref;   #REQUIRED>
+<!ELEMENT DepNode (DepNode*)>
+<!ATTLIST DepNode id                  ID                     #IMPLIED
+                  tag                 CDATA                  #REQUIRED
+                  start_token         %token_ref;            #REQUIRED
+                  end_token           %token_ref;            #REQUIRED
+                  token_id            %token_ref;            #REQUIRED
+                  pos                 CDATA                  #REQUIRED
+                  text                CDATA                  #REQUIRED
+                  >
+
+<!-- ______________________ <MentionSet> Element _________________________
+
+    This sentence-level annotation layer specifies the mentions (aka
+    AnnotatedNPs) that were identified by Serif's "mentions"
+    processing stage.  Two scores are generated by serif: "name_score"
+    indicates the likelihood that Serif correctly identified the names
+    in the sentence; and "desc_score" indicates the likelihood that Serif
+    correctly identified the nominal descriptions.
+
+    Each <Mention> corresponds with a single NP node from the syntactic
+    tree, identified by the "syn_node_id" attribute.  In addition, each
+    mention is characterized by:
+
+        * A "mention_type" attribute, identifying whether the mention
+          is a name, pronoun, nominal description, or is a nested
+          partitive, appositive, or list mention.
+
+        * An "entity_type" attribute, identifying what kind of entity
+          the mention describes (e.g., "PER" for person).
+
+        * An optional "entity_subtype" attribute, identifying a subtype
+          for the basic entity type, or "UNDET" for undetermined.
+
+        * An "is_metonymy" attribute, used to identify whether this is
+          a metonymous mention.  If so, then the "role_type" attribute
+          is used to indicate the metonymy role, and the "intended_type"
+          attribute is used to indicate the intended type. 
+
+        * A "confidence" attribute, used to indicate how likely
+          it is that this mention is in fact a mention of the given
+          type and subtype.
+
+        * A "link_confidence" attribute, used to indicate how likely
+          it is that this mention is in the correct entity (for entity
+          coreference; see <Entity>). 
+
+        * Three attributes containing pointers to other mentions (parent, 
+          child, and next) that are used to record the structure of 
+          nested mentions (partitives, appositives, and lists).
+  -->
+<!ELEMENT MentionSet      (Mention*)>
+<!ATTLIST MentionSet      id                  ID               #IMPLIED
+                          name_score          %number;         #IMPLIED
+                          desc_score          %number;         #IMPLIED
+                          parse_id            %parse_ref;      #REQUIRED>
+<!ELEMENT Mention         EMPTY>
+<!ATTLIST Mention         id                  ID               #IMPLIED
+                          external_Id         CDATA            #IMPLIED
+                          syn_node_id         %syn_node_ref;   #REQUIRED
+                          mention_type        %mention_type;   #REQUIRED
+                          entity_type         CDATA            #REQUIRED
+                          entity_subtype      CDATA            "UNDET"
+                          is_metonymy         %boolean;        "FALSE"
+                          intended_type       CDATA            "UNDET"
+                          role_type           CDATA            "UNDET"
+                          confidence          %number;         #IMPLIED
+                          link_confidence     %number;         #IMPLIED
+                          parent              %mention_ref;    #IMPLIED
+                          child               %mention_ref;    #IMPLIED
+                          next                %mention_ref;    #IMPLIED>
+
+<!-- ___________________ <PropositionSet> Element ________________________
+
+    This sentence-level annotation layer specifies the propositions
+    that were identified by Serif's "props" processing stage.
+
+    Each proposition has a type and one or more arguments.  Most
+    propositions also have a head syntacic node, identified by the
+    "head_id" attribute, which was used to create the proposition.
+    A proposition may also optionally contain pointers to syntactic 
+    nodes for an associated particle, adverb, negation, and modal.
+
+    Each proposition argument has a "role" attribute, identifying how
+    it relates to the proposition, and points to either a mention,
+    a syntactic node, or another proposition. -->
+<!ELEMENT PropositionSet  (Proposition*)>
+<!ATTLIST PropositionSet  id               ID                #IMPLIED
+                          mention_set_id   %mention_set_ref; #REQUIRED>
+<!ELEMENT Proposition     (Argument+)>
+<!ATTLIST Proposition     id               ID                #IMPLIED
+                          type             %pred_type;       #REQUIRED
+                          status           CDATA             #IMPLIED
+                          head_id          %syn_node_ref;    #IMPLIED
+                          particle_id      %syn_node_ref;    #IMPLIED
+                          adverb_id        %syn_node_ref;    #IMPLIED
+                          negation_id      %syn_node_ref;    #IMPLIED
+                          modal_id         %syn_node_ref;    #IMPLIED>
+<!ELEMENT Argument        EMPTY>
+<!ATTLIST Argument        role             CDATA             ""
+                          mention_id       %mention_ref;     #IMPLIED
+                          syn_node_id      %syn_node_ref;    #IMPLIED
+                          proposition_id   %proposition_ref; #IMPLIED>
+
+<!-- ___________________ <RelMentionSet> Element _________________________
+
+    This sentence-level annotation layer specifies the relation 
+    mentions that were identified by Serif's "relations" stage.
+
+    Each relation mention has a relation type and two arguments.  The
+    arguments are specified using the "left_mention_id" and
+    "right_mention_id" attributes, both of which point to a <Mention>
+    element.  An optional time argument may also be specified, using
+    the "time_arg_id" attribute (which points to a <ValueMention>
+    element). -->
+<!ELEMENT RelMentionSet   (RelMention*)>
+<!ATTLIST RelMentionSet   id                ID               #IMPLIED
+                          score             %number;         #IMPLIED>
+<!ELEMENT RelMention      EMPTY>
+<!ATTLIST RelMention      id                ID               #IMPLIED
+                          external_Id       CDATA            #IMPLIED
+                          score             %number;         "1.0"
+                          confidence        %number;         "1.0"
+                          type              CDATA            #REQUIRED
+                          raw_type          CDATA            #IMPLIED
+                          tense             %tense;          #REQUIRED
+                          modality          %modality;       #REQUIRED
+                          left_mention_id   %mention_ref;    #REQUIRED
+                          right_mention_id  %mention_ref;    #REQUIRED
+                          time_arg_id       %valmention_ref; #IMPLIED
+                          time_arg_role     CDATA            #IMPLIED
+                          time_arg_score    %number;         "0.0">
+
+
+<!-- __________________ <EventMentionSet> Element ________________________
+
+    This sentence-level annotation layer specifies the event mentions
+    that were identified by Serif's "events" stage. -->
+
+<!ELEMENT EventMentionSet (EventMention*)>
+<!ATTLIST EventMentionSet id                ID                #IMPLIED
+                          parse_id          %parse_ref;       #REQUIRED
+                          score             %number;          #IMPLIED>
+<!ELEMENT EventMention    (EventMentionArg*)>
+<!ATTLIST EventMention    id                ID                #IMPLIED
+                          pattern_id        CDATA             #IMPLIED
+                          external_Id       CDATA            #IMPLIED
+						  gainLoss          CDATA             #IMPLIED
+						  indicator         CDATA             #IMPLIED
+                          score             %number;          "0.0"
+                          event_type        CDATA             #REQUIRED
+                          genericity        %genericity;      #REQUIRED
+                          genericityScore   %number;          #IMPLIED
+                          polarity          %polarity;        #REQUIRED
+                          tense             %tense;           #REQUIRED
+                          modality          %modality;        #REQUIRED
+                          modalityScore     %number;          #IMPLIED
+                          anchor_prop_id    %proposition_ref; #IMPLIED
+                          anchor_node_id    %syn_node_ref;    #REQUIRED>
+<!ELEMENT EventMentionArg EMPTY>
+<!ATTLIST EventMentionArg id                ID                #IMPLIED
+                          mention_id        %mention_ref;     #IMPLIED
+                          value_mention_id  %valmention_ref;  #IMPLIED
+                          role              CDATA             #REQUIRED
+                          score             %number;          "0.0"
+                          start_token         %token_ref;     #IMPLIED
+                          end_token           %token_ref;     #IMPLIED
+                          %offsets.att;>
+
+
+<!-- __________________ <ActorMentionSet> Element ________________________
+
+    This sentence-level annotation layer specifies the Mention to Actor
+    connections that were identified by Serif's "actor-match" stage. 
+
+    For ICEWS runs, this is also a document-level layer created in the
+    icews-actors stage. -->
+
+<!ELEMENT ActorMentionSet (ActorMention*)>
+<!ATTLIST ActorMentionSet id                        ID                       #IMPLIED>
+<!ELEMENT ActorMention EMPTY>
+<!ATTLIST ActorMention    id                        ID                       #IMPLIED
+                          actor_pattern_uid         %number;                 #IMPLIED
+                          actor_uid                 %number;                 #IMPLIED
+                          association_score         %number;                 #IMPLIED
+                          pattern_confidence_score  %number;                 #IMPLIED
+                          pattern_match_score       %number;                 #IMPLIED
+                          edit_distance_score       %number;                 #IMPLIED
+                          georesolution_score       %number;                 #IMPLIED
+                          importance_score          %number;                 #IMPLIED
+                          is_acronym                %boolean;                #IMPLIED
+                          requires_context          %boolean;                #IMPLIED
+                          sentence_theory_id        %sentence_theory_ref;    #REQUIRED
+                          mention_id                %mention_ref;            #REQUIRED
+                          source_note               CDATA                    #REQUIRED
+                          actor_name                CDATA                    #IMPLIED
+                          actor_code                CDATA                    #IMPLIED
+                          actor_db_name             CDATA                    #IMPLIED
+                          geo_text                  CDATA                    #IMPLIED
+                          geo_country               CDATA                    #IMPLIED
+                          geo_uid                   CDATA                    #IMPLIED
+                          geo_latitude              CDATA                    #IMPLIED
+                          geo_longitude             CDATA                    #IMPLIED
+                          country_id                %number;                 #IMPLIED
+                          iso_code                  CDATA                    #IMPLIED
+                          country_info_actor_id     %number;                 #IMPLIED
+                          country_info_actor_code   CDATA                    #IMPLIED
+                          paired_agent_uid          %number;                 #IMPLIED
+                          paired_agent_name         CDATA                    #IMPLIED
+                          paired_agent_code         CDATA                    #IMPLIED
+                          paired_agent_pattern_uid  %number;                 #IMPLIED
+                          paired_actor_uid          %number;                 #IMPLIED
+                          paired_actor_name         %number;                 #IMPLIED
+                          paired_actor_code         CDATA                    #IMPLIED
+                          paired_actor_pattern_uid  %number;                 #IMPLIED
+                          paired_actor_is_acronym   %boolean;                #IMPLIED
+                          paired_actor_requires_context %boolean;            #IMPLIED
+                          actor_agent_pattern       CDATA                    #IMPLIED>
+
+<!-- ______________________ <EntitySet> Element __________________________
+
+    This document-level annotation layer records the entities that
+    were found by Serif's "doc-entities" processing stage.  Each
+    entity consists of a collection of coreferential <Mention>
+    elements, which are identified using the "mention_ids" attribute.
+    In addition, each <Entity> defines the following attributes:
+    
+      * "entity_type": identifies the general category that the entity
+        belongs to (e.g., "PER" for person).
+
+      * "entity_subtype": indentifies a subtype
+        for the basic entity type, or "UNDET" for undetermined.
+
+      * "is_generic": True if this is a "generic" entity (such as
+        "tall men"); false if this is a "specific" entity (such as
+        "the tall man".
+
+      * "canonical_name": An optional string containing Serif's best
+        guess at a canonical name for this entity.
+
+      * "entity_guid": An optional cross-document globally unique 
+        identifier for this entity.  This attribute is only generated
+        if cross-document coreference is enabled.
+
+      * "canonical_name_mention_id": If the serialization option
+        "include_canonical_names" is set to true, then this attribute
+        will identify the single best canonical <Mention>.
+
+      * "canonical_name_transliteration": If the serialization options
+        "include_canonical_names" and "include_name_transliterations"
+        are set to true, then an ASCII transliaterion of the canonical
+        name <Mention> will be generated.
+
+      * "confidence": provides an estimated confidence score for the
+        entity. 
+    -->
+
+<!ELEMENT EntitySet     (Entity*)>
+<!ATTLIST EntitySet  
+            id                               ID                 #IMPLIED
+            score                            %number;           #IMPLIED>
+<!ELEMENT Entity     EMPTY>
+<!ATTLIST Entity     
+            id                               ID                 #IMPLIED
+            external_id                      CDATA              #IMPLIED
+            mention_ids                      %mention_ref_list; #REQUIRED
+            entity_type                      CDATA              #REQUIRED
+            entity_subtype                   CDATA              "UNDET"
+            is_generic                       %boolean;          #REQUIRED
+            canonical_name                   CDATA              #IMPLIED
+            entity_guid                      CDATA              "-1"
+            canonical_name_mention_id        %mention_ref;      #IMPLIED
+            canonical_name_transliteration   CDATA              #IMPLIED
+            confidence                       %number;           "1.0"
+            mention_confidences              %confidences_list; #IMPLIED>
+
+<!-- _______________________ <ValueSet> Element __________________________
+
+    This document-level annotation layer contains the values that were
+    identified by Serif's "doc-values" stage.  Each value consists of
+    a pointer to a single value mention, identified by the
+    "value_mention_ref" attribute; a value type (which should
+    typically match the type of the referenced value mention); and
+    several optional attributes that are used to record information
+    extracted from time values:
+
+      * "timex_val":
+      * "timex_anchor_val":
+      * "timex_anchor_dir":
+      * "timex_set":
+      * "timex_mod":
+      * "timex_non_specific":
+     -->
+<!ELEMENT ValueSet      (Value*)>
+<!ATTLIST ValueSet      id                  ID                #IMPLIED>
+<!ELEMENT Value         EMPTY>
+<!ATTLIST Value         id                  ID                #IMPLIED
+                        type                CDATA             #REQUIRED
+                        value_mention_ref   %valmention_ref;  #REQUIRED
+                        timex_val           CDATA             #IMPLIED
+                        timex_anchor_val    CDATA             #IMPLIED
+                        timex_anchor_dir    CDATA             #IMPLIED
+                        timex_set           CDATA             #IMPLIED
+                        timex_mod           CDATA             #IMPLIED
+                        timex_non_specific  CDATA             #IMPLIED>
+
+<!-- _____________________ <RelationSet> Element _________________________
+
+    This document-level annotation layer records the set of relations
+    that were identified by Serif's "doc-relations-events" stage.
+    Each relation consists of a collection of coreferential <RelMention>
+    elements, which are identified using the "rel_mention_ids" attribute.
+
+    Each <Relation> has a relation type and two entity arguments.  The
+    arguments are specified using the "left_entity_id" and
+    "right_entity_id" attributes, both of which point to an <Entity>
+    element.
+
+    The "tense" and "modality" attributes are computed by combining
+    the corresponding values from the individual event mentions.
+
+    The "confidence" attribute provides estimated confidence scores 
+    for the relation.
+    -->
+<!ELEMENT RelationSet   (Relation*)>
+<!ATTLIST RelationSet   id                ID                     #IMPLIED>
+<!ELEMENT Relation      EMPTY>
+<!ATTLIST Relation      id                ID                     #IMPLIED
+                        external_id       CDATA                  #IMPLIED
+                        rel_mention_ids   %rel_mention_ref_list; #REQUIRED
+                        type              CDATA                  #REQUIRED
+                        left_entity_id    %entity_ref;           #REQUIRED
+                        right_entity_id   %entity_ref;           #REQUIRED
+                        tense             %tense;                #REQUIRED
+                        modality          %modality;             #REQUIRED
+                        confidence        %number;               "1.0">
+
+<!-- _______________________ <EventSet> Element __________________________
+
+    This document-level annotation layer records the set of events
+    that were identified by Serif's "doc-relations-events" stage.
+    Each event consists of a collection of
+    coreferential <EventMention> elements, which are identified using
+    the "event_mention_ids" attribute.  In addition, each <Event>
+    defines the following attributes:
+
+      * "event_type": The kind of event described (e.g., "Life.Born"
+        or "Contact.Meet").
+
+      * "genericity", "polarity", "tense", and "modality": These
+        attributes are computed by combining the corresponding values
+        from the individual event mentions.
+
+      * "annotation_id": This optional undocumented attribute should
+        never be generated by SERIF under its default configuration.
+        
+    The <EventArg> are the entities corresponding to the EventArgMentions,
+    with one role listed per argument.  It will either be an entity mention
+    or a value mention.
+    -->
+<!ELEMENT EventSet  (Event*)>
+<!ATTLIST EventSet  id                 ID                       #IMPLIED>
+<!ELEMENT Event     (EventArg*)>
+<!ATTLIST Event     id                 ID                       #IMPLIED
+                    external_id        CDATA                    #IMPLIED
+                    event_mention_ids  %event_mention_ref_list; #REQUIRED
+                    event_type         CDATA                    #REQUIRED
+                    genericity         %genericity;             #REQUIRED
+                    polarity           %polarity;               #REQUIRED
+                    tense              %tense;                  #REQUIRED
+                    modality           %modality;               #REQUIRED
+                    annotation_id      CDATA                    #IMPLIED>
+<!ELEMENT EventArg  EMPTY>
+<!ATTLIST EventArg  entity_id          %entity_ref;             #IMPLIED
+                    value_id           %value_ref;              #IMPLIED
+                    role               CDATA                    #REQUIRED>
+
+<!-- _______________________ <ActorEntitySet> Element __________________________
+
+    This document-level annotation layer records the set of Entity to 
+    Actor connections determined during Serif's "doc-actors" stage. 
+    -->
+<!ELEMENT ActorEntitySet  (ActorEntity*)>
+<!ATTLIST ActorEntitySet  id                 ID                       #IMPLIED>
+<!ELEMENT ActorEntity     EMPTY>
+<!ATTLIST ActorEntity     id                 ID                       #IMPLIED
+                          actor_mention_ids  %actor_mention_ref_list; #IMPLIED
+                          actor_uid          %number;                 #IMPLIED
+                          actor_name         CDATA                    #IMPLIED
+                          actor_db_name      CDATA                    #IMPLIED
+                          confidence         %number;                 #REQUIRED
+                          entity_id          %entity_ref;             #REQUIRED
+                          source_note        CDATA                    #IMPLIED>
+
+<!-- _____________________ <ICEWSEventMentionSet> Element ________________________
+
+    This document-level annotation layer records the set of ICEWSEventMentions 
+    found in an ICEWS run during the "icews-events" stage.
+    -->
+<!ELEMENT ICEWSEventMentionSet  (ICEWSEventMention*)>
+<!ATTLIST ICEWSEventMentionSet  id                 ID                    #IMPLIED>
+<!ELEMENT ICEWSEventMention     (ICEWSEventParticipant*)>
+<!ATTLIST ICEWSEventMention     id                 ID                    #IMPLIED
+                                event_code         CDATA                 #REQUIRED
+                                pattern_id         %number;              #REQUIRED
+                                event_tense        %icews_event_tense;   #REQUIRED>
+<!ELEMENT ICEWSEventParticipant EMPTY>
+<!ATTLIST ICEWSEventParticipant actor_id           %number;              #REQUIRED
+                                role               CDATA                 #REQUIRED>
+
+<!-- _______________________ <FactSet> Element __________________________
+
+    This document-level annotation layer records the set of facts found
+    during Serif's "factfinder" stage.
+    -->
+<!ELEMENT FactSet  (Fact*)>
+<!ATTLIST FactSet                   id                 ID               #IMPLIED>
+<!ELEMENT Fact     ((MentionFactArgument|ValueMentionFactArgument|TextSpanFactArgument|StringFactArgument)*)>
+<!ATTLIST Fact                      id                 ID               #IMPLIED
+                                    start_sentence     %number;         #REQUIRED
+                                    end_sentence       %number;         #REQUIRED
+                                    start_token        %number;         #REQUIRED
+                                    end_token          %number;         #REQUIRED
+                                    fact_type          CDATA            #REQUIRED
+                                    score              %number;         #REQUIRED
+                                    score_group        %number;         #IMPLIED>
+<!ELEMENT MentionFactArgument       EMPTY>
+<!ATTLIST MentionFactArgument       id                 ID               #IMPLIED
+                                    role               CDATA            #REQUIRED
+                                    mention_id         %mention_ref;    #REQUIRED>
+<!ELEMENT ValueMentionFactArgument  EMPTY>
+<!ATTLIST ValueMentionFactArgument  id                 ID               #IMPLIED
+                                    role               CDATA            #REQUIRED
+                                    value_mention_id   %valmention_ref; #IMPLIED
+                                    is_doc_date        %boolean;        #REQUIRED>
+<!ELEMENT TextSpanFactArgument      EMPTY>
+<!ATTLIST TextSpanFactArgument      id                 ID               #IMPLIED
+                                    role               CDATA            #REQUIRED
+                                    start_sentence     %number;         #REQUIRED
+                                    end_sentence       %number;         #REQUIRED
+                                    start_token        %number;         #REQUIRED
+                                    end_token          %number;         #REQUIRED>
+<!ELEMENT StringFactArgument  EMPTY>
+<!ATTLIST StringFactArgument        id                 ID               #IMPLIED
+                                    role               CDATA            #REQUIRED
+                                    string             CDATA            #REQUIRED>
+
+
+<!-- #####################################################################
+     # 3. A Note on Element Identifiers
+     ##################################################################### -->
+
+<!-- Most SerifXML elements takes an optional "id" attribute, which
+     can be used by other elements to point to that element.  For
+     example, each entity mention element contains a pointer to a
+     start token and an end token, identifying the range of tokens
+     that it covers.  By default, Serif will generate simple numerical
+     identifiers.  However, the serialization options "verbose_ids"
+     and "hierarchical_ids" can be used to tell SERIF to generate more
+     informative (if less compact) identifier strings. -->
+
+<!-- #####################################################################
+     # 4. Undocumented Elements & Attributes
+     ##################################################################### -->
+
+<!-- ______________________ <Lexicon> Element ___________________________
+     This is used to record lexical items that were used by a version of
+     SERIF that does morphological decomposition (such as Arabic).
+     -->
+<!ELEMENT Lexicon       (LexicalEntry*)>
+<!ELEMENT LexicalEntry  EMPTY>
+<!ATTLIST LexicalEntry  id              ID                       #IMPLIED
+                        key             CDATA                    #IMPLIED
+                        analysis        %lexical_entry_ref_list; #IMPLIED
+                        category        CDATA                    #IMPLIED
+                        voweled_string  CDATA                    #IMPLIED
+                        pos             CDATA                    #IMPLIED
+                        gloss           CDATA                    #IMPLIED>
+
+<!-- ______________________ <Segments> Element ___________________________
+
+     (This feature is currently undocumented.  Segments will never be
+     generated by SERIF in the default configuration.) -->
+<!ELEMENT Segments      (Segment*)>
+<!ELEMENT Segment       (Attribute*, Field*)>
+<!ELEMENT Attribute     EMPTY>
+<!ATTLIST Attribute     key CDATA #REQUIRED
+                        val CDATA #REQUIRED>
+<!ELEMENT Field         (Entry*)>
+<!ATTLIST Field         name CDATA #REQUIRED>
+<!ELEMENT Entry         (Attribute*, Contents)>
+
+<!-- _______________________ <UTCoref> Element ___________________________
+
+    This document-level annotation layer records untyped coreference.
+    It is currently undocumented.  -->
+<!ELEMENT UTCoref       EMPTY>
+
+<!-- _______________________ <FlexibleEventMentionSet> Element ___________
+
+    This document-level annotation layer records a new type of event 
+    mention whose extent can span multiple sentences.  It is currently 
+    undocumented.  -->
+<!ELEMENT FlexibleEventMentionSet  (FlexibleEventMention*)>
+<!ATTLIST FlexibleEventMentionSet  id                ID    #IMPLIED>
+<!ELEMENT FlexibleEventMention     (FlexibleEventMentionArg*)>
+<!ATTLIST FlexibleEventMention     id                ID    #IMPLIED
+                                   event_type        CDATA #REQUIRED>
+<!ELEMENT FlexibleEventMentionArg  (Timex2*)>
+<!ATTLIST FlexibleEventMentionArg  role              CDATA #REQUIRED
+                                   start_sentence    CDATA #IMPLIED
+                                   end_sentence      CDATA #IMPLIED
+                                   start_token       CDATA #IMPLIED
+                                   end_token         CDATA #IMPLIED
+                                   mention_id        CDATA #IMPLIED
+                                   syn_node_id       CDATA #IMPLIED
+                                   value_mention_id  CDATA #IMPLIED
+                                   geo_uid           CDATA #IMPLIED
+                                   geo_country       CDATA #IMPLIED>
+
+<!-- _______________________ <Timex2> Element ___________
+
+    Records date/times.  It is currently undocumented.  -->
+<!ELEMENT Timex2                   EMPTY>
+<!ATTLIST Timex2                   val               CDATA #REQUIRED
+                                   mod               CDATA #IMPLIED
+                                   set               CDATA #IMPLIED
+                                   granularity       CDATA #IMPLIED
+                                   periodicity       CDATA #IMPLIED
+                                   anchor_val        CDATA #IMPLIED
+                                   anchor_dir        CDATA #IMPLIED
+                                   non_specific      CDATA #IMPLIED>

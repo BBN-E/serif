@@ -1,0 +1,298 @@
+
+body { 
+    foreground: black;
+    background: #777; 
+}
+
+div.body { 
+    background: white; foreground: #000; 
+    border: 2px solid black;
+    margin: 1em 1em 0 1em;
+    padding: 0.5em 1em;
+}
+h1 {
+    font-size: 160%;
+    text-align: center;
+}
+
+h2 {
+    font-size: 140%;
+}
+
+div.section { 
+    margin-top: 1em;
+    padding: 0 20px;
+}
+
+div.section h3 {
+    font-size: 130%;
+    margin: 0.2em 0 0 -20px;
+}
+
+div.figure {
+    width: 700px;
+    margin: 1em auto 0 auto;
+    text-align: center;
+}
+
+div.figure-image {
+    border: 2px solid black;
+    width: 600px;
+    margin-left: auto; margin-right: auto;
+    padding: 0.5em;
+}
+
+p.caption {
+    text-align: left;
+    margin-top: 0;
+}
+
+p.centered-caption {
+    text-align: center;
+    margin-top: 0;
+}
+
+div.indented {
+    padding: 0 2em;
+    margin: 0 0 1em 0;
+}
+
+pre.dtd {
+    border: 1px solid black;
+    padding: 0.5em;
+    background: #def;
+}
+
+body.dtd div.body { padding-left: 40px; padding-right: 40px; }
+body.dtd div.body h1 { margin-left: -20px; }
+body.dtd div.body h2 { margin-left: -20px; }
+div.dtd_item {
+    background: #dfd;
+    border: 1px solid black;
+    padding: 0 1em;
+    margin-bottom: 1em;
+}
+div.dtd_item h3 { 
+    margin-top: 0;
+}
+
+span.ENTITY  { color: #800; }
+span.ELEMENT { color: #800; font-weight: bold; }
+span.ATTLIST { color: #800; }
+
+hr.ELEMENT { 
+    margin: 1em 0 0 0; border: 1px solid #9ab;
+}
+
+p.timestamp {
+    text-align: right; margin: 0 2em; font-size: 90%;
+}
+
+pre.terminal {
+    border: 1px solid black;
+    padding: 0 0 0.5em 0.5em;
+    background: #def;
+}
+
+pre.example-request {
+    border: 1px solid black;
+    padding: 0 0 0.5em 0.5em;
+    background: #dfd;
+    margin-bottom: 0;
+    white-space: pre-wrap;
+}
+pre.example-response {
+    border: 1px solid black;
+    border-top: 0px;
+    padding: 0 0 0.5em 0.5em;
+    background: #fed;
+    margin-top: 0;
+    white-space: pre-wrap;
+}
+pre.example-response-error {
+    border: 1px solid black;
+    padding: 0.5em;
+    background: #fed;
+    white-space: pre-wrap;
+}
+
+pre div.label, pre div.http-example-label {
+    float: right;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 0 0.5em;
+    font-family: "Times New Roman", Times, serif; 
+    font-size: 125%;
+    font-weight: bold; 
+}
+
+pre.request-template {
+    border: 1px solid black;
+    padding: 0 0 0.5em 0.5em;
+    background: #dfd;
+}
+pre.example-request div.label, pre.example-request div.http-example-label {
+    background: #cec;
+}
+pre.example-response div.label, pre.example-response div.http-example-label {
+    background: #edc;
+}
+pre.request-template div.label, pre.request-template div.http-example-label {
+    background: #cec;
+}
+pre.terminal div.label {
+    background: #bcd;
+}
+
+table {
+    border-collapse:collapse;
+}
+
+table td {
+    border: 1px solid black; background: #def;
+    padding: 0 5px;
+}
+
+table th {
+    border: 1px solid black; background: #bcd;
+    padding: 0 5px;
+}
+table.options th { text-align: left; }
+
+table td.noborder { border: 0px; background: inherit; }
+table th.noborder { border: 0px; background: inherit; }
+
+table.layout { border: 0px; padding: 0; margin: 0; }
+table.layout td { border: 0px; padding: 0; margin: 0; background: inherit; }
+
+div.example-session { 
+    border: 1px solid black;
+    background: #888;
+    padding: 0 1em;
+    margin: 1em;
+}
+
+div.in2out_example { 
+    display: none; 
+}
+
+div.example-session h2 { margin-top: 0.2em; text-align: center; }
+
+span.result-ellipsis { 
+    font-family: "Times New Roman", Times, serif; 
+    font-style: italic;
+    font-weight: bold;
+} 
+
+span.comment { 
+    font-family: "Times New Roman", Times, serif; 
+    font-size: 110%;
+    color: #060;
+    font-weight: bold;
+} 
+
+span.var { 
+/*    font-family: "Times New Roman", Times, serif; */
+    font-style: italic;
+    font-weight: bold;
+    color: #860;
+} 
+
+span.changed {
+    color: #080;
+    font-weight: bold;
+}
+
+span.user-input { 
+    font-weight: bold;
+    color: #008;
+}
+span.prompt {
+    font-weight: bold;
+    color: #080;
+}
+
+pre.tree-leaf {
+    padding: 0 1em; margin: 0;
+    border: 1px solid black;
+    background: #dfd;
+    white-space: pre-wrap;
+}
+
+pre.tree-comment {
+    padding: 0 1em; margin: 0;
+    border: 1px solid black;
+    background: #ddd;
+    white-space: pre-wrap;
+}
+
+div.memory-usage {
+    border: 1px solid black;
+    width: 600px;
+    padding: 0; margin: 0;
+}
+
+table.memory-usage {
+    background: inherit;
+    border-width: 0px;
+    padding: 0; margin: 0;
+}
+
+table.memory-usage td {
+    /*padding: 0; margin: 0; */
+}
+
+div.mu-crt-bar {
+    float: left;
+    background: #c80;
+}
+
+div.mu-normal-bar {
+    float: left;
+    background: #8c0;
+}
+
+table.memory-usage td.crt {
+    background: #c80;
+    border-width: 0px;
+    overflow: hidden;
+}
+
+table.memory-usage td.normal {
+    background: #8c0;
+    border-width: 0px;
+    overflow: hidden;
+}
+
+table.memory-usage td.blank {
+    background: inherit;
+    border-width: 0px;
+    overflow: hidden;
+}
+
+/*
+div.memory-usage {
+    background: green;
+    border: 1px solid black;
+    width: 600px;
+}
+
+div.mu-size {
+    position: absolute;
+}
+
+div.mu-normal-bar {
+    float: left;
+    background: #8c0;
+}
+div.mu-crt-bar {
+    float: left;
+    background: #c80;
+}
+
+div.mu-time {
+    float: left;
+    clear: both;
+}
+
+*/

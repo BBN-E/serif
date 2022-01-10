@@ -1,0 +1,29 @@
+########################################################################
+# 02/11/15, Alex Zamanian                                              #
+#                                                                      #
+# regtest.awake.english.sgm.par                                        #
+#                                                                      #
+# Parameter file for processing ACE-style *.sgm files with AWAKE-style #
+# actor matching.                                                      #
+#                                                                      #
+########################################################################
+
+parallel:           000
+state_saver_stages: NONE
+serif_score:        NONE
+
+serif_data:         +serif_data+
+start_stage:        +start_stage+
+end_stage:          +end_stage+
+experiment_dir:     +expt_dir+
+batch_file:         +batch_file+
+
+bbn_actor_db:       +bbn_actor_db+
+
+INCLUDE +par_dir+/master.english.par
+INCLUDE +par_dir+/master.awake.english.par
+
+source_format: sgm
+
+# Only used when creating deliverable
+license_file: %serif_data%/unspec/misc/ICEWS.lic

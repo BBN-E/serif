@@ -1,0 +1,45 @@
+<!-- #####################################################################
+     #                 SerifXMLRequest DTD, Version 0.1                  #
+     ##################################################################### -->
+
+<!-- Import the serifxml DTD -->
+<!ENTITY % serifxml.dtd   SYSTEM "serifxml.dtd">
+%serifxml.dtd;
+
+<!-- #####################################################################
+     # 1. Entity Definitions 
+     ##################################################################### -->
+
+<!ENTITY % input_type                    "(AUTO|SGM|RAWTEXT)">
+<!ENTITY % parse_encoding                "(TREEBANK|SYNNODE)">
+<!ENTITY % offset_type                   "(ALL|BYTE|CHAR|EDT)">
+<!ENTITY % stage_name                    "CDATA">
+<!-- ENTITY %boolean; was already defined in serifxml.dtd -->
+
+<!-- #####################################################################
+     # 2. Element Definitions
+     ##################################################################### -->
+
+<!-- __________________ <SerifXMLRequest> Element ________________________
+
+     Indicates that a specified command should be executed by the
+     server.  Currently, the server only supports a single command:
+     <ProcessDocument>. -->
+<!ELEMENT SerifXMLRequest (ProcessDocument)>
+<!ATTLIST SerifXMLRequest >
+
+<!-- __________________ <ProcessDocument> Element ________________________
+
+     Indicates that the server should process a given document. -->
+
+<!ELEMENT ProcessDocument (Document)>
+<!ATTLIST ProcessDocument verbose_ids        %boolean;        "FALSE" 
+                          hierarchical_ids   %boolean;        "FALSE" 
+                          condensed_offsets  %boolean;        "TRUE" 
+                          implicit_tokens    %boolean;        "FALSE" 
+                          input_type         %input_type;     "AUTO"
+                          parse_encoding     %parse_encoding; "TREEBANK"
+                          offset_type        %offset_type;    "ALL"
+                          start_stage        %stage_name;     #IMPLIED
+                          end_stage          %stage_name;     "output"
+                          session_id         CDATA            #IMPLIED>

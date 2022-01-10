@@ -1,0 +1,48 @@
+maxent-sal-training-file-list: \\Traid04\u0\Users\askotows\MaxentAL\human-seed.list
+maxent-sal-activelearning-file-list: \\Traid04\u0\Users\askotows\MaxentAL\human-pool.list
+
+maxent-relation-model-file: \\Traid04\u0\Users\askotows\MaxentAL\human.memodel
+
+# will have .iter.relsent appended to it
+maxent-sal-annotation-file: \\Traid04\u0\Users\askotows\MaxentAL\human
+
+maxent-sal-log-file: \\Traid04\u0\Users\askotows\MaxentAL\human.memodel.log
+maxent-debug: \\Traid04\u0\Users\askotows\MaxentAL\human.memodel.debug
+
+# make this -1 to start from scratch; if it's 0, code will look for a trained model numbered 0
+maxent-sal-starting-modelnum: 0
+
+# if human is true, num iterations should be 1
+maxent-sal-human: true
+maxent-sal-num-active-iterations: 1
+
+maxent-sal-active-increment: 50
+
+maxent-sal-num-starting-instances: 500
+
+maxent-sal-max-none-percentage:  100
+
+maxent-trainer-pruning-cutoff: 0
+maxent-trainer-mode: SCGIS
+maxent-trainer-percent-held-out: 10
+maxent-trainer-n-iterations: 1000
+beam-width: 20
+maxent-trainer-weightsum-granularity: 1
+maxent-trainer-gaussian-variance:  0
+
+maxent-sal-devtest: true
+maxent-sal-devtest-file-list:  \\Traid04\u0\Users\askotows\MaxentAL\ALTestData\test-statefiles.list
+maxent-sal-devtest-out:  \\Traid04\u0\Users\askotows\MaxentAL\human.devtest
+
+maxent-relation-features-file: //Traid04/u1/Projects/Serif/ch_data/relations/p1/default-plus-prior.features
+maxent-relation-tag-set-file: \\traid04\u1\projects\Serif\data\relations\ace2005\relation.ace2005.tags
+entity-type-set: //traid04/u1/Projects/Serif/data/ace_2004_entity_types.txt
+entity-subtype-set: //traid04/u1/projects/Serif/data/subtypes/entity-subtypes.txt
+
+word-cluster-bits-file:  //traid04/u1/projects/Serif/ch_data/xinhua-64000.clust.sf.bitstrings.txt
+
+use-sentence-level-relation-finding: false
+use-sentence-level-event-finding: false
+
+# Value Type Set
+value-type-set:  //traid04/u1/projects/serif/data/ace_2005_value_types.txt

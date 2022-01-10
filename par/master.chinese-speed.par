@@ -1,0 +1,18 @@
+########################################################################
+# 08/29/11, Liz Boschee                                                #
+#                                                                      #
+# master.chinese-speed.par                                             #
+#   Include this parameter file to speed up your processing at the     #
+#   cost of accuracy.                                                  #
+#                                                                      #
+########################################################################
+
+OVERRIDE token_branch: 1
+
+# This seems unwise, as the relation models aren't trained for this,
+#  but I'm including it anyway
+OVERRIDE relation_finder_use_alt_models: false
+
+parser_lambda: -1
+parser_max_entries_per_cell: 5
+

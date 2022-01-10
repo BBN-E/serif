@@ -1,0 +1,41 @@
+########################################################################
+# 08/29/11, Liz Boschee                                                #
+#                                                                      #
+# master.english-speed.par                                             #
+#   Include this parameter file to speed up SERIF at the cost          #
+#   of accuracy.                                                       #
+#                                                                      #
+########################################################################
+
+## Top-level parameters
+OVERRIDE use_sentence_level_relation_finding: false
+OVERRIDE parse_branch: 1
+
+## Parsing
+parser_lambda: -1
+parser_max_entries_per_cell: 5
+maximum_pos_tags: 1
+prune_pos_tags: true
+parser_skip_unimportant_sentences: true
+unimportant_sentence_token_limit: 10
+parser_shortcuts: %serif_data%/english/parser/parser-shortcuts/parser-shortcuts-fairly-aggressive
+OVERRIDE parser_model:           %serif_data%/english/parser/ordered/full-with-complete-dates.50
+OVERRIDE lowercase_parser_model: %serif_data%/english/parser/ordered/lowercase-with-dates.50
+
+## NP Chunking
+do_np_chunk: true
+use_npchunker_constraints: true
+pnpchunk_tag_set_file:  %serif_data%/english/np-chunks/np_tags.txt
+pnpchunk_features_file: %serif_data%/english/np-chunks/npchunk_features_no_prev_tag_no_pos.txt
+pnpchunk_model_file:    %serif_data%/english/np-chunks/wsj_02_to_21.withdates-normalcase_no_prev_tag_no_pos.weights
+
+## Relations
+OVERRIDE p1_relation_model_file:   %serif_data%/english/relations/p1/ace2007-relation-p1-no-alt-all.model
+OVERRIDE relation_features_file:   %serif_data%/english/relations/relation.ace2007-no-alt.features
+OVERRIDE relation_finder_use_alt_models:  false
+UNSET maxent_relation_model_file
+UNSET maxent_relation_tag_set_file
+
+## Events
+OVERRIDE event_model_type:	NONE
+OVERRIDE event_linking_style:   NONE

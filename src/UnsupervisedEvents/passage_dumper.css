@@ -1,0 +1,19 @@
+.passages {
+    width: 32em;
+}
+
+.passage {
+    border-color: #000000;
+    border-width: 2px;
+    border-style: solid;
+    color: #000000;
+    width: 32em;
+    margin-left: 8em;
+    margin-right: 8em;
+    margin-top: 3em;
+    margin-botton: 3em;
+    padding: 2em;
+    font-size: 14pt;
+    font-face: Georgia;
+};
+

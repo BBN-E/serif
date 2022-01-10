@@ -1,0 +1,20 @@
+//####################################################################
+//# Copyright (c) 2007 by BBNT Solutions LLC                         #
+//# All Rights Reserved.                                             #
+//#                                                                  #
+//# Generic/parse/ParserConfig.h.in                                  #
+//#                                                                  #
+//# This file is dynamically instantiated by CMake.                  #
+//# The resulting file is created in:                                #
+//# $binary_dir/dynamic_includes/parse/ParserConfig.h                #
+//####################################################################
+
+#ifndef _PARSER_CONFIG_H
+#define _PARSER_CONFIG_H
+
+/* uncomment the following macro if you don't want to use __fcmp for floating
+   point comparisons.  using __fcmp should be more portable across platforms. 
+*/
+#cmakedefine  PARSER_FAST_FLOATING_POINT_COMPARISON
+
+#endif

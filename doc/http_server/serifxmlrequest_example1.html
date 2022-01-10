@@ -1,0 +1,77 @@
+<html>
+<head>
+  <title>Serif HTTP Server: rawtext2serifxml Example</title>
+  <link rel="stylesheet" type="text/css" href="serif.css">
+</head>
+<body>
+<div class="body">
+
+<h1>Example Session: SerifXMLRequest</h1>
+
+<pre class="example-request">
+<div class="http-example-label">Client Request</div>
+POST SerifXMLRequest HTTP/1.0
+content-length: 308
+
+&lt;SerifXMLRequest>
+  &lt;ProcessDocument end_stage="parse" offset_type="char" verbose_ids="true">
+    &lt;Document docid="zucchinis.txt" language="English">
+      &lt;OriginalText>&lt;Contents>
+        Joseph likes fried zucchinis.
+      &lt;/Contents>&lt;/OriginalText>
+    &lt;/Document>
+  &lt;/ProcessDocument>
+&lt;/SerifXMLRequest>
+</pre>
+<pre class="example-response">
+<div class="http-example-label">Server Response</div>
+HTTP/1.0 200 OK
+Content-length: 1887
+
+&lt;?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+&lt;SerifXML version="18">
+
+  &lt;Document docid="zucchinis.txt" id="doc-1" is_downcased="FALSE" language="English" source_type="UNKNOWN">
+    &lt;OriginalText char_offsets="0:44" id="ls-1">
+      &lt;Contents>
+        Joseph likes fried zucchinis.
+      &lt;/Contents>
+    &lt;/OriginalText>
+    &lt;Regions>
+      &lt;Region char_offsets="0:44" id="region-1" is_receiver="FALSE" is_speaker="FALSE" tag="TEXT"/>
+    &lt;/Regions>
+    &lt;Segments/>
+    &lt;Metadata/>
+    &lt;Sentences>
+      &lt;Sentence char_offsets="9:37" id="sent-1" is_annotated="TRUE" region_id="region-1">
+        &lt;TokenSequence id="tokseq-1" score="0">
+          &lt;Token char_offsets="9:14" id="tok-1">Joseph&lt;/Token>
+          &lt;Token char_offsets="16:20" id="tok-2">likes&lt;/Token>
+          &lt;Token char_offsets="22:26" id="tok-3">fried&lt;/Token>
+          &lt;Token char_offsets="28:36" id="tok-4">zucchinis&lt;/Token>
+          &lt;Token char_offsets="37:37" id="tok-5">.&lt;/Token>
+        &lt;/TokenSequence>
+        &lt;PartOfSpeechSequence id="posseq-1" score="0" token_sequence_id="tokseq-1"/>
+        &lt;NameTheory id="nametheory-1" score="0" token_sequence_id="tokseq-1">
+          &lt;Name char_offsets="9:14" end_token="tok-1" entity_type="PER" id="name-1" start_token="tok-1"/>
+        &lt;/NameTheory>
+        &lt;ValueMentionSet id="vmset-1" score="0" token_sequence_id="tokseq-1"/>
+        &lt;Parse id="parse-1" score="-37.2918701" token_sequence_id="tokseq-1">
+          &lt;TreebankString node_id_method="DFS">
+            (S^ (NPP (NNP^ joseph)) (VP^ (VBZ^ likes) (NPA (JJ fried) (NN^ zucchinis))) (. .))
+          &lt;/TreebankString>
+        &lt;/Parse>
+        &lt;SentenceTheory id="sent-2" name_theory_id="nametheory-1" parse_id="parse-1" 
+             part_of_speech_sequence_id="posseq-1" primary_parse="full_parse" 
+             token_sequence_id="tokseq-1" value_mention_set_id="vmset-1"/>
+      &lt;/Sentence>
+    &lt;/Sentences>
+    &lt;Lexicon/>
+  &lt;/Document>
+
+&lt;/SerifXML>
+</pre>
+
+</div>
+</body>
+</html>

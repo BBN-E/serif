@@ -1,0 +1,30 @@
+
+######### Experiment Information ############################
+
+# The location of the Cluster log file
+session-log: C:/Projects/Cluster/cluster.log
+
+# The list of input documents to process
+cluster-document-filelist: C:/Projects/Cluster/data/doclist.txt
+
+# The output. Word clusters file.
+cluster-outfile: C:/Projects/Cluster/data/output/cluster-out.hBits
+
+# Temporary tokens file
+tokens-file: C:/Projects/Cluster/data/output/tokens.out
+
+# ----- Tokenizer -----
+tokenizer-params: C:/Projects/Cluster/data/tokenization/default.params
+tokenizer-subst: C:/Projects/Cluster/data/tokenization/token-subst.data
+tokenizer-short-words: C:/Projects/Cluster/data/tokenization/short-words.data
+tokenizer-non-final-abbrevs: C:/Projects/Cluster/data/tokenization/non-final-abbrevs.data
+tokenizer-no-split-abbrevs: C:/Projects/Cluster/data/tokenization/no-split-abbrevs.data
+tokenizer-hyphenated-endings: C:/Projects/Cluster/data/tokenization/hyphenated-endings.data
+tokenizer-hyphenated-tokens: C:/Projects/Cluster/data/tokenization/hyphenated-tokens.data
+
+# Remove all words with a count less then the 'prune-threshold'
+prune-threshold: 10
+
+# Output the words with a count less then the 'prune-threshold'
+output-rare-words: true
+rare-words-file: C:/Projects/Cluster/data/output/rare-words.txt

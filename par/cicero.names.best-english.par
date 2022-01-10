@@ -1,0 +1,30 @@
+########################################################################
+# 07/17/14, Nick Ward                                                  #
+#                                                                      #
+# cicero.names.best-english.par:                                       #
+#   This is a Serif parameter file designed to run our current         #
+#   BEST system for Cicero in English through names.                   #
+#                                                                      #
+########################################################################
+
+# External variables (must be defined first)
+parallel:           000
+serif_data:         +serif_data+
+serif_score:        NONE
+start_stage:        START
+end_stage:          names
+state_saver_stages: NONE
+
+INCLUDE +par_dir+/master.english.par
+
+license_file: %serif_data%/unspec/misc/cicero.lic
+
+# Sentence breaking
+skip_table_sentences: true
+
+# Name model
+OVERRIDE pidf_features_file:     %serif_data%/english/names/pidf/cicero.features
+OVERRIDE pidf_tag_set_file:      %serif_data%/english/names/pidf/cicero.tags
+OVERRIDE pidf_model_file: %serif_data%/english/names/pidf/cicero.weights
+UNSET lowercase_pidf_model_file
+OVERRIDE name_pattern_set_list:  %serif_data%/english/names/patterns/cicero-name-patterns.list

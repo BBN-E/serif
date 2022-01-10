@@ -1,0 +1,17 @@
+ADD_SERIF_LIBRARY_SUBDIR(distributionalKnowledge
+  SOURCE_FILES
+    DistributionalUtil.h
+    DistributionalUtil.cpp
+    DistributionalKnowledgeClass.h
+    DistributionalKnowledgeClass.cpp
+    DistributionalKnowledgeTable.h
+    DistributionalKnowledgeTable.cpp
+    DistributionalClusterClass.h
+    DistributionalClusterClass.cpp
+    DistributionalAssocPropClass.h
+    DistributionalAssocPropClass.cpp
+    DistributionalCausalClass.h
+    DistributionalCausalClass.cpp
+    DistributionalAnchorArgClass.h
+    DistributionalAnchorArgClass.cpp
+)

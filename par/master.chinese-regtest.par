@@ -1,0 +1,71 @@
+########################################################################
+# 08/29/11, Liz Boschee                                                #
+#                                                                      #
+# master.chinese-regtest.par                                           #
+#   Include this file to run on the ACE2005 Chinese regression test.   #
+#                                                                      #
+#   This should always be included AFTER master.chinese.par, since     #
+#   it overrides some of those parameters.                             #
+#                                                                      #
+########################################################################
+
+track_files_read: true
+open_file_retries: 4
+OVERRIDE ignore_errors: false
+
+input_type: sgm
+OVERRIDE doc_reader_calculate_edt_offsets: true
+OVERRIDE doc_reader_offsets_start_at_first_tag: false
+
+license_file: %serif_data%/unspec/misc/bbn_idx.lic
+
+# Location of text file listing input documents:
+batch_file.prefix: %serif_regression%/data-2005-v4.0%os_suffix%/Chinese/
+batch_file.list: adj-1/source-files.txt adj-2/source-files.txt adj-3/source-files.txt adj-4/source-files.txt adj-5/source-files.txt adj-6/source-files.txt adj-7/source-files.txt adj-8/source-files.txt
+
+experiment_dir.prefix: %expt_dir%/
+experiment_dir.list: adj-1 adj-2 adj-3 adj-4 adj-5 adj-6 adj-7 adj-8
+
+key_dir.prefix: %serif_regression%/data-2005-v4.0%os_suffix%/Chinese/
+key_dir.list: adj-1/ adj-2/ adj-3/ adj-4/ adj-5/ adj-6/ adj-7/ adj-8/
+
+## REGTEST MODEL FILES
+
+## Names
+OVERRIDE pidf_model_file: %serif_data%/chinese/names/pidf/baseline2005-TDT4-ACE2005.bitriwc.giga9804-tdt4bn.weights
+
+## Values
+OVERRIDE values_model_file.prefix: %serif_data%/chinese/values/pidf/baseline2005-
+OVERRIDE values_model_file.list: no-adj-1.ch.weights no-adj-2.ch.weights no-adj-3.ch.weights no-adj-4.ch.weights no-adj-5.ch.weights no-adj-6.ch.weights no-adj-7.ch.weights no-adj-8.ch.weights
+
+## Mention Classification
+OVERRIDE p1_desc_model_file:		%serif_data%/chinese/nominals/p1/baseline2005-p1-desc-ace2004-and-2005.giga9804-tdt4bn.p1
+OVERRIDE p1_pronoun_type_model_file:    %serif_data%/chinese/pronouns/p1/baseline2005-p1-pron-ace2004-and-2005.giga9804-tdt4bn.p1
+
+## Coref
+OVERRIDE dt_pron_model_file:	 %serif_data%/chinese/coref/pronouns/maxent/baseline2005-pron-ace-2005.giga9804-tdt4bn
+OVERRIDE generic_model_file:     %serif_data%/chinese/coref/names/stat/baseline2005-ace2004-2005.1105.uni
+OVERRIDE generic_unseen_weights: %serif_data%/chinese/coref/names/stat/baseline2005-ace2004-2005.1105.lambdas
+OVERRIDE dt_coref_model_file:    %serif_data%/chinese/coref/nominals/maxent/baseline2005-desc-ace-2005.giga9804-tdt4bn
+
+## Subtypes
+OVERRIDE desc_head_subtypes: %serif_data%/chinese/subtypes/baseline2005-subtypes-2004-2005.nom
+OVERRIDE full_name_subtypes: %serif_data%/chinese/subtypes/baseline2005-subtypes-2004-2005.name
+
+## Events
+OVERRIDE event_trigger_model_file.prefix:  %serif_data%/chinese/events/triggers/trigger-ace2005-
+OVERRIDE event_trigger_model_file.list:    no-adj-1.model no-adj-2.model no-adj-3.model no-adj-4.model no-adj-5.model no-adj-6.model no-adj-7.model no-adj-8.model
+OVERRIDE event_aa_model_file.prefix:       %serif_data%/chinese/events/arguments/aa-ace2005-
+OVERRIDE event_aa_model_file.list:         no-adj-1.maxent no-adj-2.maxent no-adj-3.maxent no-adj-4.maxent no-adj-5.maxent no-adj-6.maxent no-adj-7.maxent no-adj-8.maxent
+OVERRIDE event_link_model_file.prefix:     %serif_data%/chinese/events/link/link-ace2005-
+OVERRIDE event_link_model_file.list:       no-adj-1.model no-adj-2.model no-adj-3.model no-adj-4.model no-adj-5.model no-adj-6.model no-adj-7.model no-adj-8.model
+
+## Relations
+OVERRIDE maxent_relation_model_file.prefix: %serif_data%/chinese/relations/maxent/
+OVERRIDE maxent_relation_model_file.list:   no-adj-1.baseline2005.maxent no-adj-2.baseline2005.maxent no-adj-3.baseline2005.maxent no-adj-4.baseline2005.maxent no-adj-5.baseline2005.maxent no-adj-6.baseline2005.maxent no-adj-7.baseline2005.maxent no-adj-8.baseline2005.maxent
+OVERRIDE p1_relation_model_file.prefix:     %serif_data%/chinese/relations/p1/
+OVERRIDE p1_relation_model_file.list:       no-adj-1.baseline2005.p1model no-adj-2.baseline2005.p1model no-adj-3.baseline2005.p1model no-adj-4.baseline2005.p1model no-adj-5.baseline2005.p1model no-adj-6.baseline2005.p1model no-adj-7.baseline2005.p1model no-adj-8.baseline2005.p1model
+OVERRIDE vector_relation_model_file.prefix: %serif_data%/chinese/relations/vector/
+OVERRIDE vector_relation_model_file.list:   no-adj-1.baseline2005.vectors no-adj-2.baseline2005.vectors no-adj-3.baseline2005.vectors no-adj-4.baseline2005.vectors no-adj-5.baseline2005.vectors no-adj-6.baseline2005.vectors no-adj-7.baseline2005.vectors no-adj-8.baseline2005.vectors
+OVERRIDE relation_time_model_file.prefix:   %serif_data%/chinese/relations/timex/ta-ace2005-
+OVERRIDE relation_time_model_file.list:     no-adj-1.model no-adj-2.model no-adj-3.model no-adj-4.model no-adj-5.model no-adj-6.model no-adj-7.model no-adj-8.model

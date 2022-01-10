@@ -1,0 +1,30 @@
+########################################################################
+# 08/29/11, Liz Boschee                                                #
+#                                                                      #
+# regtest.speed.best-english.par                                       #
+#   This is a Serif parameter file designed to run the ACE2008	       #
+#   regression test of the Arabic ACE Serif system, with speed-ups.    #
+#                                                                      #
+########################################################################
+
+# External variables (must be defined first)
+parallel:           +parallel+
+serif_data:         +serif_data+
+serif_score:        +serif_score+
+start_stage:        +start_stage+
+end_stage:          +end_stage+
+perl_binary:        +perl_binary+
+serif_regression:   +serif_regression+
+os_suffix:          +os_suffix+
+expt_dir:           +expt_dir+
+state_saver_stages: +state_saver_stages+
+
+INCLUDE +par_dir+/master.english.par
+INCLUDE +par_dir+/master.english-regtest.par
+INCLUDE +par_dir+/master.english-speed.par
+
+# Override relation files; -speed does it one way and -regtest does it 
+#  another way; we have to do it a third way when combining the two
+OVERRIDE p1_relation_model_file.prefix: %serif_data%/english/relations/p1/ace2007-relation-p1-no-alt
+OVERRIDE p1_relation_model_file.list: -adj-1.model -adj-2.model -adj-3.model -adj-4.model -adj-5.model -adj-6.model -adj-7.model -adj-8.model
+OVERRIDE relation_finder_use_alt_models: false

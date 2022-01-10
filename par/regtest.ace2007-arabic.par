@@ -1,0 +1,44 @@
+#######################################################################
+# 08/29/11, Liz Boschee                                               #
+# 03/27/08, Jessica MacBride                                          #
+#                                                                     #
+# regtest.ace2007-arabic.par:			                      #
+#   This is a Serif parameter file designed to run the ACE2007	      #
+#   regression test of the Arabic ACE Serif system. This is a 	      #
+#   "BEST"-style system but uses settings that maximize for the       #
+#   ACE2007 scorer, not what we judge to be actual best performance.  #
+#                                                                     #
+#######################################################################
+
+# External variables (must be defined first)
+parallel:           +parallel+
+serif_data:         +serif_data+
+serif_score:        +serif_score+
+start_stage:        +start_stage+
+end_stage:          +end_stage+
+perl_binary:        +perl_binary+
+serif_regression:   +serif_regression+
+os_suffix:          +os_suffix+
+expt_dir:           +expt_dir+
+state_saver_stages: +state_saver_stages+
+
+INCLUDE +par_dir+/master.arabic.par
+INCLUDE +par_dir+/master.arabic-regtest.par
+
+## Use ACE07 scorer
+OVERRIDE score_script: %serif_score%/ace07-do-score-v01.pl
+
+## Coref parameters specific to 2007
+OVERRIDE dt_coref_rank_overgen_threshold: 180000
+OVERRIDE dt_coref_maxent_link_threshold:  .7
+second_pass_coref_maxent_threshhold:      .5
+second_pass_coref_overgen_threshhold:     35000
+singleton_descriptor_percentage:          100
+dt_pron_discard_new_pronoun_entities:	  true
+
+## Turn off ACE2008 filter parameters
+OVERRIDE filter_clutter:                         false
+OVERRIDE filter_clutter_use_ace2008eval_filter:	 false
+OVERRIDE filter_clutter_filter_WEA:              false
+OVERRIDE filter_clutter_filter_VEH:              false
+

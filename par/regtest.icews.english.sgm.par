@@ -1,0 +1,28 @@
+########################################################################
+# 11/21/13, Edward Loper                                               #
+#                                                                      #
+# regtest.icews.sgm.par                                                #
+#                                                                      #
+# Parameter file for processing ACE-style *.sgm files with ICEWS.      #
+#                                                                      #
+########################################################################
+
+parallel:           000
+state_saver_stages: NONE
+serif_score:        NONE
+
+serif_data:         +serif_data+
+start_stage:        +start_stage+
+end_stage:          +end_stage+
+experiment_dir:     +expt_dir+
+batch_file:         +batch_file+
+icews_lib_dir:      +icews_lib_dir+
+
+INCLUDE +par_dir+/master.english.par
+INCLUDE +par_dir+/master.icews.english.par
+
+source_format: sgm
+OVERRIDE icews_read_stories_from_database: false
+
+# Only used when creating deliverable
+license_file: %serif_data%/unspec/misc/ICEWS.lic

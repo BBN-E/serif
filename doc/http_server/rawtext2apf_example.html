@@ -1,0 +1,76 @@
+<html>
+<head>
+  <title>Serif HTTP Server: rawtext2apf Example</title>
+  <link rel="stylesheet" type="text/css" href="serif.css">
+</head>
+<body>
+<div class="body">
+
+<h1>Example Session: rawtext2apf</h1>
+
+<pre class="example-request">
+<div class="http-example-label">Client Request</div>
+POST rawtext2apf HTTP/1.0
+content-length: 41
+
+I saw a man on the hill with a telescope.
+</pre>
+<pre class="example-response">
+<div class="http-example-label">Server Response</div>
+HTTP/1.0 200 OK
+Content-length: 1915
+
+&lt;?xml version="1.0"?>
+&lt;!DOCTYPE source_file SYSTEM "apf.v5.2.0.dtd">
+&lt;source_file SOURCE="UNKNOWN" TYPE="text" VERSION="2.0" URI="20101116101414-0">
+  &lt;document DOCID="20101116101414-0">
+
+    &lt;entity ID="20101116101414-0-E0" TYPE="PER" SUBTYPE="Individual" CLASS="SPC">
+        &lt;entity_mention TYPE="NOM" ID="20101116101414-0-E0-M0.2">
+          &lt;extent>
+              &lt;charseq START="6" END="10">a man&lt;/charseq>
+          &lt;/extent>
+          &lt;head>
+              &lt;charseq START="8" END="10">man&lt;/charseq>
+          &lt;/head>
+        &lt;/entity_mention>
+    &lt;/entity>
+
+    &lt;entity ID="20101116101414-0-E1" TYPE="LOC" SUBTYPE="Land-Region-Natural" CLASS="SPC">
+        &lt;entity_mention TYPE="NOM" ID="20101116101414-0-E1-M0.3">
+          &lt;extent>
+              &lt;charseq START="15" END="39">the hill with a telescope&lt;/charseq>
+          &lt;/extent>
+          &lt;head>
+              &lt;charseq START="19" END="22">hill&lt;/charseq>
+          &lt;/head>
+        &lt;/entity_mention>
+    &lt;/entity>
+
+    &lt;relation ID="20101116101414-0-R0" TYPE="PHYS" SUBTYPE="Located" MODALITY="Asserted" TENSE="Unspecified">
+      &lt;relation_argument REFID="20101116101414-0-E0" ROLE="Arg-1"/>
+      &lt;relation_argument REFID="20101116101414-0-E1" ROLE="Arg-2"/>
+        &lt;relation_mention ID="20101116101414-0-R0-M0">
+          &lt;extent>
+              &lt;charseq START="6" END="10">a man&lt;/charseq>
+          &lt;/extent>
+          &lt;relation_mention_argument REFID="20101116101414-0-E0-M0.2" ROLE="Arg-1">
+            &lt;extent>
+              &lt;charseq START="6" END="10">a man&lt;/charseq>
+            &lt;/extent>
+          &lt;/relation_mention_argument>
+          &lt;relation_mention_argument REFID="20101116101414-0-E1-M0.3" ROLE="Arg-2">
+            &lt;extent>
+              &lt;charseq START="15" END="39">the hill with a telescope&lt;/charseq>
+            &lt;/extent>
+          &lt;/relation_mention_argument>
+        &lt;/relation_mention>
+    &lt;/relation>
+
+  &lt;/document>
+&lt;/source_file>
+</pre>
+
+</div>
+</body>
+</html>
